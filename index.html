@@ -25,8 +25,8 @@
     </header>
     <!-- Navbar -->
     <!-- TODO: Empujar las items del navbar a la derecha usando flex -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white m-2">
+      <div class="container-fluid margin-xl">
         <button
           class="navbar-toggler"
           type="button"
@@ -34,7 +34,8 @@
           data-mdb-target="#navbarExample01"
           aria-controls="navbarExample01"
           aria-expanded="false"
-          aria-label="Toggle navigation">
+          aria-label="Toggle navigation"
+        >
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarExample01">
@@ -53,24 +54,80 @@
       </div>
     </nav>
     <!-- Navbar -->
-    <body class="p-4">
-      <main class="row m-2">
-        <!-- Aqui dentro van las plantillas pug -->
-        <div class="card col-md-3 col-sm-6">
-          <p>hello</p>
-        </div>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
-        <p class="card col-md-3 col-sm-6">hello</p>
+    <div class="container-fluid margin-xl">
+      <main class="d-flex flex-column min-vh-100">
+        <table class="table table-hover table-striped">
+          <tbody>
+            <tr id="titles">
+              <td>
+                <h2>Type</h2>
+              </td>
+              <td>
+                <h2>Image</h2>
+              <td>
+                <h2>Price</h2>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h2>Wind</h2>
+                <hr class="my-5" />
+                <h2>Wood</h2>
+              </td>
+              <td>
+                <!-- TODO: Que el enlce apunte al boton de edicion de ese instrumento -->
+                  <a href="#">
+                      <img class="img-fluid" src="img/saxo.png" alt="img"></td>
+                  </a>
+              <td>
+                <div class="list-group d-flex">
+                  <h2 class="d-flex">$50 </h2>
+                  <a href="#">View</a> 
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h2>Wind</h2>
+                <hr class="my-5" />
+                <h2>Brass</h2>
+              </td>
+              <td>
+                  <a href="#">
+                      <img class="img-fluid" src="img/horn.png" alt="img"></td>
+                  </a>
+              <td>
+                <div class="list-group d-flex">
+                  <h2 class="d-flex">$100 </h2>
+                  <a href="#">View</a> 
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h2>Wind</h2>
+                <hr class="my-5" />
+                <h2>Brass</h2>
+              </td>
+              <td>
+                  <a href="#">
+                      <img class="img-fluid" src="img/horn.png" alt="img"></td>
+                  </a>
+              <td>
+                <div class="list-group d-flex">
+                  <h2 class="d-flex">$100 </h2>
+                  <a href="#">View</a> 
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </main>
-    </body>
+    </div>
+    <footer class="mt-auto">
+      <div class="container text-center">
+        <small>©️ 2022 Cosme Valera</small>
+      </div>
+    </footer>
   </body>
 </html>

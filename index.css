@@ -1,6 +1,27 @@
+h1, h2, h3, h4, h5, h5, p {
+    color: white;
+}
+header {
+    background-color: #eea29a;
+
+}
 body{
-    background-color: yellowgreen;
+    background-color: #c94c4c;
+    background-color: #b1cbbb;
 }
 p {
     margin-bottom: 5px;
 }
+#titles {
+    background-color: #deeaee;
+}
+#titles h2 {
+    color: black;
+}
+tbody>tr {
+    background-color: #b1cbbb;
+}
+footer {
+    background-color: #c94c4c;
+    color: white;
+  }
