@@ -1,0 +1,4 @@
+1. Crear una plantilla de un instrumento
+2. Dejar algunas de ejemplo
+3. Al darle al botón de add templates que meta una a piñon (ya haremos que te lleve a otra pagina para crearlas), hacerlo con arrays
+4. Darle respaldo de bd o de ficheros para que las plantillas se conserven
