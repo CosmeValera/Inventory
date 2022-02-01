@@ -1,10 +1,12 @@
 each inst in instruments
     tr
         td
-            h2=inst.type
+            div(class="centerElement")
+                h2=inst.type
             if inst.subtype
-                hr(class="my-4")
-                h2=inst.subtype
+                hr(class="m-4")
+                div(class="centerElement")
+                    h2=inst.subtype
         td
             a(class="d-flex justify-content-center" href="#")
                 img(class="img-fluid" src=`img/${inst.img}` alt="img")
@@ -19,9 +21,13 @@ each inst in instruments
 
 <tr>
     <td>
-        <h2>Wind</h2>
-        <hr class="my-4" />
-        <h2>Wood</h2>
+        <div class="centerElement">
+            <h2>Wind</h2>
+        </div>
+        <hr class="m-4" />
+        <div class="centerElement">
+            <h2>Wood</h2>
+        </div>
     </td>
     <!-- TODO: Que el enlce apunte al boton de edicion de ese instrumento -->
     <td>
