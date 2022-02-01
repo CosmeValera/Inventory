@@ -1,0 +1,29 @@
+[
+  {
+    "type": "Wind",
+    "subtype": "Wood",
+    "name": "Saxophone",
+    "img": "saxo.png",
+    "sonority": 60,
+    "price": 2300,
+    "summary": "A professional saxophone"
+  },
+  {
+    "type": "Percussion",
+    "subtype": null,
+    "name": "Snare Drum",
+    "img": "snareDrum.png",
+    "sonority": 40,
+    "price": 178.4,
+    "summary": "A snare drum for drummers"
+  },
+  {
+    "type": "Wind",
+    "subtype": "Brass",
+    "name": "Horn",
+    "img": "horn.png",
+    "sonority": 80,
+    "price": 3500.5,
+    "summary": "A high level horn"
+  }
+]
