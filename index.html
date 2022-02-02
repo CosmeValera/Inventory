@@ -54,19 +54,19 @@
       </div>
     </nav>
     <!-- Navbar -->
-    <div class="container-fluid margin-xl">
-      <main class="d-flex flex-column min-vh-100">
+    <div id="container-of-main" class="container-fluid margin-xl">
+      <main class="d-flex flex-column">
         <table class="table table-hover table-striped">
           <tbody>
             <tr id="titles">
               <td>
                 <div class="d-flex justify-content-center">
-                  <h2>Type</h2>
+                  <h2>Image</h2>
                 </div>
               </td>
               <td>
                 <div class="d-flex justify-content-center">
-                  <h2>Image</h2>
+                  <h2>Type</h2>
                 </div>
               </td>
               <td>
@@ -77,6 +77,11 @@
             </tr>
             <tr>
               <td>
+                <a class="d-flex justify-content-center" href="#">
+                  <img class="img-fluid" src="img/saxo.png" alt="img" />
+                </a>
+              </td>
+              <td id="container-fill-height">
                 <div class="centerElement">
                   <h2>Wind</h2>
                 </div>
@@ -85,54 +90,32 @@
                   <h2>Wood</h2>
                 </div>
               </td>
-              <!-- TODO: Que el enlce apunte al boton de edicion de ese instrumento -->
-              <td>
-                <a class="d-flex justify-content-center" href="#">
-                  <img class="img-fluid" src="img/saxo.png" alt="img">
-                </a>
-              </td>
-              <td>
-                <div class="d-flex justify-content-end">
-                  <a href="#">View</a>
-                </div> 
-                <br><br>
-                <div id ="container" class="col">
+              <td id="container-fill-height">
+                <div>
+                  <a href="#" class="item-upper-right">View</a>
+                </div>
+                <div>
                   <h2>$2500.00</h2>
                 </div>
               </td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>
                 <h2>Percussion</h2>
               </td>
               <td>
                 <a href="#">
-                  <img class="img-fluid" src="img/snareDrum.png" alt="img"></td>
+                  <img class="img-fluid" src="img/snareDrum.png" alt="img" />
                 </a>
+              </td>
+
               <td>
                 <div class="list-group d-flex">
-                  <h2 class="d-flex">$80 </h2>
-                  <a href="#">View</a> 
+                  <h2 class="d-flex">$80</h2>
+                  <a href="#">View</a>
                 </div>
               </td>
-            </tr>
-            <tr>
-              <td>
-                <h2>Wind</h2>
-                <hr class="my-5" />
-                <h2>Brass</h2>
-              </td>
-              <td>
-                  <a href="#">
-                      <img class="img-fluid" src="img/horn.png" alt="img"></td>
-                  </a>
-              <td>
-                <div class="list-group d-flex">
-                  <h2 class="d-flex">$100 </h2>
-                  <a href="#">View</a> 
-                </div>
-              </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </main>

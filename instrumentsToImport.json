@@ -1,5 +1,6 @@
 [
   {
+    "id" : 1,
     "type": "Wind",
     "subtype": "Wood",
     "name": "Saxophone",
@@ -9,6 +10,7 @@
     "summary": "A professional saxophone"
   },
   {
+    "id" : 2,
     "type": "Percussion",
     "subtype": null,
     "name": "Snare Drum",
@@ -18,6 +20,7 @@
     "summary": "A snare drum for drummers"
   },
   {
+    "id" : 3,
     "type": "Wind",
     "subtype": "Brass",
     "name": "Horn",
@@ -25,5 +28,15 @@
     "sonority": 80,
     "price": 3500.5,
     "summary": "A high level horn"
+  },
+  {
+    "id" : 4,
+    "type": "String",
+    "subtype": null,
+    "name": "Violin",
+    "img": "violin.png",
+    "sonority": 73,
+    "price": 2200,
+    "summary": "Beethoven's violin"
   }
 ]
