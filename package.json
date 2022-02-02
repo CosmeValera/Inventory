@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "runApp": "node app.js",
     "run": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^6.1.9"
+    "express": "^4.17.2",
+    "mongoose": "^6.1.9",
+    "path": "^0.12.7"
   }
 }
