@@ -15,7 +15,7 @@ async function addProduct(evt) {
   }).then(function (response) {
     return response.text();
   });
-  console.log(fetchValue);
+  console.log(fetchValue, "6");
 
   //Do I have to change the html like this?
   document.querySelector("body").innerHTML = fetchValue;
