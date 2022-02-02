@@ -1,6 +1,2 @@
-1. Crear una plantilla de un instrumento
-1.1 Centrar los titulos y el precio, dejar view pegado abajo a la derecha
-2. Dejar algunas de ejemplo
-3. Al darle al botón de add templates que meta una a piñon (ya haremos que te lleve a otra pagina para crearlas), hacerlo con arrays
-4. Darle respaldo de bd o de ficheros para que las plantillas se conserven
-
+1. que add product añada a piñon una plantilla pug a la tabla ☑️
+2. en su lugar, que la añada a la base de datos, y que en la tabla se vean los datos de mongo
