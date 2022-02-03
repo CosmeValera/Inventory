@@ -1,0 +1,38 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+p {
+  color: white;
+  text-shadow: 1px 1px #0000006e;
+}
+header {
+  background-color: #eea29a;
+  background: rgb(238, 162, 154);
+  background: linear-gradient(
+    0deg,
+    rgba(238, 162, 154, 1) 0%,
+    rgba(201, 76, 76, 1) 50%
+  );
+}
+body {
+  background-color: #c94c4c;
+  background-color: #b1cbbb;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+.container-of-main {
+  position: relative;
+  flex-grow: 1;
+  overflow: auto;
+}
+footer {
+  background-color: #c94c4c;
+  color: white;
+  padding-bottom: 0.5em;
+}

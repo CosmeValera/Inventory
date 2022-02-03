@@ -1,40 +1,12 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h5,
-p {
-  color: white;
-}
-header {
-  background-color: #eea29a;
-}
-body {
-  background-color: #c94c4c;
-  background-color: #b1cbbb;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  max-height: 100vh;
-}
-p {
-  margin-bottom: 5px;
-}
 #titles {
   background-color: #deeaee;
 }
 #titles > td > div > h2 {
   color: black;
+  text-shadow: 1px 1px #ffffff6e;
 }
 tbody > tr {
   background-color: #b1cbbb;
-}
-footer {
-  background-color: #c94c4c;
-  color: white;
-  padding-bottom: 0.5em;
 }
 
 #container-fill-height {
@@ -48,11 +20,6 @@ footer {
   position: absolute;
   top: 0;
   right: 0;
-}
-#container-of-main {
-    position:relative;
-    flex-grow: 1;
-    overflow: auto;
 }
 
 .centerElement {
