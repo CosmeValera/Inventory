@@ -73,33 +73,53 @@
               <option>Brass</option>
             </select>
           </div>
+          <!-- Poner un tooltip, si pones el raton encima te diga el value actual de la barra -->
           <div class="form-group col-lg-4 col-sm-6 col-12">
-            <label for="sonority">Sonority:</label>
-            <select class="form-control" id="sonority">
+            <label for="sonority">Sonority</label>
+            <input
+              type="range"
+              class="custom-range pt-3"
+              min="0"
+              max="100"
+              step="10"
+              value="50"
+              id="sonority"
+            />
+
+            <!-- <label for="sonority">Sonority:</label>
+            <br />
+            0
+            <input type="range" id="sonority" name="sonorityName" value="50" />
+            100 =
+            <output name="x" for="a b"></output>
+            <br /><br /> -->
+
+            <!-- <select class="form-control" id="sonority">
               <option></option>
               <option>Wood</option>
               <option>Brass</option>
-            </select>
+            </select> -->
           </div>
           <div class="form-group col-lg-4 col-sm-6 col-12">
             <label for="price">Price:</label>
-            <select class="form-control" id="price">
-              <option></option>
-              <option>Wood</option>
-              <option>Brass</option>
-            </select>
+            <input
+              class="form-control"
+              type="number"
+              id="price"
+              name="price"
+              min="0"
+              max="99999"
+              placeholder="$1500"
+            />
           </div>
           <div class="form-group col-lg-4 col-sm-6 col-12">
             <label for="description">Description:</label>
-            <select
+            <input
               class="form-control"
+              type="text"
               id="description"
-              aria-describedby="descriptionHelpBlock"
-            >
-              <option></option>
-              <option>Wood</option>
-              <option>Brass</option>
-            </select>
+              placeholder="Instrument's description"
+            />
             <small id="descriptionHelpBlock" class="form-text text-muted">
               Max. length: 256 characters.
             </small>
@@ -120,22 +140,22 @@
       </div>
     </footer>
     <script
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
     ></script>
     <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
     ></script>
     <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
     ></script>
     <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
-    
+
     <script src="./create.js"></script>
   </body>
 </html>
