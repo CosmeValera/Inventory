@@ -1,6 +1,3 @@
-1. que add product añada a piñon una plantilla pug a la tabla ☑️
-1.5 usar node con express uy que cuando pongas app.get() te muestre el html
-1.8 no hay que usar require a la base de datso desde el js que llaama el html en el app.get,
-en su lugar que al darle un boton que haga un fetcvh para mostrar otra pagina 
-(hay un ejemplo de esto en el de agendaTelefonos)
-2. en su lugar, que la añada a la base de datos, y que en la tabla se vean los datos de mongo
+1. al pincharle al enlace de la imagen o a view de un instrumento que habra una ventana modal
+2. que la ventana modal que habrá dependa del instrumento al que le hayas pinchado
+3. que muestre los datos de ese instrumento, cogeindolos de la base de datos

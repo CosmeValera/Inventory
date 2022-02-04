@@ -30,3 +30,7 @@ exports.deleteInstrument = async function (instrumentParam) {
 exports.findInstruments = async function () {
     await Instrument.find({});
 };
+
+exports.findInstrumentById = async function (idParam) {
+    await Instrument.find({ id: idParam });
+};
