@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "runApp": "node app.js",
-    "run": "node index.js"
+    "compile-index-pug": "pug -c -D -n insertInstruments -o public/js instruments.pug"
   },
   "keywords": [],
   "author": "",

@@ -1,15 +1,15 @@
 const express = require("express");
 const path = require("path");
-const db = require("./public/dbInstruments");
+const db = require("./public/js/dbInstruments.js");
 const app = express();
 var bodyParser = require("body-parser");
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
+    bodyParser.urlencoded({
+        extended: true,
+    })
 );
 app.use(bodyParser.json());
 
@@ -39,16 +39,16 @@ const PORT = process.env.PORT || 3000;
 
 //curl -i -X POST http://localhost:3000/inventory
 app.post("/inventory", async (req, res) => {
-  try {
-    console.log(`app.post("/inventory", (req, res)`);
-    instrument = req.body;
-    instrumentAcceptable = db.Instrument(instrument);
-    await db.saveInstrument(instrumentAcceptable);
-    //Aqui creamos un instrumento nuevo con lo que nos llega al body
-    res.sendStatus(200);
-  } catch (err) {
-    res.sendStatus(400);
-  }
+    try {
+        console.log(`app.post("/inventory", (req, res)`);
+        instrument = req.body;
+        instrumentAcceptable = db.Instrument(instrument);
+        await db.saveInstrument(instrumentAcceptable);
+        //Aqui creamos un instrumento nuevo con lo que nos llega al body
+        res.sendStatus(200);
+    } catch (err) {
+        res.sendStatus(400);
+    }
 });
 // app.put("/inventory", (req, res) => {
 //     console.log(`app.put("/inventory", (req, res)`);
@@ -61,7 +61,7 @@ app.post("/inventory", async (req, res) => {
 
 // Other functions
 async function connectDB() {
-  await db.connect();
+    await db.connect();
 }
 
 // --- ARRANQUE DE SERVICIO

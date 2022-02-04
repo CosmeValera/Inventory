@@ -22,4 +22,4 @@ async function addProduct(evt) {
     // document.querySelector("body").innerHTML = fetchValue;
 }
 
-document.querySelector("#add-product").addEventListener("click", addProduct);
+// document.querySelector("#add-product").addEventListener("click", addProduct);
