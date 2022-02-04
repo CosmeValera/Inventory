@@ -33,12 +33,7 @@
         <form class="m-3 row">
           <div class="form-group col-lg-4 col-sm-6 col-12">
             <label for="name">Instrument*:</label>
-            <select
-              class="form-control"
-              id="selectName"
-              name="name"
-              aria-describedby="nameHelpBlock"
-            >
+            <select class="form-control" id="selectName" name="name">
               <option></option>
               <option>Violin</option>
               <option>Guitar</option>
@@ -53,21 +48,26 @@
               <option>Conga</option>
               <option>Battery</option>
             </select>
-            <small id="nameHelpBlock" class="form-text text-muted">
-              Type & instrument must make sense
-            </small>
           </div>
           <div class="form-group col-lg-4 col-sm-6 col-12">
             <label for="type">Type*:</label>
-            <select class="form-control" id="selectType" name="type">
+            <select
+              class="form-control"
+              id="selectType"
+              name="type"
+              aria-describedby="nameHelpBlock"
+            >
               <option></option>
               <option>Wind</option>
               <option>String</option>
               <option>Percussion</option>
             </select>
+            <small id="nameHelpBlock" class="form-text text-muted">
+              Type depends on instrument
+            </small>
           </div>
           <div class="form-group col-lg-4 col-sm-6 col-12">
-            <label for="subtype">Subtype:</label>
+            <label for="subtype">Subtype*:</label>
             <select class="form-control" id="selectSubtype" name="subtype">
               <option></option>
               <option>Wood</option>

@@ -24,7 +24,8 @@ async function createNewInstrument(evt) {
     summary.length > 256
   ) {
     let divResultMessage = document.getElementById("resultMessage");
-    divResultMessage.innerHTML = "<p>Missing mandatory data and/or price > 99999</p>";
+    divResultMessage.innerHTML =
+      "<p>Missing mandatory data and/or price > 99999</p>";
     divResultMessage.style.backgroundColor = "rgba(201, 76, 76, 1)";
     divResultMessage.style.borderColor = "rgb(220,45,65)";
     divResultMessage.style.display = "flex";
@@ -35,7 +36,7 @@ async function createNewInstrument(evt) {
     type: type,
     subtype: subtype,
     name: name,
-    img: name + ".PNG",
+    // img: name + ".png",
     sonority: sonority,
     price: price,
     summary: summary,
@@ -50,45 +51,154 @@ async function createNewInstrument(evt) {
       "Content-Type": "application/json",
       // "Content-Type": "application/x-www-form-urlencoded"
     },
-  }).then(response => {
-      if (response.ok) {
-        let divResultMessage = document.getElementById("resultMessage");
-        divResultMessage.innerHTML = `<p>Instrument created with name: ${name}, and price: $${price}</p>`;
-        divResultMessage.style.backgroundColor = "#77D150";
-        divResultMessage.style.borderColor = "#44E42C";
-        divResultMessage.style.display = "flex";
-      } else {
-          alert("Server found an issue, " + response.statusText)
-      }
+  }).then((response) => {
+    if (response.ok) {
+      let divResultMessage = document.getElementById("resultMessage");
+      divResultMessage.innerHTML = `<p>Instrument created with name: ${name}, and price: $${price}</p>`;
+      divResultMessage.style.backgroundColor = "#77D150";
+      divResultMessage.style.borderColor = "#44E42C";
+      divResultMessage.style.display = "flex";
+    } else {
+      alert("Server found an issue, " + response.statusText);
+    }
   });
 }
 
 async function namePicked(evt) {
-    let instrumentName = evt.target.value;
-    img.src = `img/${instrumentName}.png`;
+  let instrumentName = evt.target.value;
+  img.src = `img/${instrumentName}.png`;
 
-    if (instrumentName == "Snare Drum") {
-        img.src = "img/snareDrum.png";
-    }
-    if (instrumentName == "") {
-        img.src = "img/noInstrument.png"
-    }
+  if (instrumentName == "Snare Drum") {
+    img.src = "img/snareDrum.png";
+  }
+  if (instrumentName == "") {
+    img.src = "img/noInstrument.png";
+  }
 
-    switch (instrumentName) {
-        case "Violin":
-            console.log("We got a violin");
-            // selectType.value
-            // img.src = "img/violin.png";
-            break;
-        case "Guitar":
-            console.log("We got a guitar");
-            break;
-        case "Flute":
-            console.log("We got a flute");
-            break;
-                
-    }
+  switch (instrumentName) {
+    case "":
+        selectName.innerHTML=`<option></option>
+        <option>Violin</option>
+        <option>Guitar</option>
+        <option>Piano</option>
+        <option>Flute</option>
+        <option>Clarinet</option>
+        <option>Saxophone</option>
+        <option>Horn</option>
+        <option>Trumpet</option>
+        <option>Tuba</option>
+        <option>Snare Drum</option>
+        <option>Conga</option>
+        <option>Battery</option>`;
+      selectType.innerHTML = `<option></option>
+        <option>Wind</option>
+        <option>String</option>
+        <option>Percussion</option>`;
+      selectType.value = "";
+      selectSubtype.parentElement.style.display = "block";
+      selectSubtype.innerHTML = `<option></option>
+      <option>Wood</option>
+      <option>Brass</option>`;
+      selectSubtype.value = "";
+      break;
+    case "Violin":
+    case "Guitar":
+    case "Piano":
+      selectType.innerHTML = `<option></option>
+        <option>String</option>`;
+      selectType.value = "String";
+      selectSubtype.parentElement.style.display = "none";
+      break;
+    case "Snare Drum":
+    case "Conga":
+    case "Battery":
+      selectType.innerHTML = `<option></option>
+          <option>Percussion</option>`;
+      selectType.value = "Percussion";
+      selectSubtype.parentElement.style.display = "none";
+      break;
+    case "Flute":
+    case "Clarinet":
+    case "Saxophone":
+      selectType.innerHTML = `<option></option>
+          <option>Wind</option>`;
+      selectType.value = "Wind";
+      selectSubtype.parentElement.style.display = "block";
+      selectSubtype.innerHTML = `<option></option>
+        <option>Wood</option>`;
+      selectSubtype.value = "Wood";
+      break;
+    case "Horn":
+    case "Trumpet":
+    case "Tuba":
+      selectType.innerHTML = `<option></option>
+          <option>Wind</option>`;
+      selectType.value = "Wind";
+      selectSubtype.parentElement.style.display = "block";
+      selectSubtype.innerHTML = `<option></option>
+        <option>Brass</option>`;
+      selectSubtype.value = "Brass";
+      break;
+  }
+}
 
+async function typePicked(evt) {
+    let instrumentType = evt.target.value;
+    switch (instrumentType) {
+        case "":
+            img.src = "img/noInstrument.png";
+            selectName.innerHTML=`<option></option>
+            <option>Violin</option>
+            <option>Guitar</option>
+            <option>Piano</option>
+            <option>Flute</option>
+            <option>Clarinet</option>
+            <option>Saxophone</option>
+            <option>Horn</option>
+            <option>Trumpet</option>
+            <option>Tuba</option>
+            <option>Snare Drum</option>
+            <option>Conga</option>
+            <option>Battery</option>`
+            selectType.innerHTML = `<option></option>
+              <option>Wind</option>
+              <option>String</option>
+              <option>Percussion</option>`;
+            selectSubtype.parentElement.style.display = "block";
+            selectSubtype.innerHTML = `<option></option>
+            <option>Wood</option>
+            <option>Brass</option>`;
+            selectSubtype.value = "";
+            break;
+        case "String":
+            selectName.innerHTML=`<option></option>
+            <option>Violin</option>
+            <option>Guitar</option>
+            <option>Piano</option>}`
+            selectSubtype.parentElement.style.display = "none";
+            break;
+        case "Percussion":
+            selectName.innerHTML=`<option></option>
+            <option>Snare Drum</option>
+            <option>Conga</option>
+            <option>Battery</option>`
+            selectSubtype.parentElement.style.display = "none";
+            break;
+        case "Wind":
+            selectName.innerHTML=`<option></option>
+            <option>Flute</option>
+            <option>Clarinet</option>
+            <option>Saxophone</option>
+            <option>Horn</option>
+            <option>Trumpet</option>
+            <option>Tuba</option>`
+            selectSubtype.parentElement.style.display = "block";
+            selectSubtype.innerHTML = `<option></option>
+            <option>Wood</option>
+            <option>Brass</option>`;
+            selectSubtype.value = "";
+            break;
+    }
 }
 
 button = document.querySelector("button");
@@ -101,7 +211,7 @@ inputSummary = document.querySelector("#inputDescription");
 img = document.querySelector("#imgInstrument");
 
 button.addEventListener("click", createNewInstrument);
-selectName.addEventListener("change", namePicked)
-
+selectName.addEventListener("change", namePicked);
+selectType.addEventListener("change", typePicked);
 
 //TODO calcular id automatico, al elegir un instrumento, que se ponga la imagen y se limiten las opcionese de type y subtype(quiza desaparecerlo?)

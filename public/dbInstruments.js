@@ -5,7 +5,7 @@ const InstrumentSchema = new mongoose.Schema({
     type: { type: String, required: true },
     subtype: { type: String, required: false },
     name: { type: String, required: true },
-    img: { type: String, required: true },
+    // img: { type: String, required: true },
     sonority: { type: String, required: true },
     price: { type: Number, required: true },
     summary: { type: String, required: false },
