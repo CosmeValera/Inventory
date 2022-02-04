@@ -39,15 +39,14 @@ const PORT = process.env.PORT || 3000;
 
 //curl -i -X POST http://localhost:3000/inventory
 app.post("/inventory", async (req, res) => {
-  console.log(`app.post("/inventory", (req, res)`);
-  instrument = req.body;
-  instrumentAcceptable = db.Instrument(instrument);
-  let ok = await db.saveInstrument(instrumentAcceptable);
-  // console.log(req.body.instrument);
-  if (ok) {
+  try {
+    console.log(`app.post("/inventory", (req, res)`);
+    instrument = req.body;
+    instrumentAcceptable = db.Instrument(instrument);
+    await db.saveInstrument(instrumentAcceptable);
     //Aqui creamos un instrumento nuevo con lo que nos llega al body
     res.sendStatus(200);
-  } else {
+  } catch (err) {
     res.sendStatus(400);
   }
 });
@@ -62,7 +61,7 @@ app.post("/inventory", async (req, res) => {
 
 // Other functions
 async function connectDB() {
-    await db.connect();
+  await db.connect();
 }
 
 // --- ARRANQUE DE SERVICIO
