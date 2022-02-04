@@ -8,7 +8,11 @@ async function createNewInstrumentWithFetch(evt) {
     var price = document.querySelector("#inputPrice").value;
     var summary = document.querySelector("#inputDescription").value;
     if (!name || !type || !sonority || !price || price>99999 || summary.length>256) {
-        alert("Missing mandatory data");
+        // alert("Missing mandatory data");
+        let notify = document.getElementById("resultMessage");
+        notify.innerHTML = "<p>Missing mandatory data and/or price > 99.999</p>";
+        notify.style.backgroundColor="rgba(201, 76, 76, 1)";
+        notify.style.display = "flex";
         return;
     }
     var instrument = {
@@ -21,13 +25,7 @@ async function createNewInstrumentWithFetch(evt) {
         price: price,
         summary: summary,
     }
-
-    console.log(name, type, subtype, sonority, price, summary);
-
     var instrumentStringified = JSON.stringify(instrument);
-    console.log(instrument);
-    // console.log(instrumentStringified);
-
 
     //Hacemos fetch para que app.js cree un instrumento con esos datos
     //TODO: COMPROBAR QUE NO TENGA VALORES NULL poner en app.js el POST que reciba el instrumento en el body, y lo de de alta en app.js
@@ -39,10 +37,19 @@ async function createNewInstrumentWithFetch(evt) {
             // "Content-Type": "application/x-www-form-urlencoded"
         }
     });
+
+    //TODO que si la responses es afirmativa muestre este mensaje, poner un if
+    let notify = document.getElementById("resultMessage");
+    notify.innerHTML = `<p>Instrument created with name: ${name}, and price: $${price}</p>`;
+    notify.style.backgroundColor="#77D150";
+    notify.style.display = "flex";
+
+
     return response.json();
-    // console.log(fetchValue);
 }
 
 document
     .querySelector("button")
     .addEventListener("click", createNewInstrumentWithFetch);
+
+//TODO calcular id automatico, al elegir un instrumento, que se ponga la imagen y se limiten las opcionese de type y subtype(quiza desaparecerlo?) 
