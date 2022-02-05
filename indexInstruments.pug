@@ -1,0 +1,30 @@
+tr(id="titles")
+    td
+        div(class="d-flex justify-content-center")
+            h2="Image"
+    td
+        div(class="d-flex justify-content-center")
+            h2="Type"
+    td
+        div(class="d-flex justify-content-center")
+            h2="Price"
+each inst in instruments
+    tr
+        td
+            a(class="d-flex justify-content-center" href="#")
+                if (inst.name == "Snare Drum")
+                    img(class="img-fluid thumbnail zoom" src=`img/snareDrum.png` width="100px" height="100px" alt="img")
+                else
+                    img(class="img-fluid thumbnail zoom" src=`img/${inst.name}.png` width="100px" height="100px" alt="img")
+        td(id="container-fill-height")
+            div(class="centerElement")
+                h2=inst.type
+            if inst.subtype
+                hr(class="m-4")
+                div(class="centerElement")
+                    h2=inst.subtype
+        td(id="container-fill-height")
+            div
+                a(href="#" class="item-upper-right me-3 mt-2")="View"
+            div
+                h2=`$ ${inst.price}.00` 
