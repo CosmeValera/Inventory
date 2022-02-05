@@ -10,7 +10,7 @@ tr(id="titles")
             h2="Price"
 each inst in instruments
     tr
-        td
+        td(id="container-fill-height")
             a(class="d-flex justify-content-center" href="#")
                 if (inst.name == "Snare Drum")
                     img(class="img-fluid thumbnail zoom" src=`img/snareDrum.png` width="100px" height="100px" alt="img")
@@ -25,6 +25,6 @@ each inst in instruments
                     h2=inst.subtype
         td(id="container-fill-height")
             div
-                a(href="#" class="item-upper-right me-3 mt-2")="View"
+                a(href="#" class="item-upper-right link-as-button me-3 mt-2")="View"
             div
                 h2=`$ ${inst.price}.00` 

@@ -28,8 +28,19 @@ async function loadInstrumentsFromDB(evt) {
   }
 }
 
+async function linkOrImageClicked(evt) {
+  //parent: .this-is-a-table-row, child: .secret-invisible-id
+  const linkOrImage = evt.target;
+  const parentDiv = linkOrImage.closest(".this-is-a-table-row");
+  const divWithId = parentDiv.querySelector(".secret-invisible-id");
+  const id = divWithId.innerHTML.trim(); //Number without spaces
+  console.log(id);
+}
+
 document
   .getElementById("switchBigImg")
   .addEventListener("change", loadInstrumentsFromDB);
 
-loadInstrumentsFromDB();
+// loadInstrumentsFromDB();
+
+document.querySelector("tbody").addEventListener("click", linkOrImageClicked);

@@ -28,6 +28,23 @@ tbody > tr {
   align-items: center;
 }
 
+a.link-as-button:link, a.link-as-button:visited {
+  background-color: rgb(201, 76, 76);
+  color: white;
+  padding: 4px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.secret-invisible-id {
+  display:none;
+}
+
+a.link-as-button:hover, a.link-as-button:active {
+  background-color: rgb(231, 20, 20);
+}
+
 /******** IMAGE ZOOM ********/
 ul.gallery {
   margin-left: 3vw;
