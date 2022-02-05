@@ -2,7 +2,10 @@ each inst in instruments
     tr
         td
             a(class="d-flex justify-content-center" href="#")
-                img(class="img-fluid" src=`img/${inst.img}` alt="img")
+                if (inst.name == "Snare Drum")
+                    img(class="img-fluid" src=`img/snareDrum.png` alt="img")
+                else
+                    img(class="img-fluid" src=`img/${inst.name}.png` alt="img")
         td(id="container-fill-height")
             div(class="centerElement")
                 h2=inst.type
@@ -14,4 +17,4 @@ each inst in instruments
             div
                 a(href="#" class="item-upper-right me-3 mt-2")="View"
             div
-                h2="$" + inst.price
+                h2=`$ ${inst.price}.00` 

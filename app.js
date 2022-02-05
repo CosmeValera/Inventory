@@ -3,6 +3,7 @@ const path = require("path");
 const db = require("./public/js/dbInstruments.js");
 const app = express();
 var bodyParser = require("body-parser");
+require("dotenv").config();
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
@@ -13,7 +14,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.MYPORT;
 
 // --- FUNCIONES DE MIDDLEWARE
 
@@ -37,10 +38,19 @@ const PORT = process.env.PORT || 3000;
 //     // window.location = "/public/details.html";
 // });
 
+app.get("/inventory", async(req, res)=> {
+    try {
+        let instruments = await db.findInstruments();
+        res.send(JSON.stringify(instruments));
+    } catch (err) {
+        res.statusMessage = "Error: " + err;
+        res.sendStatus(500);
+    }
+});
+
 //curl -i -X POST http://localhost:3000/inventory
 app.post("/inventory", async (req, res) => {
     try {
-        console.log(`app.post("/inventory", (req, res)`);
         instrument = req.body;
         instrumentAcceptable = db.Instrument(instrument);
         await db.saveInstrument(instrumentAcceptable);

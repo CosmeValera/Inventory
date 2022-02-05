@@ -37,7 +37,7 @@ async function createNewInstrument(evt) {
     }
     //TODO: probar a hacerlo sin id, mongoose ya les mete un id de por si, es _id
     var instrument = {
-        id: 99,
+        // id: 99,
         type: type,
         subtype: subtype,
         name: name,
