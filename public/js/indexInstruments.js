@@ -7,7 +7,7 @@ var pug_match_html=/["&<>]/;function insertInstruments(locals) {var pug_html = "
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var inst = $$obj[pug_index0];
-pug_html = pug_html + "\u003Ctr\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Ca class=\"d-flex justify-content-center\" href=\"#\"\u003E";
+pug_html = pug_html + "\u003Ctr class=\"this-is-a-table-row\"\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Ca class=\"d-flex justify-content-center\" href=\"#\"\u003E";
 if ((inst.name == "Snare Drum")) {
 pug_html = pug_html + "\u003Cimg class=\"img-fluid thumbnail zoom\" src=\"img\u002FsnareDrum.png\" width=\"100px\" height=\"100px\" alt=\"img\"\u002F\u003E";
 }
@@ -18,14 +18,14 @@ pug_html = pug_html + "\u003C\u002Fa\u003E\u003C\u002Ftd\u003E\u003Ctd id=\"cont
 if (inst.subtype) {
 pug_html = pug_html + "\u003Chr class=\"m-4\"\u002F\u003E\u003Cdiv class=\"centerElement\"\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = inst.subtype) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E";
 }
-pug_html = pug_html + "\u003C\u002Ftd\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Cdiv\u003E\u003Ca class=\"item-upper-right link-as-button me-3 mt-2\" href=\"#\"\u003E" + (pug_escape(null == (pug_interp = "View") ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003Cdiv\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = `$ ${inst.price}.00`) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003C\u002Ftr\u003E";
+pug_html = pug_html + "\u003C\u002Ftd\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Cp class=\"secret-invisible-id\"\u003E" + (pug_escape(null == (pug_interp = inst._id) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cdiv\u003E\u003Ca class=\"item-upper-right link-as-button me-3 mt-2\" href=\"#\"\u003E" + (pug_escape(null == (pug_interp = "View") ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003Cdiv\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = `$ ${inst.price}.00`) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003C\u002Ftr\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var inst = $$obj[pug_index0];
-pug_html = pug_html + "\u003Ctr\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Ca class=\"d-flex justify-content-center\" href=\"#\"\u003E";
+pug_html = pug_html + "\u003Ctr class=\"this-is-a-table-row\"\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Ca class=\"d-flex justify-content-center\" href=\"#\"\u003E";
 if ((inst.name == "Snare Drum")) {
 pug_html = pug_html + "\u003Cimg class=\"img-fluid thumbnail zoom\" src=\"img\u002FsnareDrum.png\" width=\"100px\" height=\"100px\" alt=\"img\"\u002F\u003E";
 }
@@ -36,7 +36,7 @@ pug_html = pug_html + "\u003C\u002Fa\u003E\u003C\u002Ftd\u003E\u003Ctd id=\"cont
 if (inst.subtype) {
 pug_html = pug_html + "\u003Chr class=\"m-4\"\u002F\u003E\u003Cdiv class=\"centerElement\"\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = inst.subtype) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E";
 }
-pug_html = pug_html + "\u003C\u002Ftd\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Cdiv\u003E\u003Ca class=\"item-upper-right link-as-button me-3 mt-2\" href=\"#\"\u003E" + (pug_escape(null == (pug_interp = "View") ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003Cdiv\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = `$ ${inst.price}.00`) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003C\u002Ftr\u003E";
+pug_html = pug_html + "\u003C\u002Ftd\u003E\u003Ctd id=\"container-fill-height\"\u003E\u003Cp class=\"secret-invisible-id\"\u003E" + (pug_escape(null == (pug_interp = inst._id) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cdiv\u003E\u003Ca class=\"item-upper-right link-as-button me-3 mt-2\" href=\"#\"\u003E" + (pug_escape(null == (pug_interp = "View") ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003Cdiv\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = `$ ${inst.price}.00`) ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003C\u002Ftr\u003E";
     }
   }
 }).call(this);

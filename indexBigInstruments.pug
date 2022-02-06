@@ -9,7 +9,7 @@ tr(id="titles")
         div(class="d-flex justify-content-center")
             h2="Price"
 each inst in instruments
-    tr
+    tr(class="this-is-a-table-row")
         td(id="container-fill-height")
             a(class="d-flex justify-content-center" href="#")
                 if (inst.name == "Snare Drum")
@@ -24,6 +24,7 @@ each inst in instruments
                 div(class="centerElement")
                     h2=inst.subtype
         td(id="container-fill-height")
+            p(class="secret-invisible-id")=inst._id 
             div
                 a(href="#" class="item-upper-right link-as-button me-3 mt-2")="View"
             div

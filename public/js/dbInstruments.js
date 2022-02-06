@@ -33,5 +33,5 @@ exports.findInstruments = async function () {
 };
 
 exports.findInstrumentById = async function (idParam) {
-    return await Instrument.find({ id: idParam });
+    return await Instrument.find({ _id: idParam });
 };

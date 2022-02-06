@@ -48,6 +48,17 @@ app.get("/inventory", async(req, res)=> {
     }
 });
 
+app.get("/inventory/:id", async(req, res)=> {
+    try {
+        let id = req.params.id;
+        let instrument = await db.findInstrumentById(id);
+        res.send(JSON.stringify(instrument));
+    } catch (err) {
+        res.statusMessage = "Error: " + err;
+        res.sendStatus(500);
+    }
+});
+
 //curl -i -X POST http://localhost:3000/inventory
 app.post("/inventory", async (req, res) => {
     try {
