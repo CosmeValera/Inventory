@@ -2,6 +2,8 @@ div(class="modal-header" id= "container-fill-height")
     h2(class="my-0")=instrument.name
     span(class="close item-upper-right px-4 py-3")="×"
 div(class = "modal-body")
+    p(class="d-none modal-invisible-id")
+        =instrument._id
     p(class="d-flex justify-content-center my-0")
         strong(class="me-2")="Type:"
         =instrument.type
@@ -22,8 +24,10 @@ div(class = "modal-body")
     else
         p(class="d-flex justify-content-center mt-0 mb-3")
             strong(class="me-2")="No Summary"
-    a(class="d-flex justify-content-center" href="#")
+    a(class="d-flex justify-content-center")
         if (instrument.name!="Snare Drum")
             img(class="img-fluid" src=`img/${instrument.name}.png` alt="img")
         else
-            img(class="img-fluid" src=`img/snareDrum.png` alt="img")
+            img(class="img-fluid" src=`img/snareDrum.png` alt="img") 
+    div(class="d-flex justify-content-center")
+        a(class="link-as-button-red delete-button mt-3" href="#")="Delete"

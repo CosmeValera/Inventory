@@ -1,182 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inventory</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" type="text/css" href="./css/general.css" />
-    <link rel="stylesheet" type="text/css" href="./css/index.css" />
-  </head>
-  <body>
-    <header class="container-fluid d-flex justify-content-center">
-      <h1>Inventory</h1>
-    </header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light my-2">
-      <a class="navbar-brand" href="/">Inventory</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Record</a>
-          </li>
-          <!-- Dropdown -->
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbardrop"
-              data-toggle="dropdown"
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inventory</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" type="text/css" href="./css/general.css" />
+        <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    </head>
+    <body>
+        <header class="container-fluid d-flex justify-content-center">
+            <h1>Inventory</h1>
+        </header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light my-2">
+            <a class="navbar-brand" href="/">Inventory</a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
             >
-              Product
-            </a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" id="add-product" href="/create.html"
-                >Add product</a
-              >
-              <a class="dropdown-item disabled" href="#">Delete product</a>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Record</a>
+                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbardrop"
+                            data-toggle="dropdown"
+                        >
+                            Product
+                        </a>
+                        <div class="dropdown-menu">
+                            <a
+                                class="dropdown-item"
+                                id="add-product"
+                                href="/create.html"
+                                >Add product</a
+                            >
+                            <a class="dropdown-item disabled" href="#"
+                                >Delete product</a
+                            >
+                        </div>
+                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbardrop"
+                            data-toggle="dropdown"
+                        >
+                            Preferences
+                        </a>
+                        <div class="dropdown-menu">
+                            <label class="dropdown-item">
+                                <input
+                                    style="background-color: blueviolet"
+                                    type="checkbox"
+                                    id="switchBigImg"
+                                />
+                                Big images</label
+                            >
+                        </div>
+                    </li>
+                    <!-- Dropdown -->
+                </ul>
             </div>
-          </li>
-          <!-- Dropdown -->
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbardrop"
-              data-toggle="dropdown"
-            >
-              Preferences
-            </a>
-            <div class="dropdown-menu">
-              <label class="dropdown-item">
-                <input
-                  style="background-color: blueviolet"
-                  type="checkbox"
-                  id="switchBigImg"
-                />
-                Big images</label
-              >
-            </div>
-          </li>
-          <!-- Dropdown -->
-        </ul>
-      </div>
-    </nav>
+        </nav>
 
-    <div class="container-of-main container-fluid margin-xl">
-      <main class="d-flex flex-column">
-        <table class="table table-hover table-striped">
-          <tbody>
-            <tr id="titles">
-              <td>
-                <div class="d-flex justify-content-center">
-                  <h2>Image</h2>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex justify-content-center">
-                  <h2>Type</h2>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex justify-content-center">
-                  <h2>Price</h2>
-                </div>
-              </td>
-            </tr>
-            <tr class="this-is-a-table-row">
-              <td id="container-fill-height">
-                <a class="d-flex justify-content-center" href="#">
-                  <img
-                    class="img-fluid thumbnail zoom"
-                    src="img/saxophone.png"
-                    width="100px"
-                    height="100px"
-                    alt="img"
-                  />
-                </a>
-              </td>
-              <td id="container-fill-height">
-                <div class="centerElement">
-                  <h2>Wind</h2>
-                </div>
-                <hr class="m-4" />
-                <div class="centerElement">
-                  <h2>Wood</h2>
-                </div>
-              </td>
-              <td id="container-fill-height">
-                <p class="secret-invisible-id">0</p>
-                <div>
-                  <a class="item-upper-right link-as-button-blue me-3 mt-2" href="#"
-                    >Details</a>
-                </div>
-                <div>
-                  <a class="item-bottom-right link-as-button-red delete-button me-3 mb-2" href="#"
-                    >Delete button</a
-                  >
-                </div>
-                <div>
-                  <h2>$2500.00</h2>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </main>
-    </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <!-- Instrument data added with js -->
-      </div>
-    </div>
-    <!-- The Modal -->
-    <footer class="mt-auto">
-      <div class="container text-center">
-        <small>©️ 2022 Cosme Valera</small>
-      </div>
-    </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/js/indexInstruments.js"></script>
-    <script src="/js/indexBigInstruments.js"></script>
-    <script src="/js/indexModalInstrument.js"></script>
-    <script src="/js/index.js"></script>
-  </body>
+        <div class="container-of-main container-fluid margin-xl">
+            <main class="d-flex flex-column">
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        <tr id="titles">
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <h2>Image</h2>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <h2>Type</h2>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <h2>Price</h2>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="this-is-a-table-row">
+                            <td id="container-fill-height">
+                                <a
+                                    class="d-flex justify-content-center"
+                                    href="#"
+                                >
+                                    <img
+                                        class="img-fluid thumbnail zoom"
+                                        src="img/saxophone.png"
+                                        width="100px"
+                                        height="100px"
+                                        alt="img"
+                                    />
+                                </a>
+                            </td>
+                            <td id="container-fill-height">
+                                <div class="centerElement">
+                                    <h2>Wind</h2>
+                                </div>
+                                <hr class="m-4" />
+                                <div class="centerElement">
+                                    <h2>Wood</h2>
+                                </div>
+                            </td>
+                            <td id="container-fill-height">
+                                <p class="secret-invisible-id">
+                                    61fd541073ee62c4810c07c1
+                                </p>
+                                <div>
+                                    <a
+                                        class="item-upper-right link-as-button-blue me-3 mt-2"
+                                        href="#"
+                                        >Details</a
+                                    >
+                                </div>
+                                <div>
+                                    <a
+                                        class="item-bottom-right link-as-button-red delete-button me-3 mb-2"
+                                        href="#"
+                                        >Delete button</a
+                                    >
+                                </div>
+                                <div>
+                                    <h2>$2500.00</h2>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <!-- Instrument data added in index.js using pug -->
+            </div>
+        </div>
+        <!-- The Modal -->
+        <footer class="mt-auto">
+            <div class="container text-center">
+                <small>©️ 2022 Cosme Valera</small>
+            </div>
+        </footer>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+        <script src="/js/indexInstruments.js"></script>
+        <script src="/js/indexBigInstruments.js"></script>
+        <script src="/js/indexModalInstrument.js"></script>
+        <script src="/js/index.js"></script>
+    </body>
 </html>
