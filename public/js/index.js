@@ -1,54 +1,40 @@
 var modal;
+var settings = new Object();
+settings.bigInstruments = false;
 
-async function loadInstrumentsFromDB(evt) {
-    console.log(evt);
-    // console.log(evt.target);
-    // console.log(evt.target.value);
+async function loadInstrumentsFromDBToTable() {
     const response = await fetch("/inventory");
-
     if (response.ok) {
         var instrumentsJson = await response.json();
-        if (evt) {
-            //When clicking the checkbox
-            if (evt.target.checked) {
-                var dataPug = {
-                    instruments: instrumentsJson,
-                    bigInstruments: true,
-                };
-                console.log(dataPug);
-                document.querySelector("tbody").innerHTML = insertInstruments({
-                    data: dataPug,
-                });
-            } else {
-                var dataPug = {
-                    instruments: instrumentsJson,
-                    bigInstruments: false,
-                };
-                document.querySelector("tbody").innerHTML = insertInstruments({
-                    data: dataPug,
-                });
-            }
-        } else {
-            //Load screen first time
-            var dataPug = {
-                instruments: instrumentsJson,
-                bigInstruments: false,
-            };
-            document.querySelector("tbody").innerHTML = insertInstruments({
-                data: dataPug,
-            });
-        }
+        var dataPug = {
+            instruments: instrumentsJson,
+            bigInstruments: settings.bigInstruments,
+        };
+
+        document.querySelector("tbody").innerHTML = insertInstruments({
+            data: dataPug,
+        });
     } else {
         alert("Server found an issue, " + response.statusText);
     }
 }
 
-async function deleteInstrument(idParam) {
+async function changeInstrumentsSize(evt) {
+    //When clicking the checkbox
+    if (evt.target.checked) {
+        settings.bigInstruments = true;
+    } else {
+        settings.bigInstruments = false;
+    }
+    loadInstrumentsFromDBToTable();
+}
+
+async function deleteInstrument(evt, idParam) {
     await fetch(`/inventory/ ${idParam}`, {
         method: "DELETE",
     }).then((response) => {
         if (response.ok) {
-            window.location = "http://localhost:3000";
+            loadInstrumentsFromDBToTable(evt);
         } else {
             alert(
                 `Server found an issue trying to delete instrument with id: ${idParam}, ` +
@@ -89,7 +75,7 @@ async function linkOrImageClicked(evt) {
         ".secret-invisible-id"
     );
     if (buttonClicked.classList.contains("delete-button")) {
-        deleteInstrument(id);
+        deleteInstrument(evt, id);
         return;
     }
     //If it is not delete nor update, we want to show details with modal page
@@ -105,11 +91,12 @@ async function modalClicked(evt) {
     );
     //check we clicked delete button
     if (buttonClicked.classList.contains("delete-button")) {
-        deleteInstrument(id);
+        document.querySelector(".close").click(); //Close modal page
+        deleteInstrument(evt, id);
         return;
     }
     if (buttonClicked.classList.contains("update-button")) {
-        //TODO
+        //TODO update
         // updateInstrument(id);
         return;
     }
@@ -126,7 +113,7 @@ function findSiblingUsingDom(actualElement, parentClass, siblingClass) {
 //Modal inits
 document
     .getElementById("switchBigImg")
-    .addEventListener("change", loadInstrumentsFromDB);
+    .addEventListener("change", changeInstrumentsSize);
 
 document.querySelector("tbody").addEventListener("click", linkOrImageClicked);
 
@@ -139,7 +126,7 @@ window.onclick = function (event) {
 };
 //Modal inits
 
-loadInstrumentsFromDB();
+loadInstrumentsFromDBToTable();
 //TODO 1. que tambien muestre un boton de eliminar la pagina modal que redirija al mismo
 //metodo(deleteInstrument) pasandole el id, aunque sin pasar por linkOrImageClicked
 //TODO 2. permitir que se pueda eliminar un instrumento y seguir estando en la pagina de instrumentos grandes
