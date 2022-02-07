@@ -25,8 +25,8 @@ exports.disconnect = mongoose.disconnect;
 exports.saveInstrument = async function (instrumentParam) {
     await instrumentParam.save();
 };
-exports.deleteInstrument = async function (instrumentParam) {
-    await Instrument.find({ id: instrumentParam.id }).deleteOne().exec();
+exports.deleteInstrument = async function (idParam) {
+    await Instrument.deleteOne({ _id: idParam });
 };
 exports.findInstruments = async function () {
     return await Instrument.find({});

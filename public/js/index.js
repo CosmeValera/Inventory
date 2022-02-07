@@ -29,13 +29,20 @@ async function loadInstrumentsFromDB(evt) {
   }
 }
 
-async function linkOrImageClicked(evt) {
-  //parent: .this-is-a-table-row, child: .secret-invisible-id
-  const linkOrImage = evt.target;
-  const parentDiv = linkOrImage.closest(".this-is-a-table-row");
-  if (!parentDiv) return;
-  const divWithId = parentDiv.querySelector(".secret-invisible-id");
-  const id = divWithId.innerHTML.trim(); //Number without spaces
+async function deleteInstrument(idParam) {
+
+  await fetch(`/inventory/ ${idParam}`, {
+    method: "DELETE",
+  }).then((response) => {
+      if (response.ok) {
+        window.location = "http://localhost:3000"
+      } else {
+          alert(`Server found an issue trying to delete instrument with id: ${idParam}, ` + response.statusText);
+      }
+  });
+}
+
+async function showDetails(id) {
   const response = await fetch(`/inventory/${id}`);
   if (response.ok) {
     var instrumentJson = await response.json().then((arrayOfOne) => {
@@ -56,11 +63,29 @@ async function linkOrImageClicked(evt) {
   }
 }
 
+async function linkOrImageClicked(evt) {
+  //parent: .this-is-a-table-row, child: .secret-invisible-id
+  const linkOrImage = evt.target;
+  console.log(linkOrImage)
+  const parentDiv = linkOrImage.closest(".this-is-a-table-row");
+  console.log(parentDiv)
+  if (!parentDiv) return;
+  const divWithId = parentDiv.querySelector(".secret-invisible-id");
+  console.log(divWithId)
+  const id = divWithId.innerHTML.trim(); //Number without spaces
+  console.log(id)
+
+  if (linkOrImage.classList.contains("delete-button")) {
+    deleteInstrument(id);
+    return;
+  }
+
+  showDetails(id);
+}
+
 document
   .getElementById("switchBigImg")
   .addEventListener("change", loadInstrumentsFromDB);
-
-loadInstrumentsFromDB();
 
 document.querySelector("tbody").addEventListener("click", linkOrImageClicked);
 
@@ -72,3 +97,8 @@ window.onclick = function (event) {
   }
 };
 //Modal inits
+
+loadInstrumentsFromDB();
+//TODO, que tambien muestre un boton de eliminar la pagina modal que redirija al mismo
+//metodo(deleteInstrument) pasandole el id, aunque sin pasar por linkOrImageClicked
+//permitir que se pueda eliminar un instrumento y seguir estando en la pagina de instrumentos grandes

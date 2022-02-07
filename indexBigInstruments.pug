@@ -26,6 +26,8 @@ each inst in instruments
         td(id="container-fill-height")
             p(class="secret-invisible-id")=inst._id 
             div
-                a(href="#" class="item-upper-right link-as-button me-3 mt-2")="View"
+                a(class="item-upper-right link-as-button-blue me-3 mt-2" href="#")="Details"
+            div
+                a(class="item-bottom-right link-as-button-red delete-button me-3 mb-2" href="#")="Delete"
             div
                 h2=`$ ${inst.price}.00` 

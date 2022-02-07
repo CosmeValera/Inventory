@@ -21,6 +21,11 @@ tbody > tr {
   top: 0;
   right: 0;
 }
+.item-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 
 .centerElement {
   display: flex;
@@ -28,7 +33,23 @@ tbody > tr {
   align-items: center;
 }
 
-a.link-as-button:link, a.link-as-button:visited {
+.secret-invisible-id {
+  display:none;
+}
+
+a.link-as-button-blue:link, a.link-as-button-blue:visited {
+  background-color: #76dacd;
+  color: white;
+  padding: 4px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+a.link-as-button-blue:hover, a.link-as-button-blue:active {
+  background-color: #34c7b3;
+}
+
+a.link-as-button-red:link, a.link-as-button-red:visited {
   background-color: rgb(201, 76, 76);
   color: white;
   padding: 4px 9px;
@@ -36,12 +57,7 @@ a.link-as-button:link, a.link-as-button:visited {
   text-decoration: none;
   display: inline-block;
 }
-
-.secret-invisible-id {
-  display:none;
-}
-
-a.link-as-button:hover, a.link-as-button:active {
+a.link-as-button-red:hover, a.link-as-button-red:active {
   background-color: rgb(231, 20, 20);
 }
 

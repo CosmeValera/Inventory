@@ -61,6 +61,7 @@ app.get("/inventory/:id", async(req, res)=> {
 
 //curl -i -X POST http://localhost:3000/inventory
 app.post("/inventory", async (req, res) => {
+    console.log(`app.post("/inventory", async (req, res)`);
     try {
         instrument = req.body;
         instrumentAcceptable = db.Instrument(instrument);
@@ -73,12 +74,16 @@ app.post("/inventory", async (req, res) => {
 });
 // app.put("/inventory", (req, res) => {
 //     console.log(`app.put("/inventory", (req, res)`);
-//     // res.sendFile(__dirname + "/public/create.html");
 // });
-// app.delete("/inventory", (req, res) => {
-//     console.log(`app.delete("/inventory", (req, res)`);
-//     // res.sendFile(__dirname + "/public/create.html");
-// });
+app.delete("/inventory/:id", async (req, res) => {
+    try {
+        await db.deleteInstrument(req.params.id.trim());
+        res.sendStatus(200);
+    } catch (err) {
+        res.sendStatus(400);
+    }
+
+});
 
 // Other functions
 async function connectDB() {
