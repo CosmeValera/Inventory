@@ -1,4 +1,5 @@
 var modal;
+
 async function loadInstrumentsFromDB(evt) {
     console.log(evt);
     // console.log(evt.target);
@@ -10,19 +11,31 @@ async function loadInstrumentsFromDB(evt) {
         if (evt) {
             //When clicking the checkbox
             if (evt.target.checked) {
-                document.querySelector("tbody").innerHTML =
-                    insertBigInstruments({
-                        instruments: instrumentsJson,
-                    });
-            } else {
-                document.querySelector("tbody").innerHTML = insertInstruments({
+                var dataPug = {
                     instruments: instrumentsJson,
+                    bigInstruments: true,
+                };
+                console.log(dataPug);
+                document.querySelector("tbody").innerHTML = insertInstruments({
+                    data: dataPug,
+                });
+            } else {
+                var dataPug = {
+                    instruments: instrumentsJson,
+                    bigInstruments: false,
+                };
+                document.querySelector("tbody").innerHTML = insertInstruments({
+                    data: dataPug,
                 });
             }
         } else {
             //Load screen first time
-            document.querySelector("tbody").innerHTML = insertInstruments({
+            var dataPug = {
                 instruments: instrumentsJson,
+                bigInstruments: false,
+            };
+            document.querySelector("tbody").innerHTML = insertInstruments({
+                data: dataPug,
             });
         }
     } else {
@@ -52,7 +65,6 @@ async function showDetails(id) {
             return arrayOfOne[0];
         });
 
-        //Modal inits
         modalContent = modal.querySelector(".modal-content");
         modalContent.innerHTML = insertModalInstrument({
             instrument: instrumentJson,
@@ -67,36 +79,48 @@ async function showDetails(id) {
 }
 
 async function linkOrImageClicked(evt) {
-    //parent: .this-is-a-table-row, child: .secret-invisible-id
-    const linkOrImage = evt.target;
-    console.log(linkOrImage);
-    const parentDiv = linkOrImage.closest(".this-is-a-table-row");
-    console.log(parentDiv);
-    if (!parentDiv) return;
-    const divWithId = parentDiv.querySelector(".secret-invisible-id");
-    console.log(divWithId);
-    const id = divWithId.innerHTML.trim(); //Id without spaces
-    console.log(id);
-
-    if (linkOrImage.classList.contains("delete-button")) {
+    const buttonClicked = evt.target;
+    if (evt.target.closest("#titles")) {
+        return;
+    }
+    const id = findSiblingUsingDom(
+        buttonClicked,
+        ".this-is-a-table-row",
+        ".secret-invisible-id"
+    );
+    if (buttonClicked.classList.contains("delete-button")) {
         deleteInstrument(id);
         return;
     }
-
+    //If it is not delete nor update, we want to show details with modal page
     showDetails(id);
 }
 
 async function modalClicked(evt) {
+    const buttonClicked = evt.target;
+    const id = findSiblingUsingDom(
+        buttonClicked,
+        ".modal",
+        ".modal-invisible-id"
+    );
     //check we clicked delete button
-    buttonClicked = evt.target;
     if (buttonClicked.classList.contains("delete-button")) {
-        //parent: .modal-body, child: .modal-invisible-id
-        const parentDiv = buttonClicked.closest(".modal-body");
-        const divWithId = parentDiv.querySelector(".modal-invisible-id");
-        const id = divWithId.innerHTML.trim(); //Id without spaces
         deleteInstrument(id);
         return;
     }
+    if (buttonClicked.classList.contains("update-button")) {
+        //TODO
+        // updateInstrument(id);
+        return;
+    }
+}
+
+function findSiblingUsingDom(actualElement, parentClass, siblingClass) {
+    //parent: .modal-body, child: .modal-invisible-id
+    const parentDiv = actualElement.closest(parentClass);
+    const divWithId = parentDiv.querySelector(siblingClass);
+    const id = divWithId.innerHTML.trim(); //Id without spaces
+    return id;
 }
 
 //Modal inits

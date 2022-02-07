@@ -8,12 +8,12 @@ tr(id="titles")
     td
         div(class="d-flex justify-content-center")
             h2="Price"
-each inst in instruments
+each inst in data.instruments
     tr(class="this-is-a-table-row")
         td(id="container-fill-height")
             a(class="d-flex justify-content-center" href="#")
-                if (inst.name == "Snare Drum")
-                    img(class="img-fluid thumbnail zoom" src=`img/snareDrum.png` width="100px" height="100px" alt="img")
+                if data.bigInstruments
+                    img(class="img-fluid" src=`img/${inst.name}.png` width="150px" height="150px" alt="img")
                 else
                     img(class="img-fluid thumbnail zoom" src=`img/${inst.name}.png` width="100px" height="100px" alt="img")
         td(id="container-fill-height")

@@ -75,9 +75,6 @@ async function namePicked(evt) {
     let instrumentName = evt.target.value;
     img.src = `img/${instrumentName}.png`;
 
-    if (instrumentName == "Snare Drum") {
-        img.src = "img/snareDrum.png";
-    }
     if (instrumentName == "") {
         img.src = "img/noInstrument.png";
     }

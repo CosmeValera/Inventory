@@ -11,11 +11,4 @@ pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mx-5\"
 else {
 pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mb-3\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "No Summary") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E";
 }
-pug_html = pug_html + "\u003Ca class=\"d-flex justify-content-center\"\u003E";
-if ((instrument.name!="Snare Drum")) {
-pug_html = pug_html + "\u003Cimg" + (" class=\"img-fluid\""+pug_attr("src", `img/${instrument.name}.png`, true, false)+" alt=\"img\"") + "\u002F\u003E";
-}
-else {
-pug_html = pug_html + "\u003Cimg class=\"img-fluid\" src=\"img\u002FsnareDrum.png\" alt=\"img\"\u002F\u003E";
-}
-pug_html = pug_html + "\u003C\u002Fa\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E\u003Ca class=\"link-as-button-red delete-button mt-3\" href=\"#\"\u003E" + (pug_escape(null == (pug_interp = "Delete") ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";}.call(this,"instrument" in locals_for_with?locals_for_with.instrument:typeof instrument!=="undefined"?instrument:undefined));;return pug_html;}
+pug_html = pug_html + "\u003Ca class=\"d-flex justify-content-center\"\u003E\u003Cimg" + (" class=\"img-fluid\""+pug_attr("src", `img/${instrument.name}.png`, true, false)+" alt=\"img\"") + "\u002F\u003E\u003C\u002Fa\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E\u003Ca class=\"link-as-button-light-red delete-button mt-3\" href=\"#\"\u003E" + (pug_escape(null == (pug_interp = "Delete") ? "" : pug_interp)) + "\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";}.call(this,"instrument" in locals_for_with?locals_for_with.instrument:typeof instrument!=="undefined"?instrument:undefined));;return pug_html;}

@@ -1,108 +1,128 @@
 #titles {
-  background-color: #deeaee;
+    background-color: #deeaee;
 }
 #titles > td > div > h2 {
-  color: black;
-  text-shadow: 1px 1px #ffffff6e;
+    color: black;
+    text-shadow: 1px 1px #ffffff6e;
 }
 tbody > tr {
-  background-color: #b1cbbb;
+    background-color: #b1cbbb;
 }
 
 #container-fill-height {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
 }
 
 .item-upper-right {
-  position: absolute;
-  top: 0;
-  right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .item-bottom-right {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .centerElement {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .secret-invisible-id {
-  display:none;
+    display: none;
 }
 
-a.link-as-button-blue:link, a.link-as-button-blue:visited {
-  background-color: #76dacd;
-  color: white;
-  padding: 4px 9px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+/******** Button colors ********/
+a.link-as-button-blue:link,
+a.link-as-button-blue:visited {
+    background-color: #76dacd;
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
-a.link-as-button-blue:hover, a.link-as-button-blue:active {
-  background-color: #34c7b3;
+a.link-as-button-blue:hover,
+a.link-as-button-blue:active {
+    background-color: #34c7b3;
 }
 
-a.link-as-button-red:link, a.link-as-button-red:visited {
-  background-color: rgb(201, 76, 76);
-  color: white;
-  padding: 4px 9px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+a.link-as-button-red:link,
+a.link-as-button-red:visited {
+    background-color: rgb(201, 76, 76);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
-a.link-as-button-red:hover, a.link-as-button-red:active {
-  background-color: rgb(231, 20, 20);
+a.link-as-button-red:hover,
+a.link-as-button-red:active {
+    background-color: rgb(231, 20, 20);
 }
+
+a.link-as-button-light-red:link,
+a.link-as-button-light-red:visited {
+    background-color: rgb(170, 0, 0);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-light-red:hover,
+a.link-as-button-light-red:active {
+    background-color: rgb(191, 0, 0);
+}
+/******** END: Button colors ********/
 
 /******** IMAGE ZOOM ********/
 ul.gallery {
-  margin-left: 3vw;
-  margin-right: 3vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
 }
 
 .zoom {
-  -webkit-transition: all 0.35s ease-in-out;
-  -moz-transition: all 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in;
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
 }
 
 .zoom:hover,
 .zoom:active,
 .zoom:focus {
-  /**adjust scale to desired size, 
+    /**adjust scale to desired size, 
   add browser prefixes**/
-  -ms-transform: scale(2);
-  -moz-transform: scale(2);
-  -webkit-transform: scale(2);
-  -o-transform: scale(2);
-  transform: scale(2);
-  position: relative;
-  z-index: 1;
+    -ms-transform: scale(2);
+    -moz-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+    position: relative;
+    z-index: 1;
 }
 
 /**To keep upscaled images visible on mobile, 
   increase left & right margins a bit**/
 @media only screen and (max-width: 768px) {
-  ul.gallery {
-    margin-left: 15vw;
-    margin-right: 15vw;
-  }
+    ul.gallery {
+        margin-left: 15vw;
+        margin-right: 15vw;
+    }
 
-  /**TIP: Easy escape for touch screens,
+    /**TIP: Easy escape for touch screens,
   give gallery's parent container a cursor: pointer.**/
-  .DivName {
-    cursor: pointer;
-  }
+    .DivName {
+        cursor: pointer;
+    }
 }
 /******** END: IMAGE ZOOM ********/
 
@@ -111,65 +131,76 @@ ul.gallery {
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
-  position: relative;
-  background-color: rgb(201, 76, 76);
-  margin: auto;
-  padding: 0px 0px 15px;
-  /* border: 1px solid #888; */
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
+    position: relative;
+    background-color: rgb(201, 76, 76);
+    margin: auto;
+    padding: 0px 0px 15px;
+    /* border: 1px solid #888; */
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
 }
 .modal-header {
-  /* padding: 0px 10px 15px; */
-  /* border: 1px solid #888; */
-  background-color: rgb(211, 45, 45);
-  color: white;
+    /* padding: 0px 10px 15px; */
+    /* border: 1px solid #888; */
+    background-color: rgb(211, 45, 45);
+    color: white;
 }
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
 }
 
 @keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
 }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
-  float: right;
-  right: 0;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaaaaa;
+    float: right;
+    right: 0;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 /******** END: MODAL ********/
-
