@@ -1,0 +1,29 @@
+div(class="modal-header" id= "container-fill-height")
+    h2(class="my-0")=instrument.name
+    span(class="close item-upper-right px-4 py-3")="×"
+div(class = "modal-body")
+    p(class="d-flex justify-content-center my-0")
+        strong(class="me-2")="Type:"
+        =instrument.type
+    if instrument.subtype
+        p(class="d-flex justify-content-center my-0")
+            strong(class="me-2")="Subtype:"
+            =instrument.subtype
+    p(class="d-flex justify-content-center my-0")
+        strong(class="me-2")="Price:"
+        =instrument.price 
+    p(class="d-flex justify-content-center my-0")
+        strong(class="me-2")="Sonority:"
+        =instrument.sonority
+    if instrument.summary
+        p(class="d-flex justify-content-center mt-0 mx-5")
+            strong(class="me-2")="Summary:"
+            =instrument.summary
+    else
+        p(class="d-flex justify-content-center mt-0 mb-3")
+            strong(class="me-2")="No Summary"
+    a(class="d-flex justify-content-center" href="#")
+        if (instrument.name!="Snare Drum")
+            img(class="img-fluid" src=`img/${instrument.name}.png` alt="img")
+        else
+            img(class="img-fluid" src=`img/snareDrum.png` alt="img")
