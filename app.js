@@ -16,28 +16,10 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || process.env.MYPORT;
 
-// --- FUNCIONES DE MIDDLEWARE
+// --- MIDDLEWARE METHODS
 
-// //curl -i -X GET http://localhost:3000/inventory
-// //Y tambien debe funcionar si buscas http://localhost:3000/curl -i -X GET http://localhost:3000/inventory en google.
-//  app.get("/inventory", (req, res) => {
-//       console.log(`app.get("/inventory", (req, res)`);
-//       res.sendFile(__dirname + "/public/index.html");
-//  });
-// //Obtener objeto con ese id, mandarlo al html de detalles para que muestre ese
-// //Abrir detalles con un modal, en vez de html
-// app.get("/inventory/:id", async (req, res) => {
-//     console.log(`app.get("/inventory/:id", (req, res)`);
-//     console.log(`El id del instrumento es: ${req.params.id}`);
-
-//     await db.connect();
-//     var id = req.params.id;
-//     var instrument = await db.findInstrumentById(id);
-//     // await db.disconnect();
-//     // res.sendFile(__dirname + "/public/details.html");
-//     // window.location = "/public/details.html";
-// });
-
+//Google-> http://localhost:3000
+//curl -i -X GET http://localhost:3000/inventory
 app.get("/inventory", async(req, res)=> {
     try {
         let instruments = await db.findInstruments();
@@ -59,22 +41,17 @@ app.get("/inventory/:id", async(req, res)=> {
     }
 });
 
-//curl -i -X POST http://localhost:3000/inventory
+//curl -i -X POST http://localhost:3000
 app.post("/inventory", async (req, res) => {
-    console.log(`app.post("/inventory", async (req, res)`);
     try {
         instrument = req.body;
         instrumentAcceptable = db.Instrument(instrument);
         await db.saveInstrument(instrumentAcceptable);
-        //Aqui creamos un instrumento nuevo con lo que nos llega al body
         res.sendStatus(200);
     } catch (err) {
         res.sendStatus(400);
     }
 });
-// app.put("/inventory", (req, res) => {
-//     console.log(`app.put("/inventory", (req, res)`);
-// });
 app.delete("/inventory/:id", async (req, res) => {
     try {
         await db.deleteInstrument(req.params.id.trim());
@@ -85,12 +62,22 @@ app.delete("/inventory/:id", async (req, res) => {
 
 });
 
+app.put("/inventory/:id", async (req, res) => {
+    // try {
+    //     //TODO
+    //     await db.updateInstrument(?);
+    //     res.sendStatus(200);
+    // } catch (err) {
+    //     res.sendStatus(400);
+    // }
+});
+
 // Other functions
 async function connectDB() {
     await db.connect();
 }
 
-// --- ARRANQUE DE SERVICIO
+// --- Server beginning to listen
 
 app.listen(PORT, () => console.log(`Server listening in port: ${PORT}`));
 connectDB();

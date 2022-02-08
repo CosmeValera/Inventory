@@ -25,7 +25,7 @@
             <h1>Create instrument</h1>
         </header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light my-2">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light my-2">
             <a class="navbar-brand" href="/">Inventory</a>
             <button
                 class="navbar-toggler"
@@ -73,9 +73,6 @@
         <div class="container-of-main container-fluid margin-xl">
             <main class="d-flex flex-column">
                 <!-- FORM -->
-                <!-- Use JS to only show the options I want to allow, not String and Saxo for instance -->
-                <!-- If you pick first the type, then subtype and name options change accordign to the type -->
-                <!-- If you pick first instrument, then type and subtype will be filled by itself -->
                 <form class="m-3 row" id="my-form">
                     <div class="form-group col-lg-4 col-sm-6 col-12">
                         <label for="name">Instrument*:</label>
@@ -128,7 +125,6 @@
                             <option>Brass</option>
                         </select>
                     </div>
-                    <!-- Poner un tooltip, si pones el raton encima te diga el value actual de la barra -->
                     <div class="form-group col-lg-4 col-sm-6 col-12">
                         <label for="sonority">Sonority</label>
                         <input
@@ -181,7 +177,6 @@
                     <span class="border border-danger">
                         <img src="img/noInstrument.png" id="imgInstrument" />
                     </span>
-                    <!-- <img src="img/violin.png" /> -->
                 </div>
             </main>
         </div>
@@ -205,8 +200,6 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
-        <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
-
         <script src="/js/create.js"></script>
     </body>
 </html>

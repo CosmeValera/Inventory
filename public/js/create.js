@@ -16,12 +16,7 @@ async function createNewInstrument(evt) {
     var price = inputPrice.value;
     var summary = inputSummary.value;
     if (
-        !name ||
-        !type ||
-        !sonority ||
-        !price ||
-        price > 99999 ||
-        summary.length > 256
+        !instrumentAccomplishRequirements(name, type, sonority, price, summary)
     ) {
         let divResultMessage = document.getElementById("resultMessage");
         divResultMessage.innerHTML =
@@ -35,26 +30,21 @@ async function createNewInstrument(evt) {
         divResultMessage.style.display = "flex";
         return false;
     }
-    //TODO: probar a hacerlo sin id, mongoose ya les mete un id de por si, es _id
+
     var instrument = {
-        // id: 99,
         type: type,
         subtype: subtype,
         name: name,
-        // img: name + ".png",
         sonority: sonority,
         price: price,
         summary: summary,
     };
-    var instrumentStringified = JSON.stringify(instrument);
-
-    //Hacemos fetch para que app.js cree un instrumento con esos datos
-    var response = await fetch("/inventory", {
+    await fetch("/inventory", {
+        //fetch with post so app.js creates a new instrument with that data
         method: "POST",
-        body: instrumentStringified,
+        body: JSON.stringify(instrument),
         headers: {
             "Content-Type": "application/json",
-            // "Content-Type": "application/x-www-form-urlencoded"
         },
     }).then((response) => {
         if (response.ok) {
@@ -69,6 +59,23 @@ async function createNewInstrument(evt) {
     });
 
     return false;
+}
+
+function instrumentAccomplishRequirements(
+    name,
+    type,
+    sonority,
+    price,
+    summary
+) {
+    return (
+        name &&
+        type &&
+        sonority &&
+        price &&
+        price <= 99999 &&
+        summary.length <= 256
+    );
 }
 
 async function namePicked(evt) {
@@ -244,23 +251,8 @@ async function subtypePicked(evt) {
     }
 }
 
-// async function updatetitle(evt) {
-//     // evt.target.title = evt.target.value;
-//     // $(element)
-//     //     .attr("title", evt.target.value)
-//     //     .tooltip("fixTitle")
-//     //     .tooltip("show");
-//     $(this)
-//         .tooltip("data-toggle")
-//         .attr("title", evt.target.value)
-//         .tooltip("show");
-// }
-
 async function onSonorityOver(evt) {
     evt.target.title = evt.target.value;
-    // evt.target.addEventListener("keyup", updatetitle, false);
-
-    // // evt.target.tooltip();
 }
 
 async function priceReleased(evt) {
@@ -289,7 +281,6 @@ inputPrice = document.querySelector("#inputPrice");
 inputSummary = document.querySelector("#inputDescription");
 img = document.querySelector("#imgInstrument");
 
-// button.addEventListener("click", createNewInstrument);
 document
     .querySelector("#my-form")
     .addEventListener("submit", createNewInstrument);
@@ -298,9 +289,3 @@ selectType.addEventListener("change", typePicked);
 selectSubtype.addEventListener("change", subtypePicked);
 inputSonority.addEventListener("mouseover", onSonorityOver);
 inputPrice.addEventListener("blur", priceReleased);
-
-//TODO calcular id automatico, al elegir un instrumento, que se ponga la imagen y se limiten las opcionese de type y subtype(quiza desaparecerlo?)
-// $(document).ready(function () {
-//     $('[data-toggle="tooltip"]').tooltip();
-// });
-console.log("charging create.js...");

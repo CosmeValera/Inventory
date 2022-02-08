@@ -127,6 +127,3 @@ window.onclick = function (event) {
 //Modal inits
 
 loadInstrumentsFromDBToTable();
-//TODO 1. que tambien muestre un boton de eliminar la pagina modal que redirija al mismo
-//metodo(deleteInstrument) pasandole el id, aunque sin pasar por linkOrImageClicked
-//TODO 2. permitir que se pueda eliminar un instrumento y seguir estando en la pagina de instrumentos grandes
