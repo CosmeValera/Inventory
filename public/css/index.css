@@ -16,17 +16,6 @@ tbody > tr {
     position: relative;
 }
 
-.item-upper-right {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.item-bottom-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
 .centerElement {
     display: flex;
     flex-direction: column;
@@ -37,6 +26,21 @@ tbody > tr {
     display: none;
 }
 
+.item-upper-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.item-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.item-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
 /******** Button colors ********/
 a.link-as-button-blue:link,
 a.link-as-button-blue:visited {
@@ -50,6 +54,20 @@ a.link-as-button-blue:visited {
 a.link-as-button-blue:hover,
 a.link-as-button-blue:active {
     background-color: #34c7b3;
+}
+
+a.link-as-button-green:link,
+a.link-as-button-green:visited {
+    background-color: rgb(218, 183, 30);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-green:hover,
+a.link-as-button-green:active {
+    background-color: rgb(255, 221, 68);
 }
 
 a.link-as-button-red:link,

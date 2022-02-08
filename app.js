@@ -20,7 +20,7 @@ const PORT = process.env.PORT || process.env.MYPORT;
 
 //Google-> http://localhost:3000
 //curl -i -X GET http://localhost:3000/inventory
-app.get("/inventory", async(req, res)=> {
+app.get("/inventory", async (req, res) => {
     try {
         let instruments = await db.findInstruments();
         res.send(JSON.stringify(instruments));
@@ -30,7 +30,7 @@ app.get("/inventory", async(req, res)=> {
     }
 });
 
-app.get("/inventory/:id", async(req, res)=> {
+app.get("/inventory/:id", async (req, res) => {
     try {
         let id = req.params.id;
         let instrument = await db.findInstrumentById(id);
@@ -59,17 +59,20 @@ app.delete("/inventory/:id", async (req, res) => {
     } catch (err) {
         res.sendStatus(400);
     }
-
 });
 
+//In put method we receive in body the new instrument
 app.put("/inventory/:id", async (req, res) => {
-    // try {
-    //     //TODO
-    //     await db.updateInstrument(?);
-    //     res.sendStatus(200);
-    // } catch (err) {
-    //     res.sendStatus(400);
-    // }
+    console.log(`app.put("/inventory/:id", async (req, res)`);
+    var idUpdated = req.params.id; //Mongo id
+    var instrument = req.body;
+    console.log(instrument);
+    try {
+        await db.updateInstrument(idUpdated, instrument);
+        res.sendStatus(200);
+    } catch (err) {
+        res.sendStatus(400);
+    }
 });
 
 // Other functions

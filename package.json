@@ -6,7 +6,8 @@
   "scripts": {
     "runApp": "node app.js",
     "index-pug": "pug -c -D -n insertInstruments -o public/js indexInstruments.pug",
-    "index-modal-pug": "pug -c -D -n insertModalInstrument -o public/js indexModalInstrument.pug"
+    "details-modal-pug": "pug -c -D -n insertDetailsInstrument -o public/js modalDetailsInstrument.pug",
+    "update-modal-pug": "pug -c -D -n insertUpdateInstrument -o public/js modalUpdateInstrument.pug"
   },
   "keywords": [],
   "author": "",

@@ -20,16 +20,28 @@ exports.connect = async function () {
 };
 exports.disconnect = mongoose.disconnect;
 
+exports.findInstruments = async function () {
+    return await Instrument.find({});
+};
+
+const findInstrumentById = async function (idParam) {
+    return await Instrument.findOne({ _id: idParam });
+};
+exports.findInstrumentById = findInstrumentById;
+
 exports.saveInstrument = async function (instrumentParam) {
     await instrumentParam.save();
 };
 exports.deleteInstrument = async function (idParam) {
     await Instrument.deleteOne({ _id: idParam });
 };
-exports.findInstruments = async function () {
-    return await Instrument.find({});
-};
-
-exports.findInstrumentById = async function (idParam) {
-    return await Instrument.find({ _id: idParam });
+exports.updateInstrument = async function (idParam, instrumentParam) {
+    var instrumentToChange = await findInstrumentById(idParam);
+    instrumentToChange.name = instrumentParam.name;
+    instrumentToChange.type = instrumentParam.type;
+    instrumentToChange.subtype = instrumentParam.subtype;
+    instrumentToChange.sonority = instrumentParam.sonority;
+    instrumentToChange.price = instrumentParam.price;
+    instrumentToChange.summary = instrumentParam.summary;
+    await instrumentToChange.save();
 };

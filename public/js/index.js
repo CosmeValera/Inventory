@@ -29,8 +29,26 @@ async function changeInstrumentsSize(evt) {
     loadInstrumentsFromDBToTable();
 }
 
+async function showDetails(id) {
+    const response = await fetch(`/inventory/${id}`);
+    if (response.ok) {
+        var instrumentJson = await response.json();
+
+        modalContent = modal.querySelector(".modal-content");
+        modalContent.innerHTML = insertDetailsInstrument({
+            instrument: instrumentJson,
+        });
+        document.querySelector(".close").onclick = function () {
+            modal.style.display = "none";
+        };
+        modal.style.display = "block";
+    } else {
+        alert("Server found an issue, " + response.statusText);
+    }
+}
+
 async function deleteInstrument(evt, idParam) {
-    await fetch(`/inventory/ ${idParam}`, {
+    await fetch(`/inventory/${idParam}`, {
         method: "DELETE",
     }).then((response) => {
         if (response.ok) {
@@ -44,38 +62,52 @@ async function deleteInstrument(evt, idParam) {
     });
 }
 
-async function showDetails(id) {
-    const response = await fetch(`/inventory/${id}`);
-    if (response.ok) {
-        var instrumentJson = await response.json().then((arrayOfOne) => {
-            return arrayOfOne[0];
-        });
-
-        modalContent = modal.querySelector(".modal-content");
-        modalContent.innerHTML = insertModalInstrument({
-            instrument: instrumentJson,
-        });
-        document.querySelector(".close").onclick = function () {
-            modal.style.display = "none";
-        };
-        modal.style.display = "block";
-    } else {
-        alert("Server found an issue, " + response.statusText);
-    }
+//WE need to create another method between this one and those who right now call it, to show the modal page with a form to fill the data
+async function updateInstrument(evt, idParam) {
+    instrumentExample = {
+        name: "Clarinet",
+        type: "Wind",
+        subtype: "Wood",
+        price: 6553,
+        sonority: 27,
+        summary: "",
+    };
+    await fetch(`/inventory/${idParam}`, {
+        method: "PUT",
+        body: JSON.stringify(instrumentExample),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then((response) => {
+        if (response.ok) {
+            loadInstrumentsFromDBToTable(evt);
+        } else {
+            alert(
+                `Server found an issue trying to delete instrument with id: ${idParam}, ` +
+                    response.statusText
+            );
+        }
+    });
 }
 
-async function linkOrImageClicked(evt) {
-    const buttonClicked = evt.target;
+async function instrumentRowClicked(evt) {
+    const instrumentRow = evt.target;
     if (evt.target.closest("#titles")) {
         return;
     }
     const id = findSiblingUsingDom(
-        buttonClicked,
+        instrumentRow,
         ".this-is-a-table-row",
         ".secret-invisible-id"
     );
-    if (buttonClicked.classList.contains("delete-button")) {
+    if (instrumentRow.classList.contains("delete-button")) {
         deleteInstrument(evt, id);
+        return;
+    }
+    if (instrumentRow.classList.contains("update-button")) {
+        //TODO: update
+        console.log(evt.target + " estamos en update");
+        updateInstrument(evt, id);
         return;
     }
     //If it is not delete nor update, we want to show details with modal page
@@ -96,8 +128,8 @@ async function modalClicked(evt) {
         return;
     }
     if (buttonClicked.classList.contains("update-button")) {
-        //TODO update
-        // updateInstrument(id);
+        //TODO esto es para darle update una vez clickada a la pagina de detalles, que cambie el contenido a la misma pagina modal
+        updateInstrument(id);
         return;
     }
 }
@@ -115,7 +147,7 @@ document
     .getElementById("switchBigImg")
     .addEventListener("change", changeInstrumentsSize);
 
-document.querySelector("tbody").addEventListener("click", linkOrImageClicked);
+document.querySelector("tbody").addEventListener("click", instrumentRowClicked);
 
 modal = document.getElementById("myModal");
 modal.addEventListener("click", modalClicked);
