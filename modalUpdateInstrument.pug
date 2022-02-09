@@ -4,28 +4,52 @@ div(class="modal-header" id= "container-fill-height")
 div(class = "modal-body")
     p(class="d-none modal-invisible-id")
         =instrument._id
-    p(class="d-flex justify-content-center my-0")
-        strong(class="me-2")="Type:"
-        =instrument.type
-    p(class="d-flex justify-content-center my-0")
-        strong(class="me-2")="Name:"
-        =instrument.name
-    if instrument.subtype
-        p(class="d-flex justify-content-center my-0")
-            strong(class="me-2")="Subtype:"
-            =instrument.subtype
-    p(class="d-flex justify-content-center my-0")
-        strong(class="me-2")="Price:"
-        =instrument.price 
-    p(class="d-flex justify-content-center my-0")
-        strong(class="me-2")="Sonority:"
-        =instrument.sonority
-    p(class="d-flex justify-content-center mt-0 mx-5")
-        strong(class="me-2")="Summary:"
-        =instrument.summary
-    a(class="d-flex justify-content-center")
-        img(class="img-fluid" src=`img/${instrument.name}.png` alt="img")
-    div(class="d-flex justify-content-center")
-        a(class="link-as-button-light-red delete-button mt-3" href="#")="Cancel"
-    div(class="d-flex justify-content-center")
-        a(class="link-as-button-light-red delete-button mt-3" href="#")="Accept"
+    section(class="my-1 mx-5 row" id="my-form")
+        div(class="form-group")
+            strong(class="my-1 d-flex justify-content-center me-2")
+            ="Instrument*:"
+            select(class="form-control" id="selectName" name="name")
+                option="Violin"
+                option="Guitar"
+                option="Piano"
+                option="Flute"
+                option="Clarinet"
+                option="Saxophone"
+                option="Horn"
+                option="Trumpet"
+                option="Tuba"
+                option="Snare Drum"
+                option="Conga"
+                option="Battery"
+        div(class="form-group")
+            strong(class="my-1 d-flex justify-content-center me-2")
+            ="Type*:"
+            select(class="form-control" id="selectType" name="type")
+                option=""
+                option="Wind"
+                option="String"
+                option="Percussion"
+        div(class="form-group")
+            strong(class="my-1 d-flex justify-content-center me-2")
+            ="Subtype:"
+            select(class="form-control" id="selectSubtype" name="subtype")
+                option=""
+                option="Wood"
+                option="Brass"
+        div(class="form-group")
+            strong(class="my-1 d-flex justify-content-center me-2")
+            ="Sonority*:"
+            input(type="range" class="custom-range pt-3 custom-range-danger" min="0" max="100" step="10" value="50" id="inputSonority" name="sonority")
+        div(class="form-group")
+            strong(class="my-1 d-flex justify-content-center me-2")
+            ="Price*:"
+            input(class="form-control" type="number" id="inputPrice" name="price" min="0" max="99999" placeholder="$1500")
+        div(class="form-group")
+            strong(class="my-1 d-flex justify-content-center me-2")
+            ="Summary:"
+            input(class="form-control" type="text" id="inputSummary" name="summary" maxLength="256" placeholder="Instrument's description")
+        div(class="d-flex justify-content-center") 
+            div(class="d-flex justify-content-center")
+                a(class="link-as-button-orange cancel-update-button m-2" href="#")="Cancel"
+            div(class="d-flex justify-content-center")
+                a(class="link-as-button-green accept-update-button m-2" href="#")="Accept"

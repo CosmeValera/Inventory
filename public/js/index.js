@@ -29,24 +29,6 @@ async function changeInstrumentsSize(evt) {
     loadInstrumentsFromDBToTable();
 }
 
-async function showDetails(id) {
-    const response = await fetch(`/inventory/${id}`);
-    if (response.ok) {
-        var instrumentJson = await response.json();
-
-        modalContent = modal.querySelector(".modal-content");
-        modalContent.innerHTML = insertDetailsInstrument({
-            instrument: instrumentJson,
-        });
-        document.querySelector(".close").onclick = function () {
-            modal.style.display = "none";
-        };
-        modal.style.display = "block";
-    } else {
-        alert("Server found an issue, " + response.statusText);
-    }
-}
-
 async function deleteInstrument(evt, idParam) {
     await fetch(`/inventory/${idParam}`, {
         method: "DELETE",
@@ -62,19 +44,12 @@ async function deleteInstrument(evt, idParam) {
     });
 }
 
-//WE need to create another method between this one and those who right now call it, to show the modal page with a form to fill the data
-async function updateInstrument(evt, idParam) {
-    instrumentExample = {
-        name: "Clarinet",
-        type: "Wind",
-        subtype: "Wood",
-        price: 6553,
-        sonority: 27,
-        summary: "",
-    };
-    await fetch(`/inventory/${idParam}`, {
+//WE need to create another method between this one and those who right now call it,
+//to show the modal page with a form to fill the data
+async function updateInstrument(evt, instrument) {
+    await fetch(`/inventory/${instrument._id}`, {
         method: "PUT",
-        body: JSON.stringify(instrumentExample),
+        body: JSON.stringify(instrument),
         headers: {
             "Content-Type": "application/json",
         },
@@ -88,6 +63,65 @@ async function updateInstrument(evt, idParam) {
             );
         }
     });
+}
+
+async function obtainValuesAndUpdate(evt) {
+    //Obtain values from modal, using document.selector etc.
+
+    //evt.target(acceptButton). Parent= ".modal-body", sibling="modal-invisible-id"
+    var instrument = {
+        _id : findSiblingUsingDom(evt.target, ".modal-body", ".modal-invisible-id"),
+        name : document.querySelector("#selectName").value,
+        type : document.querySelector("#selectType").value,
+        subtype : document.querySelector("#selectSubtype").value,
+        price : document.querySelector("#inputPrice").value,
+        sonority : document.querySelector("#inputSonority").value,
+        summary : document.querySelector("#inputSummary").value,
+    }
+    console.log(instrument)
+
+    updateInstrument(evt, instrument).then(() => {
+        modal.style.display = "none";
+    });
+};
+
+async function showModalUpdate(evt, id) {
+    const response = await fetch(`/inventory/${id}`);
+    if (response.ok) {
+        var instrumentJson = await response.json();
+        modalContent = modal.querySelector(".modal-content");
+        modalContent.innerHTML = insertUpdateInstrument({
+            instrument: instrumentJson,
+        });
+        document.querySelector(".close").onclick = function () {
+            modal.style.display = "none";
+        };
+        document.querySelector(".cancel-update-button").onclick = function () {
+            modal.style.display = "none";
+        };
+        document.querySelector(".accept-update-button").addEventListener("click", obtainValuesAndUpdate);
+        modal.style.display = "block";
+    } else {
+        alert("Server found an issue, " + response.statusText);
+    }
+}
+
+async function showModalDetails(id) {
+    const response = await fetch(`/inventory/${id}`);
+    if (response.ok) {
+        var instrumentJson = await response.json();
+
+        modalContent = modal.querySelector(".modal-content");
+        modalContent.innerHTML = insertDetailsInstrument({
+            instrument: instrumentJson,
+        });
+        document.querySelector(".close").onclick = function () {
+            modal.style.display = "none";
+        };
+        modal.style.display = "block";
+    } else {
+        alert("Server found an issue, " + response.statusText);
+    }
 }
 
 async function instrumentRowClicked(evt) {
@@ -107,11 +141,11 @@ async function instrumentRowClicked(evt) {
     if (instrumentRow.classList.contains("update-button")) {
         //TODO: update
         console.log(evt.target + " estamos en update");
-        updateInstrument(evt, id);
+        showModalUpdate(evt, id);
         return;
     }
     //If it is not delete nor update, we want to show details with modal page
-    showDetails(id);
+    showModalDetails(id);
 }
 
 async function modalClicked(evt) {
@@ -129,7 +163,7 @@ async function modalClicked(evt) {
     }
     if (buttonClicked.classList.contains("update-button")) {
         //TODO esto es para darle update una vez clickada a la pagina de detalles, que cambie el contenido a la misma pagina modal
-        updateInstrument(id);
+        showModalUpdate(id);
         return;
     }
 }
