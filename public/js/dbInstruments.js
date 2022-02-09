@@ -9,17 +9,25 @@ const InstrumentSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     summary: { type: String, required: false },
 });
+//Each time a instrument is added, deleted or updated a new record is created
+const RecordSchema = new mongoose.Schema({
+    type: { type: String, required: true }, //add, delete, update (an instrument)
+    summary: { type: String, required: false }, //update on instrument with id 0oasdjfbahfjklsdf (it can be clicked and shows a modal with details)
+});
 
 const Instrument = mongoose.model("Instrument", InstrumentSchema);
+const Record = mongoose.model("Record", RecordSchema);
 
-//Exports
+/******** EXPORTS ********/
 exports.Instrument = Instrument;
+exports.Record = Record;
 
 exports.connect = async function () {
     mongoose.connect(process.env.MYDB);
 };
 exports.disconnect = mongoose.disconnect;
 
+/* Instruments */
 exports.findInstruments = async function () {
     return await Instrument.find({});
 };
@@ -45,3 +53,22 @@ exports.updateInstrument = async function (idParam, instrumentParam) {
     instrumentToChange.summary = instrumentParam.summary;
     await instrumentToChange.save();
 };
+/* END: Instruments */
+
+/* Records */
+exports.findRecords = async function () {
+    return await Record.find({});
+};
+
+// const findRecordById = async function (idParam) {
+//     return await Record.findOne({ _id: idParam });
+// };
+// exports.findRecordById = findRecordById;
+
+exports.saveRecord = async function (recordParam) {
+    await recordParam.save();
+};
+exports.deleteRecords = async function () {
+    await Record.deleteMany({});
+};
+/* END: Records */

@@ -1,0 +1,17 @@
+tr(id="titles")
+    td
+        div(class="d-flex justify-content-center")
+            h2="Type"
+    td
+        div(class="d-flex justify-content-center")
+            h2="Summary"
+each record in records
+    tr(class="this-is-a-table-row")
+        td(id="container-fill-height")
+            div(class="centerElement")
+                h2=record.type
+        td(id="container-fill-height")
+            p(class="secret-invisible-id")=record._id
+            div
+                h3=record.summary
+            

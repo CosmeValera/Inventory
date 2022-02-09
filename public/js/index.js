@@ -67,37 +67,43 @@ async function obtainValuesAndUpdate(evt) {
     //obtain instrument data from modal-update
     var instrument = {
         //evt.target(acceptButton). Parent= ".modal-body", sibling="modal-invisible-id"
-        _id : findSiblingIdUsingDom(evt.target, ".modal-body", ".modal-invisible-id"),
-        name : document.querySelector("#selectName").value,
-        type : document.querySelector("#selectType").value,
-        subtype : document.querySelector("#selectSubtype").value,
-        price : document.querySelector("#inputPrice").value,
-        sonority : document.querySelector("#inputSonority").value,
-        summary : document.querySelector("#inputSummary").value,
-    }
-    
+        _id: findSiblingIdUsingDom(
+            evt.target,
+            ".modal-body",
+            ".modal-invisible-id"
+        ),
+        name: document.querySelector("#selectName").value,
+        type: document.querySelector("#selectType").value,
+        subtype: document.querySelector("#selectSubtype").value,
+        price: document.querySelector("#inputPrice").value,
+        sonority: document.querySelector("#inputSonority").value,
+        summary: document.querySelector("#inputSummary").value,
+    };
+
     updateInstrument(evt, instrument).then(() => {
         modal.style.display = "none";
     });
-};
+}
 
 function fillModalUpdateWithInstrumentsData(instrument) {
-    document.querySelector("#selectName").value=instrument.name;
-    document.querySelector("#selectType").value=instrument.type;
-    document.querySelector("#selectSubtype").value=instrument.subtype;
-    document.querySelector("#inputPrice").value=instrument.price;
-    document.querySelector("#inputSonority").value=instrument.sonority;
-    document.querySelector("#inputSummary").value=instrument.summary;
+    document.querySelector("#selectName").value = instrument.name;
+    document.querySelector("#selectType").value = instrument.type;
+    document.querySelector("#selectSubtype").value = instrument.subtype;
+    document.querySelector("#inputPrice").value = instrument.price;
+    document.querySelector("#inputSonority").value = instrument.sonority;
+    document.querySelector("#inputSummary").value = instrument.summary;
 }
 
 function defineButtonsEffectOfModalUpdate() {
     document.querySelector(".close").onclick = function () {
         modal.style.display = "none";
     };
-    document.querySelector(".cancel-update-button").onclick = function () {
-        modal.style.display = "none";
-    };
-    document.querySelector(".accept-update-button").addEventListener("click", obtainValuesAndUpdate);
+    // document.querySelector(".cancel-update-button").onclick = function () {
+    //     modal.style.display = "none";
+    // };
+    document
+        .querySelector(".accept-update-button")
+        .addEventListener("click", obtainValuesAndUpdate);
 }
 
 async function showModalUpdate(evt, id) {

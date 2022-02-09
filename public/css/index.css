@@ -9,23 +9,6 @@ tbody > tr {
     background-color: #b1cbbb;
 }
 
-#container-fill-height {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    position: relative;
-}
-
-.centerElement {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.secret-invisible-id {
-    display: none;
-}
-
 .item-upper-right {
     position: absolute;
     top: 0;
@@ -41,92 +24,6 @@ tbody > tr {
     bottom: 0;
     right: 0;
 }
-/******** Button colors ********/
-a.link-as-button-blue:link,
-a.link-as-button-blue:visited {
-    background-color: #76dacd;
-    color: white;
-    padding: 4px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-a.link-as-button-blue:hover,
-a.link-as-button-blue:active {
-    background-color: #34c7b3;
-}
-
-a.link-as-button-green:link,
-a.link-as-button-green:visited {
-    background-color: rgb(218, 183, 30);
-    color: white;
-    padding: 4px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-a.link-as-button-green:hover,
-a.link-as-button-green:active {
-    background-color: rgb(255, 221, 68);
-}
-
-a.link-as-button-red:link,
-a.link-as-button-red:visited {
-    background-color: rgb(201, 76, 76);
-    color: white;
-    padding: 4px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-a.link-as-button-red:hover,
-a.link-as-button-red:active {
-    background-color: rgb(231, 20, 20);
-}
-
-a.link-as-button-dark-red:link,
-a.link-as-button-dark-red:visited {
-    background-color: rgb(191, 0, 0);
-    color: white;
-    padding: 4px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-a.link-as-button-dark-red:hover,
-a.link-as-button-dark-red:active {
-    background-color: rgb(170, 0, 0);
-}
-
-a.link-as-button-green:link,
-a.link-as-button-green:visited {
-    background-color: rgb(16, 207, 57);
-    color: white;
-    padding: 4px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-a.link-as-button-green:hover,
-a.link-as-button-green:active {
-    background-color: rgb(0, 190, 41);
-}
-
-a.link-as-button-orange:link,
-a.link-as-button-orange:visited {
-    background-color: rgb(226, 143, 47);
-    color: white;
-    padding: 4px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-a.link-as-button-orange:hover,
-a.link-as-button-orange:active {
-    background-color: rgb(196, 119, 32);
-}
-/******** END: Button colors ********/
-
 /******** IMAGE ZOOM ********/
 ul.gallery {
     margin-left: 3vw;
@@ -248,3 +145,112 @@ ul.gallery {
     cursor: pointer;
 }
 /******** END: MODAL ********/
+
+/* RANGE INPUT COLOR */
+.custom-range::-webkit-slider-thumb {
+    background-color: rgb(16, 207, 57);
+}
+
+.custom-range::-moz-range-thumb {
+    background-color: rgb(16, 207, 57);
+}
+
+.custom-range::-ms-thumb {
+    background-color: rgb(16, 207, 57);
+}
+-webkit-slider-thumb:active {
+    background-color: rgb(16, 207, 57);
+}
+-webkit-slider-thumb,
+.custom-range:focus::-webkit-slider-thumb,
+.custom-range:focus::-moz-range-thumb,
+.custom-range:focus::-ms-thumb {
+    box-shadow: rgb(16, 207, 57);
+}
+/* RANGE INPUT COLOR */
+
+/******** Button colors ********/
+a.link-as-button-blue:link,
+a.link-as-button-blue:visited {
+    background-color: #76dacd;
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-blue:hover,
+a.link-as-button-blue:active {
+    background-color: #34c7b3;
+}
+
+a.link-as-button-green:link,
+a.link-as-button-green:visited {
+    background-color: rgb(218, 183, 30);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-green:hover,
+a.link-as-button-green:active {
+    background-color: rgb(255, 221, 68);
+}
+
+a.link-as-button-red:link,
+a.link-as-button-red:visited {
+    background-color: rgb(201, 76, 76);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-red:hover,
+a.link-as-button-red:active {
+    background-color: rgb(231, 20, 20);
+}
+
+a.link-as-button-dark-red:link,
+a.link-as-button-dark-red:visited {
+    background-color: rgb(191, 0, 0);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-dark-red:hover,
+a.link-as-button-dark-red:active {
+    background-color: rgb(170, 0, 0);
+}
+
+a.link-as-button-green:link,
+a.link-as-button-green:visited {
+    background-color: rgb(16, 207, 57);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-green:hover,
+a.link-as-button-green:active {
+    background-color: rgb(0, 190, 41);
+}
+
+a.link-as-button-orange:link,
+a.link-as-button-orange:visited {
+    background-color: rgb(226, 143, 47);
+    color: white;
+    padding: 4px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a.link-as-button-orange:hover,
+a.link-as-button-orange:active {
+    background-color: rgb(196, 119, 32);
+}
+/******** END: Button colors ********/

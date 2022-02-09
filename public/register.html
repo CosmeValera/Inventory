@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Inventory</title>
+        <title>Register</title>
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,12 +18,13 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" type="text/css" href="./css/general.css" />
-        <link rel="stylesheet" type="text/css" href="./css/index.css" />
+        <link rel="stylesheet" type="text/css" href="./css/register.css" />
     </head>
     <body>
         <header class="container-fluid d-flex justify-content-center">
-            <h1>Inventory</h1>
+            <h1>Register</h1>
         </header>
+
         <nav class="navbar navbar-expand-sm navbar-light bg-light my-2">
             <a class="navbar-brand" href="/">Inventory</a>
             <button
@@ -65,23 +66,6 @@
                         </div>
                     </li>
                     <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbardrop"
-                            data-toggle="dropdown"
-                        >
-                            Preferences
-                        </a>
-                        <div class="dropdown-menu">
-                            <label class="dropdown-item">
-                                <input type="checkbox" id="switchBigImg" />
-                                Big images</label
-                            >
-                        </div>
-                    </li>
-                    <!-- Dropdown -->
                 </ul>
             </div>
         </nav>
@@ -90,24 +74,25 @@
             <main class="d-flex flex-column">
                 <table class="table table-hover table-striped">
                     <tbody>
-                        <!-- Instruments will be added with js from mongo -->
+                        <!-- Records for register will be added with js from mongo -->
                     </tbody>
                 </table>
             </main>
         </div>
 
-        <div id="myModal" class="modal">
-            <div class="modal-content mb-5">
-                <!-- Instrument details added in index.js using pug -->
-            </div>
-        </div>
+        <button
+            type="button"
+            id="removeRecordsButton"
+            class="btn btn-danger m-3"
+        >
+            Remove all records
+        </button>
 
         <footer class="mt-auto">
             <div class="container text-center">
                 <small>©️ 2022 Cosme Valera</small>
             </div>
         </footer>
-
         <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -123,9 +108,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
-        <script src="/js/indexInstruments.js"></script>
-        <script src="/js/modalDetailsInstrument.js"></script>
-        <script src="/js/modalUpdateInstrument.js"></script>
-        <script src="/js/index.js"></script>
+        <script src="/js/registerRecords.js"></script>
+        <script src="/js/register.js"></script>
     </body>
 </html>

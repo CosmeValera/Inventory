@@ -16,10 +16,9 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || process.env.MYPORT;
 
-// --- MIDDLEWARE METHODS
+// --- MIDDLEWARE METHODS --- //
 
-//Google-> http://localhost:3000
-//curl -i -X GET http://localhost:3000/inventory
+/* Inventory methods */
 app.get("/inventory", async (req, res) => {
     try {
         let instruments = await db.findInstruments();
@@ -41,7 +40,6 @@ app.get("/inventory/:id", async (req, res) => {
     }
 });
 
-//curl -i -X POST http://localhost:3000
 app.post("/inventory", async (req, res) => {
     try {
         instrument = req.body;
@@ -61,12 +59,10 @@ app.delete("/inventory/:id", async (req, res) => {
     }
 });
 
-//In put method we receive in body the new instrument
 app.put("/inventory/:id", async (req, res) => {
-    console.log(`app.put("/inventory/:id", async (req, res)`);
+    //In put method we receive in body the new instrument
     var idUpdated = req.params.id; //Mongo id
     var instrument = req.body;
-    console.log(instrument);
     try {
         await db.updateInstrument(idUpdated, instrument);
         res.sendStatus(200);
@@ -74,13 +70,26 @@ app.put("/inventory/:id", async (req, res) => {
         res.sendStatus(400);
     }
 });
+/* END: Inventory methods */
 
-// Other functions
+/* Register methods */
+app.get("/register", async (req, res) => {
+    try {
+        let records = await db.findRecords();
+        res.send(JSON.stringify(records));
+    } catch (err) {
+        res.statusMessage = "Error: " + err;
+        res.sendStatus(500);
+    }
+});
+/* END: Register methods */
+
+// --- Other functions --- //
 async function connectDB() {
     await db.connect();
 }
 
-// --- Server beginning to listen
+// --- Server beginning to listen --- //
 
 app.listen(PORT, () => console.log(`Server listening in port: ${PORT}`));
 connectDB();
