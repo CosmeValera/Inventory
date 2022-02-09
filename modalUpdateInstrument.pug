@@ -39,15 +39,15 @@ div(class = "modal-body")
         div(class="form-group")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Sonority*:"
-            input(type="range" class="custom-range pt-3 custom-range-danger" min="0" max="100" step="10" value="50" id="inputSonority" name="sonority")
+            input(type="range" class="custom-range pt-3 custom-range-danger" min="0" max="100" step="10" id="inputSonority" name="sonority" value=instrument.sonority)
         div(class="form-group")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Price*:"
-            input(class="form-control" type="number" id="inputPrice" name="price" min="0" max="99999" placeholder="$1500")
+            input(class="form-control" type="number" id="inputPrice" name="price" min="0" max="99999" placeholder="$1500" value=instrument.price)
         div(class="form-group")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Summary:"
-            input(class="form-control" type="text" id="inputSummary" name="summary" maxLength="256" placeholder="Instrument's description")
+            input(class="form-control" type="text" id="inputSummary" name="summary" maxLength="256" placeholder="Instrument's description" value=instrument.summary)
         div(class="d-flex justify-content-center") 
             div(class="d-flex justify-content-center")
                 a(class="link-as-button-orange cancel-update-button m-2" href="#")="Cancel"

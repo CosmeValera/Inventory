@@ -44,8 +44,6 @@ async function deleteInstrument(evt, idParam) {
     });
 }
 
-//WE need to create another method between this one and those who right now call it,
-//to show the modal page with a form to fill the data
 async function updateInstrument(evt, instrument) {
     await fetch(`/inventory/${instrument._id}`, {
         method: "PUT",
@@ -66,11 +64,10 @@ async function updateInstrument(evt, instrument) {
 }
 
 async function obtainValuesAndUpdate(evt) {
-    //Obtain values from modal, using document.selector etc.
-
-    //evt.target(acceptButton). Parent= ".modal-body", sibling="modal-invisible-id"
+    //obtain instrument data from modal-update
     var instrument = {
-        _id : findSiblingUsingDom(evt.target, ".modal-body", ".modal-invisible-id"),
+        //evt.target(acceptButton). Parent= ".modal-body", sibling="modal-invisible-id"
+        _id : findSiblingIdUsingDom(evt.target, ".modal-body", ".modal-invisible-id"),
         name : document.querySelector("#selectName").value,
         type : document.querySelector("#selectType").value,
         subtype : document.querySelector("#selectSubtype").value,
@@ -78,12 +75,30 @@ async function obtainValuesAndUpdate(evt) {
         sonority : document.querySelector("#inputSonority").value,
         summary : document.querySelector("#inputSummary").value,
     }
-    console.log(instrument)
-
+    
     updateInstrument(evt, instrument).then(() => {
         modal.style.display = "none";
     });
 };
+
+function fillModalUpdateWithInstrumentsData(instrument) {
+    document.querySelector("#selectName").value=instrument.name;
+    document.querySelector("#selectType").value=instrument.type;
+    document.querySelector("#selectSubtype").value=instrument.subtype;
+    document.querySelector("#inputPrice").value=instrument.price;
+    document.querySelector("#inputSonority").value=instrument.sonority;
+    document.querySelector("#inputSummary").value=instrument.summary;
+}
+
+function defineButtonsEffectOfModalUpdate() {
+    document.querySelector(".close").onclick = function () {
+        modal.style.display = "none";
+    };
+    document.querySelector(".cancel-update-button").onclick = function () {
+        modal.style.display = "none";
+    };
+    document.querySelector(".accept-update-button").addEventListener("click", obtainValuesAndUpdate);
+}
 
 async function showModalUpdate(evt, id) {
     const response = await fetch(`/inventory/${id}`);
@@ -93,13 +108,8 @@ async function showModalUpdate(evt, id) {
         modalContent.innerHTML = insertUpdateInstrument({
             instrument: instrumentJson,
         });
-        document.querySelector(".close").onclick = function () {
-            modal.style.display = "none";
-        };
-        document.querySelector(".cancel-update-button").onclick = function () {
-            modal.style.display = "none";
-        };
-        document.querySelector(".accept-update-button").addEventListener("click", obtainValuesAndUpdate);
+        fillModalUpdateWithInstrumentsData(instrumentJson);
+        defineButtonsEffectOfModalUpdate();
         modal.style.display = "block";
     } else {
         alert("Server found an issue, " + response.statusText);
@@ -129,7 +139,7 @@ async function instrumentRowClicked(evt) {
     if (evt.target.closest("#titles")) {
         return;
     }
-    const id = findSiblingUsingDom(
+    const id = findSiblingIdUsingDom(
         instrumentRow,
         ".this-is-a-table-row",
         ".secret-invisible-id"
@@ -139,7 +149,6 @@ async function instrumentRowClicked(evt) {
         return;
     }
     if (instrumentRow.classList.contains("update-button")) {
-        //TODO: update
         console.log(evt.target + " estamos en update");
         showModalUpdate(evt, id);
         return;
@@ -150,7 +159,7 @@ async function instrumentRowClicked(evt) {
 
 async function modalClicked(evt) {
     const buttonClicked = evt.target;
-    const id = findSiblingUsingDom(
+    const id = findSiblingIdUsingDom(
         buttonClicked,
         ".modal",
         ".modal-invisible-id"
@@ -161,14 +170,14 @@ async function modalClicked(evt) {
         deleteInstrument(evt, id);
         return;
     }
+    //From here we open the other modal page, to edit the instrument
     if (buttonClicked.classList.contains("update-button")) {
-        //TODO esto es para darle update una vez clickada a la pagina de detalles, que cambie el contenido a la misma pagina modal
-        showModalUpdate(id);
+        showModalUpdate(evt, id);
         return;
     }
 }
 
-function findSiblingUsingDom(actualElement, parentClass, siblingClass) {
+function findSiblingIdUsingDom(actualElement, parentClass, siblingClass) {
     //parent: .modal-body, child: .modal-invisible-id
     const parentDiv = actualElement.closest(parentClass);
     const divWithId = parentDiv.querySelector(siblingClass);
@@ -180,9 +189,7 @@ function findSiblingUsingDom(actualElement, parentClass, siblingClass) {
 document
     .getElementById("switchBigImg")
     .addEventListener("change", changeInstrumentsSize);
-
 document.querySelector("tbody").addEventListener("click", instrumentRowClicked);
-
 modal = document.getElementById("myModal");
 modal.addEventListener("click", modalClicked);
 window.onclick = function (event) {
@@ -190,6 +197,5 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 };
-//Modal inits
 
 loadInstrumentsFromDBToTable();

@@ -24,7 +24,10 @@ div(class = "modal-body")
     else
         p(class="d-flex justify-content-center mt-0 mb-3")
             strong(class="me-2")="No Summary"
-    a(class="d-flex justify-content-center")
+    a(class="d-flex justify-content-center mb-2")
         img(class="img-fluid" src=`img/${instrument.name}.png` alt="img")
     div(class="d-flex justify-content-center")
-        a(class="link-as-button-light-red delete-button mt-3" href="#")="Delete"
+        div(class="d-flex justify-content-center")
+            a(class="link-as-button-blue update-button m-2" href="#")="Update"
+        div(class="d-flex justify-content-center")
+            a(class="link-as-button-dark-red delete-button m-2" href="#")="Delete"

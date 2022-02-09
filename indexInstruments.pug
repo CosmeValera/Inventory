@@ -30,4 +30,7 @@ each inst in data.instruments
             div
                 a(class="item-bottom-right link-as-button-red delete-button me-3 mb-2" href="#")="Delete"
             div
-                h2=`$ ${inst.price}.00` 
+                if (inst.price.toString().includes("."))
+                    h2=`$ ${inst.price}` 
+                else
+                    h2=`$ ${inst.price}.00` 

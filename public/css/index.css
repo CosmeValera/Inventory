@@ -84,18 +84,18 @@ a.link-as-button-red:active {
     background-color: rgb(231, 20, 20);
 }
 
-a.link-as-button-light-red:link,
-a.link-as-button-light-red:visited {
-    background-color: rgb(170, 0, 0);
+a.link-as-button-dark-red:link,
+a.link-as-button-dark-red:visited {
+    background-color: rgb(191, 0, 0);
     color: white;
     padding: 4px 9px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
 }
-a.link-as-button-light-red:hover,
-a.link-as-button-light-red:active {
-    background-color: rgb(191, 0, 0);
+a.link-as-button-dark-red:hover,
+a.link-as-button-dark-red:active {
+    background-color: rgb(170, 0, 0);
 }
 
 a.link-as-button-green:link,
