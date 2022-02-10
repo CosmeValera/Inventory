@@ -45,6 +45,9 @@ app.post("/inventory", async (req, res) => {
         instrument = req.body;
         instrumentAcceptable = db.Instrument(instrument);
         await db.saveInstrument(instrumentAcceptable);
+
+        //TODO: Here we also create a new register and save it. etc
+
         res.sendStatus(200);
     } catch (err) {
         res.sendStatus(400);
@@ -82,6 +85,18 @@ app.get("/register", async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+// No need to do post register like this, we can create every register inside every register method
+// app.post("/register", async (req, res) => {
+//     try {
+//         record = req.body;
+//         recordAcceptable = db.Instrument(record);
+//         await db.saveRecord(recordAcceptable);
+//         res.sendStatus(200);
+//     } catch (err) {
+//         res.sendStatus(400);
+//     }
+// });
 /* END: Register methods */
 
 // --- Other functions --- //
