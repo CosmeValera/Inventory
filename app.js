@@ -46,7 +46,7 @@ app.post("/inventory", async (req, res) => {
         instrumentAcceptable = db.Instrument(instrument);
         await db.saveInstrument(instrumentAcceptable);
 
-        //TODO: Here we also create a new register and save it. etc
+        await createNewRecord("Add", `A ${instrument.name} was created`);
 
         res.sendStatus(200);
     } catch (err) {
@@ -55,7 +55,13 @@ app.post("/inventory", async (req, res) => {
 });
 app.delete("/inventory/:id", async (req, res) => {
     try {
-        await db.deleteInstrument(req.params.id.trim());
+        let id = req.params.id;
+        let instrument = await db.findInstrumentById(id);
+        
+        await db.deleteInstrument(id);
+
+        await createNewRecord("Delete", `A ${instrument.name} was deleted`);
+
         res.sendStatus(200);
     } catch (err) {
         res.sendStatus(400);
@@ -65,9 +71,16 @@ app.delete("/inventory/:id", async (req, res) => {
 app.put("/inventory/:id", async (req, res) => {
     //In put method we receive in body the new instrument
     var idUpdated = req.params.id; //Mongo id
-    var instrument = req.body;
+    var newinstrument = req.body;
     try {
-        await db.updateInstrument(idUpdated, instrument);
+        oldInstrument = await db.findInstrumentById(idUpdated);
+        await db.updateInstrument(idUpdated, newinstrument);
+
+        await createNewRecord(
+            "Update",
+            `A ${oldInstrument.name} was updated to a ${newinstrument.name}`
+        );
+
         res.sendStatus(200);
     } catch (err) {
         res.sendStatus(400);
@@ -86,20 +99,37 @@ app.get("/register", async (req, res) => {
     }
 });
 
-// No need to do post register like this, we can create every register inside every register method
-// app.post("/register", async (req, res) => {
-//     try {
-//         record = req.body;
-//         recordAcceptable = db.Instrument(record);
-//         await db.saveRecord(recordAcceptable);
-//         res.sendStatus(200);
-//     } catch (err) {
-//         res.sendStatus(400);
-//     }
-// });
+app.delete("/register", async (req, res) => {
+    try {
+        await db.deleteRecords();
+        res.send(200);
+    } catch (err) {
+        res.statusMessage = "Error: " + err;
+        res.sendStatus(500);
+    }
+});
 /* END: Register methods */
 
-// --- Other functions --- //
+// --- Other methods --- //
+async function createNewRecord(typeParam, summaryParam) {
+    record = {
+        type: typeParam,
+        summary: summaryParam,
+        date: getToday(),
+    };
+    recordAcceptable = db.Record(record);
+
+    await db.saveRecord(recordAcceptable);
+}
+
+function getToday() {
+    let today = new Date();
+    let day = String(today.getDate()).padStart(2, "0");
+    let month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let year = today.getFullYear();
+    return day + "/" + month + "/" + year;
+}
+
 async function connectDB() {
     await db.connect();
 }

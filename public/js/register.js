@@ -16,4 +16,23 @@ async function loadRecordsFromDBToTable() {
     }
 }
 
+async function deleteRecords() {
+    await fetch("/register", {
+        method: "DELETE"
+    }).then((response)=>{
+        if (response.ok) {
+            loadRecordsFromDBToTable();
+            res.send(200);
+        } else {
+            alert(
+                `Server found an issue trying to delete all records, ` +
+                    response.statusText
+            );
+        }
+    });
+}
+
+document.querySelector("#removeRecordsButton").addEventListener("click", deleteRecords);
+
+
 loadRecordsFromDBToTable();
