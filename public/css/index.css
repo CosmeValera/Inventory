@@ -1,14 +1,3 @@
-#titles {
-    background-color: #deeaee;
-}
-#titles > td > div > h2 {
-    color: black;
-    text-shadow: 1px 1px #ffffff6e;
-}
-tbody > tr {
-    background-color: #b1cbbb;
-}
-
 .item-upper-right {
     position: absolute;
     top: 0;
