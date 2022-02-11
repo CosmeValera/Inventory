@@ -36,3 +36,5 @@ document.querySelector("#removeRecordsButton").addEventListener("click", deleteR
 
 
 loadRecordsFromDBToTable();
+
+//TODO: when you click a card in the table, a modal should appear, and it will call a pug modal, and it will show you the instrument/s that is in that record. Maybe create and delete use same modal(maybe one green and the other red for instance), and delete orther.
