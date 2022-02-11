@@ -12,12 +12,12 @@ each record in data.records
     tr(class="this-is-a-table-row")
         td(id="container-fill-height")
             div(class="centerElement")
-                h3=record.type
+                h2=record.type
         td(id="container-fill-height")
             p(class="secret-invisible-id")=record._id
             div
-                h5=record.summary
+                p(class="px-2")=record.summary
         td(id="container-fill-height")
             div(class="centerElement")
-                h5=record.date
+                p=record.date
             

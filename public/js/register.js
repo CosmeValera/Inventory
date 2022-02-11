@@ -18,8 +18,8 @@ async function loadRecordsFromDBToTable() {
 
 async function deleteRecords() {
     await fetch("/register", {
-        method: "DELETE"
-    }).then((response)=>{
+        method: "DELETE",
+    }).then((response) => {
         if (response.ok) {
             loadRecordsFromDBToTable();
             res.send(200);
@@ -32,9 +32,12 @@ async function deleteRecords() {
     });
 }
 
-document.querySelector("#removeRecordsButton").addEventListener("click", deleteRecords);
-
+document
+    .querySelector("#removeRecordsButton")
+    .addEventListener("click", deleteRecords);
 
 loadRecordsFromDBToTable();
 
-//TODO: when you click a card in the table, a modal should appear, and it will call a pug modal, and it will show you the instrument/s that is in that record. Maybe create and delete use same modal(maybe one green and the other red for instance), and delete orther.
+//TODO: when you click a card in the table, a modal should appear, and it will call a pug modal,
+//and it will show you the instrument/s that is in that record. Maybe create and delete use same
+//modal(maybe one green and the other red for instance), and delete orther.

@@ -62,3 +62,48 @@ footer {
 tbody > tr {
     background-color: #b1cbbb;
 }
+
+/* Change font sizes acording to screen size */
+@media only screen and (min-width: 768px) {
+    p,
+    a,
+    label {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    p,
+    a,
+    label {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+@media only screen and (max-width: 500px) {
+    p,
+    a,
+    label {
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+}
+/* END: Change font sizes acording to screen size */
