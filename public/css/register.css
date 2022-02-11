@@ -1,0 +1,23 @@
+.modal-header-add {
+    background-color: rgb(2, 161, 37);
+}
+.modal-body-add,
+.modal-content-add {
+    background-color: rgb(9, 189, 48);
+}
+
+.modal-header-delete {
+    background-color: rgb(133, 12, 1);
+}
+.modal-body-delete,
+.modal-content-delete {
+    background-color: rgb(160, 21, 8);
+}
+
+.modal-header-update {
+    background-color: rgb(7, 129, 123);
+}
+.modal-body-update,
+.modal-content-update {
+    background-color: rgb(11, 168, 160);
+}

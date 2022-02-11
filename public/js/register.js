@@ -51,9 +51,12 @@ async function recordRowClicked(evt) {
             case "Add":
                 instrument = record.summaryAdd;
                 instrumentJson = JSON.parse(instrument);
-                console.log(instrumentJson);
 
                 modalContent = modal.querySelector(".modal-content");
+                modalContent.classList.add("modal-content-add");
+                modalContent.classList.remove("modal-content-delete");
+                modalContent.classList.remove("modal-content-update");
+
                 modalContent.innerHTML = insertModalAddRecord({
                     instrument: instrumentJson,
                 });
@@ -65,17 +68,41 @@ async function recordRowClicked(evt) {
             case "Delete":
                 instrument = record.summaryDelete;
                 instrumentJson = JSON.parse(instrument);
-                console.log(instrumentJson);
+
+                modalContent = modal.querySelector(".modal-content");
+                modalContent.classList.add("modal-content-delete");
+                modalContent.classList.remove("modal-content-add");
+                modalContent.classList.remove("modal-content-update");
+
+                modalContent.innerHTML = insertModalDeleteRecord({
+                    instrument: instrumentJson,
+                });
+                document.querySelector(".close").onclick = function () {
+                    modal.style.display = "none";
+                };
+                modal.style.display = "block";
                 break;
             case "Update":
                 instrumentsJSON = JSON.parse(record.summaryUpdate);
                 oldInstrument = instrumentsJSON.oldInstrument;
                 newInstrument = instrumentsJSON.newInstrument;
-                console.log(oldInstrument.name);
-                console.log(newInstrument.name);
+
+                modalContent = modal.querySelector(".modal-content");
+                modalContent.classList.add("modal-content-update");
+                modalContent.classList.remove("modal-content-delete");
+                modalContent.classList.remove("modal-content-add");
+
+                modalContent.innerHTML = insertModalUpdateRecord({
+                    instruments: instrumentsJSON,
+                });
+                document.querySelector(".close").onclick = function () {
+                    modal.style.display = "none";
+                };
+                modal.style.display = "block";
                 break;
         }
     } else {
+        alert("Server found an issue, " + response.statusText);
     }
 }
 

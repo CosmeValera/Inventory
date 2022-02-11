@@ -1,12 +1,17 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h5,
-p {
-    color: white;
-    text-shadow: 1px 1px #0000006e;
+.item-upper-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.item-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.item-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 header {
     background-color: #eea29a;
@@ -63,6 +68,16 @@ tbody > tr {
     background-color: #b1cbbb;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+p {
+    color: white;
+    text-shadow: 1px 1px #0000006e;
+}
 /* Change font sizes acording to screen size */
 @media only screen and (min-width: 768px) {
     p,
