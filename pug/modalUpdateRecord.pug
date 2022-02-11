@@ -3,9 +3,13 @@ div(class="modal-header modal-header-update" id= "container-fill-height")
     span(class="close item-upper-right px-4 py-3")="×"
 div(class = "modal-body modal-body-update")
     div(class = "row")
-        div(class = "col-6")
+        div(class = "col-md-6")
             p(class="d-none modal-invisible-id")
                 =instruments.oldInstrument._id
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="OLD INSTRUMENT:"
+            a(class="d-flex justify-content-center mb-2")
+                img(class="img-fluid" src=`img/${instruments.oldInstrument.name}.png` alt="img")
             p(class="d-flex justify-content-center my-0")
                 strong(class="me-2")="Type:"
                 =instruments.oldInstrument.type
@@ -23,18 +27,19 @@ div(class = "modal-body modal-body-update")
                 strong(class="me-2")="Sonority:"
                 =instruments.oldInstrument.sonority
             if instruments.oldInstrument.summary
-                p(class="d-flex justify-content-center mt-0 mx-5")
-                    strong(class="me-2")="Summary:"
+                p(class="d-flex justify-content-center mt-0 mx-5 mb-5")
                     =instruments.oldInstrument.summary
             else
-                p(class="d-flex justify-content-center mt-0 mb-3")
+                p(class="d-flex justify-content-center mt-0 mb-3 mb-5")
                     strong(class="me-2")="No Summary"
-            a(class="d-flex justify-content-center mb-2")
-                img(class="img-fluid" src=`img/${instruments.oldInstrument.name}.png` alt="img")
 
-        div(class = "col-6")
+        div(class = "col-md-6")
             p(class="d-none modal-invisible-id")
                 =instruments.newInstrument._id
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="NEW INSTRUMENT:"
+            a(class="d-flex justify-content-center mb-2")
+                img(class="img-fluid" src=`img/${instruments.newInstrument.name}.png` alt="img")
             p(class="d-flex justify-content-center my-0")
                 strong(class="me-2")="Type:"
                 =instruments.newInstrument.type
@@ -53,13 +58,10 @@ div(class = "modal-body modal-body-update")
                 =instruments.newInstrument.sonority
             if instruments.newInstrument.summary
                 p(class="d-flex justify-content-center mt-0 mx-5")
-                    strong(class="me-2")="Summary:"
                     =instruments.newInstrument.summary
             else
                 p(class="d-flex justify-content-center mt-0 mb-3")
                     strong(class="me-2")="No Summary"
-            a(class="d-flex justify-content-center mb-2")
-                img(class="img-fluid" src=`img/${instruments.newInstrument.name}.png` alt="img")
 
 
 

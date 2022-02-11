@@ -4,6 +4,8 @@ div(class="modal-header modal-header-add" id= "container-fill-height")
 div(class = "modal-body modal-body-add")
     p(class="d-none modal-invisible-id")
         =instrument._id
+    a(class="d-flex justify-content-center mb-2")
+        img(class="img-fluid" src=`img/${instrument.name}.png` alt="img")
     p(class="d-flex justify-content-center my-0")
         strong(class="me-2")="Type:"
         =instrument.type
@@ -24,5 +26,3 @@ div(class = "modal-body modal-body-add")
     else
         p(class="d-flex justify-content-center mt-0 mb-3")
             strong(class="me-2")="No Summary"
-    a(class="d-flex justify-content-center mb-2")
-        img(class="img-fluid" src=`img/${instrument.name}.png` alt="img")
