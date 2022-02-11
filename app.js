@@ -73,10 +73,14 @@ app.put("/inventory/:id", async (req, res) => {
     var idUpdated = req.params.id; //Mongo id
     var newInstrument = req.body;
     try {
-        oldInstrument = await db.findInstrumentById(idUpdated);
+        oldInstrumentAcceptable = await db.findInstrumentById(idUpdated);
         await db.updateInstrument(idUpdated, newInstrument);
+        newInstrumentAcceptable = await db.findInstrumentById(idUpdated);
 
-        await createUpdateRecord(oldInstrument, newInstrument);
+        await createUpdateRecord(
+            oldInstrumentAcceptable,
+            newInstrumentAcceptable
+        );
 
         res.sendStatus(200);
     } catch (err) {

@@ -21,10 +21,12 @@
         <link rel="stylesheet" type="text/css" href="./css/register.css" />
     </head>
     <body>
+        <!-- Header -->
         <header class="container-fluid d-flex justify-content-center">
             <h1>Register</h1>
         </header>
 
+        <!-- NavBar -->
         <nav class="navbar navbar-expand-sm navbar-light bg-light my-2">
             <a class="navbar-brand" href="/">Inventory</a>
             <button
@@ -43,7 +45,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/register.html">Register</a>
                     </li>
-                    <!-- Dropdown -->
                     <li class="nav-item dropdown">
                         <a
                             class="nav-link dropdown-toggle"
@@ -65,11 +66,11 @@
                             >
                         </div>
                     </li>
-                    <!-- Dropdown -->
                 </ul>
             </div>
         </nav>
 
+        <!-- Table -->
         <div class="container-of-main container-fluid margin-xl">
             <main class="d-flex flex-column">
                 <table class="table table-hover table-striped">
@@ -80,6 +81,7 @@
             </main>
         </div>
 
+        <!-- Button -->
         <button
             type="button"
             id="removeRecordsButton"
@@ -87,6 +89,13 @@
         >
             Remove all records
         </button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content mb-5">
+                <!-- Instrument details added in register.js using pug -->
+            </div>
+        </div>
 
         <footer class="mt-auto">
             <div class="container text-center">
@@ -109,6 +118,9 @@
             crossorigin="anonymous"
         ></script>
         <script src="/js/registerRecords.js"></script>
+        <script src="/js/modalAddRecord.js"></script>
+        <script src="/js/modalDeleteRecord.js"></script>
+        <script src="/js/modalUpdateRecord.js"></script>
         <script src="/js/register.js"></script>
     </body>
 </html>

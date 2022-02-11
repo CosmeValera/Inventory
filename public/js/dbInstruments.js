@@ -65,10 +65,10 @@ exports.findRecords = async function () {
     return await Record.find({});
 };
 
-// const findRecordById = async function (idParam) {
-//     return await Record.findOne({ _id: idParam });
-// };
-// exports.findRecordById = findRecordById;
+const findRecordById = async function (idParam) {
+    return await Record.findOne({ _id: idParam });
+};
+exports.findRecordById = findRecordById;
 
 exports.saveRecord = async function (recordParam) {
     await recordParam.save();

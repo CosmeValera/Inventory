@@ -8,7 +8,10 @@
     "index-instruments-pug": "pug -c -D -n insertInstruments -o public/js pug/indexInstruments.pug",
     "register-records-pug": "pug -c -D -n insertRecords -o public/js pug/registerRecords.pug",
     "details-modal-pug": "pug -c -D -n insertDetailsInstrument -o public/js pug/modalDetailsInstrument.pug",
-    "update-modal-pug": "pug -c -D -n insertUpdateInstrument -o public/js pug/modalUpdateInstrument.pug"
+    "update-modal-pug": "pug -c -D -n insertUpdateInstrument -o public/js pug/modalUpdateInstrument.pug",
+    "add-record-modal-pug": "pug -c -D -n insertModalAddRecord -o public/js pug/modalAddRecord.pug",
+    "delete-record-modal-pug": "pug -c -D -n insertModalDeleteRecord -o public/js pug/modalDeleteRecord.pug",
+    "update-record-modal-pug": "pug -c -D -n insertModalUpdateRecord -o public/js pug/modalUpdateRecord.pug"
   },
   "keywords": [],
   "author": "",
