@@ -5,7 +5,7 @@ const InstrumentSchema = new mongoose.Schema({
     type: { type: String, required: true },
     subtype: { type: String, required: false },
     name: { type: String, required: true },
-    sonority: { type: String, required: true },
+    sonority: { type: Number, required: true },
     price: { type: Number, required: true },
     summary: { type: String, required: false },
 });
@@ -13,8 +13,11 @@ const InstrumentSchema = new mongoose.Schema({
 //Each time a instrument is added, deleted or updated a new record is created
 const RecordSchema = new mongoose.Schema({
     type: { type: String, required: true }, //add, delete, update (an instrument)
-    summary: { type: String, required: true }, //update on instrument with id 0oasdjfbahfjklsdf (it can be clicked and shows a modal with details)
-    date: { type: String, required: true } 
+    summary: { type: String, required: true },
+    date: { type: String, required: true },
+    summaryAdd: { type: String, required: false }, //instrument
+    summaryUpdate: { type: String, required: false }, //oldInstrument, newInstrument
+    summaryDelete: { type: String, required: false }, //instrument
 });
 
 const Instrument = mongoose.model("Instrument", InstrumentSchema);

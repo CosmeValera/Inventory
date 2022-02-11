@@ -46,7 +46,7 @@ app.post("/inventory", async (req, res) => {
         instrumentAcceptable = db.Instrument(instrument);
         await db.saveInstrument(instrumentAcceptable);
 
-        await createNewRecord("Add", `A ${instrument.name} was created`);
+        await createAddRecord(instrumentAcceptable);
 
         res.sendStatus(200);
     } catch (err) {
@@ -57,10 +57,10 @@ app.delete("/inventory/:id", async (req, res) => {
     try {
         let id = req.params.id;
         let instrument = await db.findInstrumentById(id);
-        
+
         await db.deleteInstrument(id);
 
-        await createNewRecord("Delete", `A ${instrument.name} was deleted`);
+        await createDeleteRecord(instrument);
 
         res.sendStatus(200);
     } catch (err) {
@@ -71,15 +71,12 @@ app.delete("/inventory/:id", async (req, res) => {
 app.put("/inventory/:id", async (req, res) => {
     //In put method we receive in body the new instrument
     var idUpdated = req.params.id; //Mongo id
-    var newinstrument = req.body;
+    var newInstrument = req.body;
     try {
         oldInstrument = await db.findInstrumentById(idUpdated);
-        await db.updateInstrument(idUpdated, newinstrument);
+        await db.updateInstrument(idUpdated, newInstrument);
 
-        await createNewRecord(
-            "Update",
-            `A ${oldInstrument.name} was updated to a ${newinstrument.name}`
-        );
+        await createUpdateRecord(oldInstrument, newInstrument);
 
         res.sendStatus(200);
     } catch (err) {
@@ -99,10 +96,21 @@ app.get("/register", async (req, res) => {
     }
 });
 
+app.get("/register/:id", async (req, res) => {
+    try {
+        let id = req.params.id;
+        let record = await db.findRecordById(id);
+        res.send(JSON.stringify(record));
+    } catch (err) {
+        res.statusMessage = "Error: " + err;
+        res.sendStatus(500);
+    }
+});
+
 app.delete("/register", async (req, res) => {
     try {
         await db.deleteRecords();
-        res.send(200);
+        res.sendStatus(200);
     } catch (err) {
         res.statusMessage = "Error: " + err;
         res.sendStatus(500);
@@ -111,11 +119,40 @@ app.delete("/register", async (req, res) => {
 /* END: Register methods */
 
 // --- Other methods --- //
-async function createNewRecord(typeParam, summaryParam) {
+async function createAddRecord(instrument) {
     record = {
-        type: typeParam,
-        summary: summaryParam,
+        type: "Add",
+        summary: `A ${instrument.name} was added`,
         date: getToday(),
+        summaryAdd: JSON.stringify(instrument)
+    };
+    recordAcceptable = db.Record(record);
+
+    await db.saveRecord(recordAcceptable);
+}
+
+async function createDeleteRecord() {
+    record = {
+        type: "Delete",
+        summary: `A ${instrument.name} was deleted`,
+        date: getToday(),
+        summaryDelete: JSON.stringify(instrument)
+    };
+    recordAcceptable = db.Record(record);
+
+    await db.saveRecord(recordAcceptable);
+}
+
+async function createUpdateRecord(oldInstrument, newInstrument) {
+    var instruments = {
+        oldInstrument: oldInstrument,
+        newInstrument: newInstrument
+    }
+    record = {
+        type: "Update",
+        summary: `A ${oldInstrument.name} was updated to a ${newInstrument.name}`,
+        date: getToday(),
+        summaryUpdate: JSON.stringify(instruments)
     };
     recordAcceptable = db.Record(record);
 
