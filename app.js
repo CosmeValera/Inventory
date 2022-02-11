@@ -124,19 +124,19 @@ async function createAddRecord(instrument) {
         type: "Add",
         summary: `A ${instrument.name} was added`,
         date: getToday(),
-        summaryAdd: JSON.stringify(instrument)
+        summaryAdd: JSON.stringify(instrument),
     };
     recordAcceptable = db.Record(record);
 
     await db.saveRecord(recordAcceptable);
 }
 
-async function createDeleteRecord() {
+async function createDeleteRecord(instrument) {
     record = {
         type: "Delete",
         summary: `A ${instrument.name} was deleted`,
         date: getToday(),
-        summaryDelete: JSON.stringify(instrument)
+        summaryDelete: JSON.stringify(instrument),
     };
     recordAcceptable = db.Record(record);
 
@@ -146,13 +146,13 @@ async function createDeleteRecord() {
 async function createUpdateRecord(oldInstrument, newInstrument) {
     var instruments = {
         oldInstrument: oldInstrument,
-        newInstrument: newInstrument
-    }
+        newInstrument: newInstrument,
+    };
     record = {
         type: "Update",
         summary: `A ${oldInstrument.name} was updated to a ${newInstrument.name}`,
         date: getToday(),
-        summaryUpdate: JSON.stringify(instruments)
+        summaryUpdate: JSON.stringify(instruments),
     };
     recordAcceptable = db.Record(record);
 
