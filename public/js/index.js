@@ -108,8 +108,9 @@ function defineButtonsEffectOfModalUpdate() {
 
 async function showModalUpdate(evt, id) {
     const response = await fetch(`/inventory/${id}`);
-    if (response.ok) {
-        var instrumentJson = await response.json();
+    var instrumentJson = await response.json();
+    //If instrument comes empty, it should tell you
+    if (response.ok && instrumentJson) {
         modalContent = modal.querySelector(".modal-content");
         modalContent.innerHTML = insertUpdateInstrument({
             instrument: instrumentJson,
