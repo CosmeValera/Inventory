@@ -121,7 +121,6 @@ async function showModalDetails(id) {
     const response = await fetch(`/inventory/${id}`);
     var instrumentJson = await response.json();
     if (response.ok && instrumentJson) {
-
         modalContent = modal.querySelector(".modal-content");
         modalContent.innerHTML = insertDetailsInstrument({
             instrument: instrumentJson,
@@ -178,6 +177,12 @@ async function modalClicked(evt) {
     }
 }
 
+async function navbarFilterClicked(evt) {
+    console.log(evt.target);
+    //
+}
+
+//Utility methods
 function errMessage(response) {
     //If 1 person deletes an instrument, and another one tries to see details after, fetch will return empty
     alert(
@@ -196,6 +201,11 @@ function findSiblingIdUsingDom(actualElement, parentClass, siblingClass) {
     return id;
 }
 
+//Filter inits
+document
+    .querySelector(".navbar")
+    .addEventListener("click", navbarFilterClicked);
+
 //Modal inits
 document
     .getElementById("switchBigImg")
@@ -210,6 +220,5 @@ window.onclick = function (event) {
 };
 
 loadInstrumentsFromDBToTable();
-
 
 //TODO: add filter buttons ask loadInstrumentsFromDBToTable but with a/several parameter that will filter them
