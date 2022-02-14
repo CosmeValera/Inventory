@@ -1,16 +1,20 @@
 var modal;
 var settings = new Object();
 settings.bigInstruments = false;
+settings.priceWithDecimals = false;
+settings.filterType = false;
+settings.filterPrice = false;
 
-async function loadInstrumentsFromDBToTable(filterWord) {
+async function loadInstrumentsFromDBToTable() {
     const response = await fetch("/inventory");
     if (response.ok) {
         var instrumentsJson = await response.json();
-        instrumentsJson = applyFilter(filterWord, instrumentsJson);
+        instrumentsJson = applyFilter(instrumentsJson);
 
         var dataPug = {
             instruments: instrumentsJson,
             bigInstruments: settings.bigInstruments,
+            priceWithDecimals: settings.priceWithDecimals,
         };
         document.querySelector("tbody").innerHTML = insertInstruments({
             data: dataPug,
@@ -20,12 +24,8 @@ async function loadInstrumentsFromDBToTable(filterWord) {
     }
 }
 
-function applyFilter(filterWord, instrumentsJson) {
-    if (!filterWord) {
-        return instrumentsJson;
-    }
-    //Case filter
-    switch (filterWord) {
+function applyFilter(instrumentsJson) {
+    switch (settings.filterType) {
         case "type-string":
             instrumentsJson = instrumentsJson.filter((instrument) => {
                 return instrument.type == "String";
@@ -55,14 +55,14 @@ function applyFilter(filterWord, instrumentsJson) {
                 );
             });
             break;
+    }
+    switch (settings.filterPrice) {
         case "price-low-to-high":
-            console.log(instrumentsJson);
             instrumentsJson = instrumentsJson.sort((a, b) => {
                 return a.price - b.price;
             });
             break;
         case "price-high-to-low":
-            console.log(instrumentsJson);
             instrumentsJson = instrumentsJson.sort((a, b) => {
                 return a.price - b.price;
             });
@@ -78,6 +78,16 @@ async function changeInstrumentsSize(evt) {
         settings.bigInstruments = true;
     } else {
         settings.bigInstruments = false;
+    }
+    loadInstrumentsFromDBToTable();
+}
+
+async function changeInstrumentsPriceDecimals(evt) {
+    //When clicking the checkbox
+    if (evt.target.checked) {
+        settings.priceWithDecimals = true;
+    } else {
+        settings.priceWithDecimals = false;
     }
     loadInstrumentsFromDBToTable();
 }
@@ -103,7 +113,7 @@ async function updateInstrument(evt, instrument) {
         },
     }).then((response) => {
         if (response.ok) {
-            loadInstrumentsFromDBToTable(evt);
+            loadInstrumentsFromDBToTable(settings.filter);
         } else {
             errMessage(response);
         }
@@ -189,9 +199,11 @@ async function showModalDetails(id) {
 
 async function instrumentRowClicked(evt) {
     const instrumentRow = evt.target;
-    if (evt.target.closest("#titles")) {
+    if (instrumentRow.closest("#titles")) {
+        clickInPriceSwitch(instrumentRow);
         return;
     }
+
     const id = findSiblingIdUsingDom(
         instrumentRow,
         ".this-is-a-table-row",
@@ -202,12 +214,25 @@ async function instrumentRowClicked(evt) {
         return;
     }
     if (instrumentRow.classList.contains("update-button")) {
-        console.log(evt.target + " estamos en update");
         showModalUpdate(evt, id);
         return;
     }
     //If it is not delete nor update, we want to show details with modal page
     showModalDetails(id);
+}
+
+function clickInPriceSwitch(instrumentRow) {
+    if (instrumentRow.classList.contains("price-switch")) {
+        if (
+            settings.filterPrice == false ||
+            settings.filterPrice == "price-high-to-low"
+        ) {
+            settings.filterPrice = "price-low-to-high";
+        } else {
+            settings.filterPrice = "price-high-to-low";
+        }
+        loadInstrumentsFromDBToTable();
+    }
 }
 
 async function modalClicked(evt) {
@@ -235,33 +260,27 @@ async function navbarFilterClicked(evt) {
 
     //Check click in filter button
     if (buttonFilterClicked.classList.contains("type-string")) {
-        loadInstrumentsFromDBToTable("type-string");
-        return;
+        settings.filterType = "type-string";
     }
     if (buttonFilterClicked.classList.contains("type-percussion")) {
-        loadInstrumentsFromDBToTable("type-percussion");
-        return;
+        settings.filterType = "type-percussion";
     }
     if (buttonFilterClicked.classList.contains("type-wind-all")) {
-        loadInstrumentsFromDBToTable("type-wind-all");
-        return;
+        settings.filterType = "type-wind-all";
     }
     if (buttonFilterClicked.classList.contains("type-wind-wood")) {
-        loadInstrumentsFromDBToTable("type-wind-wood");
-        return;
+        settings.filterType = "type-wind-wood";
     }
     if (buttonFilterClicked.classList.contains("type-wind-brass")) {
-        loadInstrumentsFromDBToTable("type-wind-brass");
-        return;
+        settings.filterType = "type-wind-brass";
     }
     if (buttonFilterClicked.classList.contains("price-low-to-high")) {
-        loadInstrumentsFromDBToTable("price-low-to-high");
-        return;
+        settings.filterPrice = "price-low-to-high";
     }
     if (buttonFilterClicked.classList.contains("price-high-to-low")) {
-        loadInstrumentsFromDBToTable("price-high-to-low");
-        return;
+        settings.filterPrice = "price-high-to-low";
     }
+    loadInstrumentsFromDBToTable();
 }
 
 //Utility methods
@@ -287,11 +306,14 @@ function findSiblingIdUsingDom(actualElement, parentClass, siblingClass) {
 document
     .querySelector(".navbar")
     .addEventListener("click", navbarFilterClicked);
-
-//Modal inits
 document
     .getElementById("switchBigImg")
     .addEventListener("change", changeInstrumentsSize);
+document
+    .getElementById("switchPriceDecimals")
+    .addEventListener("change", changeInstrumentsPriceDecimals);
+
+//Modal inits
 document.querySelector("tbody").addEventListener("click", instrumentRowClicked);
 modal = document.getElementById("myModal");
 modal.addEventListener("click", modalClicked);
