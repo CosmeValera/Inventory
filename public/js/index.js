@@ -210,3 +210,6 @@ window.onclick = function (event) {
 };
 
 loadInstrumentsFromDBToTable();
+
+
+//TODO: add filter buttons ask loadInstrumentsFromDBToTable but with a/several parameter that will filter them

@@ -85,6 +85,7 @@ h1 {
 @media only screen and (min-width: 768px) {
     p,
     a,
+    small,
     label,
     option {
         font-size: 1.2rem;
@@ -101,6 +102,7 @@ h1 {
 @media only screen and (max-width: 768px) {
     p,
     a,
+    small,
     label,
     option {
         font-size: 1rem;
@@ -117,6 +119,7 @@ h1 {
 @media only screen and (max-width: 500px) {
     p,
     a,
+    small,
     label,
     option {
         font-size: 0.8rem;
