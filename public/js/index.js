@@ -36,10 +36,7 @@ async function deleteInstrument(evt, idParam) {
         if (response.ok) {
             loadInstrumentsFromDBToTable(evt);
         } else {
-            alert(
-                `Server found an issue trying to delete instrument with id: ${idParam}, ` +
-                    response.statusText
-            );
+            errMessage(response);
         }
     });
 }
@@ -55,10 +52,7 @@ async function updateInstrument(evt, instrument) {
         if (response.ok) {
             loadInstrumentsFromDBToTable(evt);
         } else {
-            alert(
-                `Server found an issue trying to delete instrument with id: ${idParam}, ` +
-                    response.statusText
-            );
+            errMessage(response);
         }
     });
 }
@@ -109,7 +103,7 @@ function defineButtonsEffectOfModalUpdate() {
 async function showModalUpdate(evt, id) {
     const response = await fetch(`/inventory/${id}`);
     var instrumentJson = await response.json();
-    //If instrument comes empty, it should tell you
+    //Check instrument is empty
     if (response.ok && instrumentJson) {
         modalContent = modal.querySelector(".modal-content");
         modalContent.innerHTML = insertUpdateInstrument({
@@ -119,14 +113,14 @@ async function showModalUpdate(evt, id) {
         defineButtonsEffectOfModalUpdate();
         modal.style.display = "block";
     } else {
-        alert("Server found an issue, " + response.statusText);
+        errMessage(response);
     }
 }
 
 async function showModalDetails(id) {
     const response = await fetch(`/inventory/${id}`);
-    if (response.ok) {
-        var instrumentJson = await response.json();
+    var instrumentJson = await response.json();
+    if (response.ok && instrumentJson) {
 
         modalContent = modal.querySelector(".modal-content");
         modalContent.innerHTML = insertDetailsInstrument({
@@ -137,7 +131,7 @@ async function showModalDetails(id) {
         };
         modal.style.display = "block";
     } else {
-        alert("Server found an issue, " + response.statusText);
+        errMessage(response);
     }
 }
 
@@ -171,17 +165,27 @@ async function modalClicked(evt) {
         ".modal",
         ".modal-invisible-id"
     );
-    //check we clicked delete button
+    //Check click delete button
     if (buttonClicked.classList.contains("delete-button")) {
         document.querySelector(".close").click(); //Close modal page
         deleteInstrument(evt, id);
         return;
     }
-    //From here we open the other modal page, to edit the instrument
+    //Check click update button
     if (buttonClicked.classList.contains("update-button")) {
         showModalUpdate(evt, id);
         return;
     }
+}
+
+function errMessage(response) {
+    //If 1 person deletes an instrument, and another one tries to see details after, fetch will return empty
+    alert(
+        "Server found an issue. " +
+            (response.statusText != "OK"
+                ? response.statusText
+                : "Data has been altered, try again after refreshing the page")
+    );
 }
 
 function findSiblingIdUsingDom(actualElement, parentClass, siblingClass) {

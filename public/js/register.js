@@ -12,7 +12,7 @@ async function loadRecordsFromDBToTable() {
             data: dataPug,
         });
     } else {
-        alert("Server found an issue, " + response.statusText);
+        alert("Server found an issue trying to load records, " + response.statusText);
     }
 }
 
@@ -44,9 +44,9 @@ async function recordRowClicked(evt) {
     );
 
     const response = await fetch(`/register/${id}`);
-
-    if (response.ok) {
-        record = await response.json();
+    record = await response.json();
+    //Check record is empty
+    if (response.ok && record) {
         switch (record.type) {
             case "Add":
                 instrument = record.summaryAdd;
@@ -102,8 +102,18 @@ async function recordRowClicked(evt) {
                 break;
         }
     } else {
-        alert("Server found an issue, " + response.statusText);
+        errMessage(response);
     }
+}
+
+function errMessage(response) {
+    //If 1 person deletes a record, and another one tries to see details after, fetch will return empty
+    alert(
+        "Server found an issue. " +
+            (response.statusText != "OK"
+                ? response.statusText
+                : "Data has been altered, try again after refreshing the page")
+    );
 }
 
 function findSiblingIdUsingDom(actualElement, parentClass, siblingClass) {
@@ -126,7 +136,3 @@ window.onclick = function (event) {
     }
 };
 loadRecordsFromDBToTable();
-
-//TODO: when you click a card in the table, a modal should appear, and it will call a pug modal,
-//and it will show you the instrument/s that is in that record. Maybe create and delete use same
-//modal(maybe one green and the other red for instance), and delete orther.

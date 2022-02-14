@@ -5,7 +5,7 @@ div(class = "modal-body")
     p(class="d-none modal-invisible-id")
         =instrument._id
     section(class="my-1 mx-5 row" id="my-form")
-        div(class="form-group")
+        div(class="form-group col-md-6 col-12")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Instrument*:"
             select(class="form-control" id="selectName" name="name")
@@ -21,7 +21,7 @@ div(class = "modal-body")
                 option="Snare Drum"
                 option="Conga"
                 option="Battery"
-        div(class="form-group")
+        div(class="form-group col-md-6 col-12")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Type*:"
             select(class="form-control" id="selectType" name="type")
@@ -29,22 +29,22 @@ div(class = "modal-body")
                 option="Wind"
                 option="String"
                 option="Percussion"
-        div(class="form-group")
+        div(class="form-group col-md-6 col-12")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Subtype:"
             select(class="form-control" id="selectSubtype" name="subtype")
                 option=""
                 option="Wood"
                 option="Brass"
-        div(class="form-group")
+        div(class="form-group col-md-6 col-12")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Sonority*:"
             input(type="range" class="custom-range pt-3 custom-range-danger" min="0" max="100" step="10" id="inputSonority" name="sonority" value=instrument.sonority)
-        div(class="form-group")
+        div(class="form-group col-md-6 col-12")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Price*:"
             input(class="form-control" type="number" id="inputPrice" name="price" min="0" max="99999" placeholder="$1500" value=instrument.price)
-        div(class="form-group")
+        div(class="form-group col-md-6 col-12")
             strong(class="my-1 d-flex justify-content-center me-2")
             ="Summary:"
             input(class="form-control" type="text" id="inputSummary" name="summary" maxLength="256" placeholder="Instrument's description" value=instrument.summary)

@@ -78,15 +78,20 @@ p {
     color: white;
     text-shadow: 1px 1px #0000006e;
 }
+h1 {
+    font-size: calc(1.5rem + 1.5vw);
+}
 /* Change font sizes acording to screen size */
 @media only screen and (min-width: 768px) {
     p,
     a,
-    label {
+    label,
+    option {
         font-size: 1.2rem;
     }
 
-    h2 {
+    h2,
+    .navbar-brand {
         font-size: 1.9rem;
     }
     h3 {
@@ -96,11 +101,13 @@ p {
 @media only screen and (max-width: 768px) {
     p,
     a,
-    label {
+    label,
+    option {
         font-size: 1rem;
     }
 
-    h2 {
+    h2,
+    .navbar-brand {
         font-size: 1.6rem;
     }
     h3 {
@@ -110,11 +117,13 @@ p {
 @media only screen and (max-width: 500px) {
     p,
     a,
-    label {
+    label,
+    option {
         font-size: 0.8rem;
     }
 
-    h2 {
+    h2,
+    .navbar-brand {
         font-size: 1.2rem;
     }
     h3 {
@@ -199,3 +208,92 @@ p {
     cursor: pointer;
 }
 /******** END: MODAL ********/
+
+/******** Menu hover navbar ********/
+.menu-area {
+    background: rgb(159, 159, 177);
+    background: #f8f9fa;
+}
+.dropdown-menu {
+    padding: 0;
+    margin: 0;
+    border: 0 solid transition !important;
+    border: 0 solid rgba(0, 0, 0, 0.15);
+    border-radius: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.mainmenu a,
+.navbar-default .navbar-nav > li > a,
+.mainmenu ul li a,
+.navbar-expand-lg .navbar-nav .nav-link {
+    color: rgb(103, 103, 103);
+    background-color: #f8f9fa;
+    /* font-size: 16px; */
+    text-transform: capitalize;
+    padding: 10px 8px;
+    /* margin-right: 0; */
+    font-family: "Roboto", sans-serif;
+    display: block !important;
+    text-decoration: none;
+}
+
+.navbar > .navbar-brand {
+    padding-left: 20px;
+}
+
+.mainmenu .active a,
+.mainmenu .active a:focus,
+.mainmenu .active a:hover,
+.mainmenu li a:hover,
+.mainmenu li a:focus,
+.navbar-default .navbar-nav > .show > a,
+.navbar-default .navbar-nav > .show > a:focus,
+.navbar-default .navbar-nav > .show > a:hover {
+    color: rgb(0, 0, 0);
+    /* background: purple; */
+    outline: 0;
+}
+
+.mainmenu {
+    background: none;
+    border: 0 solid;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    width: 100%;
+}
+@media only screen and (min-width: 767px) {
+    .mainmenu .collapse ul li:hover > ul {
+        display: block;
+    }
+    .mainmenu .collapse ul ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 170px;
+        display: none;
+    }
+    .mainmenu .collapse ul ul li {
+        position: relative;
+    }
+    .mainmenu .collapse ul ul li:hover > ul {
+        display: block;
+    }
+    .mainmenu .collapse ul ul ul {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        min-width: 145px;
+        display: none;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .navbar-nav .show .dropdown-menu .dropdown-menu > li > a {
+        padding: 16px 15px 16px 35px;
+    }
+    .navbar-nav .show .dropdown-menu .dropdown-menu .dropdown-menu > li > a {
+        padding: 16px 15px 16px 45px;
+    }
+}
+/******** Menu hover navbar ********/

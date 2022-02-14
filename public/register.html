@@ -23,53 +23,60 @@
     <body>
         <!-- Header -->
         <header class="container-fluid d-flex justify-content-center">
-            <!-- <h1>Register</h1> -->
             <a href="/register.html" class="text-decoration-none"><h1>Register</h1></a>
         </header>
 
         <!-- NavBar -->
-        <nav class="navbar navbar-expand-sm navbar-light bg-light my-2">
-            <a class="navbar-brand" href="/">Inventory</a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register.html">Register</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbardrop"
-                            data-toggle="dropdown"
+        <div id="menu_area" class="menu-area my-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="navbar navbar-light navbar-expand-sm mainmenu">
+                        <a class="navbar-brand" href="/">Inventory</a>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
                         >
-                            Product
-                        </a>
-                        <div class="dropdown-menu">
-                            <a
-                                class="dropdown-item"
-                                id="add-product"
-                                href="/create.html"
-                                >Add product</a
-                            >
-                            <a class="dropdown-item disabled" href="#"
-                                >Delete product</a
-                            >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div
+                            class="collapse navbar-collapse"
+                            id="navbarSupportedContent"
+                        >
+                            <ul class="navbar-nav mr-auto">
+                                <li><a href="/register.html">Register</a></li>
+                                <li class="dropdown">
+                                    <a
+                                        class="dropdown-toggle"
+                                        href="#"
+                                        id="navbarDropdown"
+                                        role="button"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        >Product</a
+                                    >
+                                    <ul
+                                        class="dropdown-menu"
+                                        aria-labelledby="navbarDropdown"
+                                    >
+                                        <li>
+                                            <a href="/create.html"
+                                                >Add product</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
-                    </li>
-                </ul>
+                    </nav>
+                </div>
             </div>
-        </nav>
+        </div>
 
         <!-- Table -->
         <div class="container-of-main container-fluid margin-xl">
