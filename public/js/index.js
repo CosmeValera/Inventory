@@ -2,21 +2,74 @@ var modal;
 var settings = new Object();
 settings.bigInstruments = false;
 
-async function loadInstrumentsFromDBToTable() {
+async function loadInstrumentsFromDBToTable(filterWord) {
     const response = await fetch("/inventory");
     if (response.ok) {
         var instrumentsJson = await response.json();
+        instrumentsJson = applyFilter(filterWord, instrumentsJson);
+
         var dataPug = {
             instruments: instrumentsJson,
             bigInstruments: settings.bigInstruments,
         };
-
         document.querySelector("tbody").innerHTML = insertInstruments({
             data: dataPug,
         });
     } else {
         alert("Server found an issue, " + response.statusText);
     }
+}
+
+function applyFilter(filterWord, instrumentsJson) {
+    if (!filterWord) {
+        return instrumentsJson;
+    }
+    //Case filter
+    switch (filterWord) {
+        case "type-string":
+            instrumentsJson = instrumentsJson.filter((instrument) => {
+                return instrument.type == "String";
+            });
+            break;
+        case "type-percussion":
+            instrumentsJson = instrumentsJson.filter((instrument) => {
+                return instrument.type == "Percussion";
+            });
+            break;
+        case "type-wind-all":
+            instrumentsJson = instrumentsJson.filter((instrument) => {
+                return instrument.type == "Wind";
+            });
+            break;
+        case "type-wind-wood":
+            instrumentsJson = instrumentsJson.filter((instrument) => {
+                return (
+                    instrument.type == "Wind" && instrument.subtype == "Wood"
+                );
+            });
+            break;
+        case "type-wind-brass":
+            instrumentsJson = instrumentsJson.filter((instrument) => {
+                return (
+                    instrument.type == "Wind" && instrument.subtype == "Brass"
+                );
+            });
+            break;
+        case "price-low-to-high":
+            console.log(instrumentsJson);
+            instrumentsJson = instrumentsJson.sort((a, b) => {
+                return a.price - b.price;
+            });
+            break;
+        case "price-high-to-low":
+            console.log(instrumentsJson);
+            instrumentsJson = instrumentsJson.sort((a, b) => {
+                return a.price - b.price;
+            });
+            instrumentsJson = instrumentsJson.reverse();
+            break;
+    }
+    return instrumentsJson;
 }
 
 async function changeInstrumentsSize(evt) {
@@ -178,8 +231,37 @@ async function modalClicked(evt) {
 }
 
 async function navbarFilterClicked(evt) {
-    console.log(evt.target);
-    //
+    buttonFilterClicked = evt.target;
+
+    //Check click in filter button
+    if (buttonFilterClicked.classList.contains("type-string")) {
+        loadInstrumentsFromDBToTable("type-string");
+        return;
+    }
+    if (buttonFilterClicked.classList.contains("type-percussion")) {
+        loadInstrumentsFromDBToTable("type-percussion");
+        return;
+    }
+    if (buttonFilterClicked.classList.contains("type-wind-all")) {
+        loadInstrumentsFromDBToTable("type-wind-all");
+        return;
+    }
+    if (buttonFilterClicked.classList.contains("type-wind-wood")) {
+        loadInstrumentsFromDBToTable("type-wind-wood");
+        return;
+    }
+    if (buttonFilterClicked.classList.contains("type-wind-brass")) {
+        loadInstrumentsFromDBToTable("type-wind-brass");
+        return;
+    }
+    if (buttonFilterClicked.classList.contains("price-low-to-high")) {
+        loadInstrumentsFromDBToTable("price-low-to-high");
+        return;
+    }
+    if (buttonFilterClicked.classList.contains("price-high-to-low")) {
+        loadInstrumentsFromDBToTable("price-high-to-low");
+        return;
+    }
 }
 
 //Utility methods
@@ -220,5 +302,3 @@ window.onclick = function (event) {
 };
 
 loadInstrumentsFromDBToTable();
-
-//TODO: add filter buttons ask loadInstrumentsFromDBToTable but with a/several parameter that will filter them
