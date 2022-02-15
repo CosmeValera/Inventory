@@ -1,3 +1,6 @@
+/* :root {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+} */
 .item-upper-right {
     position: absolute;
     top: 0;
@@ -100,12 +103,10 @@ h3 {
     label,
     option {
         font-size: 1.2rem;
-        font-weight: 100;
     }
 
     .navbar-brand {
         font-size: 1.2rem;
-        font-weight: bold;
         margin-right: 12px;
     }
 
@@ -123,12 +124,10 @@ h3 {
     label,
     option {
         font-size: 1rem;
-        font-weight: 100;
     }
 
     .navbar-brand {
         font-size: 1rem;
-        font-weight: bold;
         margin-right: 12px;
     }
 
@@ -146,12 +145,10 @@ h3 {
     label,
     option {
         font-size: 0.8rem;
-        font-weight: 100;
     }
 
     .navbar-brand {
         font-size: 0.8rem;
-        font-weight: bold;
         margin-right: 12px;
     }
     h2 {
@@ -259,14 +256,28 @@ h3 {
 .mainmenu ul li a,
 .navbar-expand-lg .navbar-nav .nav-link {
     color: rgb(103, 103, 103);
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     /* font-size: 16px; */
     text-transform: capitalize;
     padding: 15px 8px;
     /* margin-right: 0; */
-    font-family: "Roboto", sans-serif;
+    /* font-family: "Roboto", sans-serif; */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: block !important;
     text-decoration: none;
+}
+/* .mainmenu ul li ul li a {
+    background-color: blue;
+} */
+.mainmenu ul li ul li,
+.mainmenu ul li ul {
+    /* background-color: blue; */
+    border-radius: 5px;
+}
+
+.dropdown-item input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .mainmenu .active a,
