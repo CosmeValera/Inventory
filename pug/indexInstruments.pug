@@ -7,7 +7,10 @@ tr(id="titles")
             h2="Type"
     td
         div(class="d-flex justify-content-center")
-            h2(class="price-switch")="Price"
+            if (data.filterPrice == "price-high-to-low" || data.filterPrice == false)
+                h2(class="price-switch")="Price⏷"
+            else
+                h2(class="price-switch")="Price⏶"
 each inst in data.instruments
     tr(class="this-is-a-table-row")
         td(id="container-fill-height")
