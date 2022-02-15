@@ -240,7 +240,8 @@ h3 {
 /******** Menu hover navbar ********/
 .menu-area {
     background: rgb(159, 159, 177);
-    background: #f8f9fa;
+    /* background: #d8d8d8; */
+    background: #f4f7f8;
 }
 .dropdown-menu {
     padding: 0;
@@ -259,7 +260,7 @@ h3 {
     /* background-color: #f8f9fa; */
     /* font-size: 16px; */
     text-transform: capitalize;
-    padding: 15px 8px;
+    padding: 15px 10px;
     /* margin-right: 0; */
     /* font-family: "Roboto", sans-serif; */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -274,10 +275,10 @@ h3 {
     /* background-color: blue; */
     border-radius: 5px;
 }
-
-.dropdown-item input {
+.mainmenu ul li ul li label {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.55);
+    padding-left: 10px;
 }
 
 .mainmenu .active a,
