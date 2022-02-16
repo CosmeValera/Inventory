@@ -122,6 +122,44 @@ async function updateInstrument(evt, instrument) {
     });
 }
 
+async function checkInstrumentIsCorrect(instrument) {
+    //It must have name and type
+    if (!instrument.name || !instrument.type) {
+        return false;
+    }
+    //Price must be between 0 and 99999
+    if (!instrument.price || instrument.price < 0 || instrument.price > 99999) {
+        return false;
+    }
+    //Check instrument corresponds with type. Else, return false.
+    switch (instrument.name) {
+        case "Violin":
+        case "Guitar":
+        case "Piano":
+            if (instrument.type == "String" && !instrument.subtype) return true;
+            break;
+        case "Snare Drum":
+        case "Conga":
+        case "Battery":
+            if (instrument.type == "Percussion" && !instrument.subtype)
+                return true;
+            break;
+        case "Flute":
+        case "Clarinet":
+        case "Saxophone":
+            if (instrument.type == "Wind" && instrument.subtype == "Wood")
+                return true;
+            break;
+        case "Horn":
+        case "Trumpet":
+        case "Tuba":
+            if (instrument.type == "Wind" && instrument.subtype == "Brass")
+                return true;
+            break;
+    }
+    return false;
+}
+
 async function obtainValuesAndUpdate(evt) {
     //obtain instrument data from modal-update
     var instrument = {
@@ -139,6 +177,20 @@ async function obtainValuesAndUpdate(evt) {
         summary: document.querySelector("#inputSummary").value,
     };
 
+    let instrumentIsCorrect = await checkInstrumentIsCorrect(instrument);
+    let divResultMessage = document.getElementById("resultMessage");
+    if (!instrumentIsCorrect) {
+        //Modal tells that update is not correct
+        divResultMessage.innerHTML = `<p class="text-center my-0">Name, type and subtype must be in accordance.</p>
+            <p class="text-center mb-1">And price must be between 0 and 99999.</p>`;
+        divResultMessage.style.borderColor = "rgb(183, 38, 38)";
+        divResultMessage.style.backgroundColor = "rgba(211, 45, 45, 0.78)";
+        divResultMessage.style.display = "flex";
+        divResultMessage.style.display = "justify-content: center";
+        divResultMessage.classList.add("row");
+        return;
+    }
+    divResultMessage.style.display = "none";
     updateInstrument(evt, instrument).then(() => {
         modal.style.display = "none";
     });
