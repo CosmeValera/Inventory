@@ -152,3 +152,24 @@ a.link-as-button-orange:active {
 }
 /******** END: Button colors ********/
 
+/* Change margin of modal update regarding screen size */
+@media only screen and (min-width: 1420px) {
+    #my-form {
+        margin: 4px 46px;
+    }
+}
+@media only screen and (max-width: 1420px) {
+    #my-form {
+        margin: 4px 32px;
+    }
+}
+@media only screen and (max-width: 1080px) {
+    #my-form {
+        margin: 4px 16px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    #my-form {
+        margin: 4px 4px;
+    }
+}
