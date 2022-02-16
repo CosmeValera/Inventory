@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Register</title>
+        <title>Comparator</title>
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -17,13 +17,18 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
+        <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+            rel="stylesheet"
+            id="bootstrap-css"
+        />
         <link rel="stylesheet" type="text/css" href="./css/general.css" />
-        <link rel="stylesheet" type="text/css" href="./css/register.css" />
+        <link rel="stylesheet" type="text/css" href="./css/comparator.css" />
     </head>
     <body>
         <!-- Header -->
         <header class="container-fluid d-flex justify-content-center">
-            <a href="/register.html" class="text-decoration-none"><h1>Register</h1></a>
+            <a href="/" class="text-decoration-none"><h1>Comparator</h1></a>
         </header>
 
         <!-- NavBar -->
@@ -31,9 +36,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <nav class="navbar navbar-light navbar-expand-sm mainmenu">
-                        <a class="nav-link navbar-brand" href="/">Inventory</a>
+                        <a class="navbar-brand" href="/">Inventory</a>
                         <button
-                            class="navbar-toggler"
+                            class="navbar-toggler me-2 my-1"
                             type="button"
                             data-toggle="collapse"
                             data-target="#navbarSupportedContent"
@@ -48,7 +53,11 @@
                             id="navbarSupportedContent"
                         >
                             <ul class="navbar-nav mr-auto">
-                                <li><a class="nav-link" href="/register.html">Register</a></li>
+                                <li>
+                                    <a class="nav-link" href="/register.html"
+                                        >Register</a
+                                    >
+                                </li>
                                 <li class="dropdown">
                                     <a
                                         class="dropdown-toggle nav-link"
@@ -65,7 +74,9 @@
                                         aria-labelledby="navbarDropdown"
                                     >
                                         <li>
-                                            <a class="nav-link" href="/create.html"
+                                            <a
+                                                class="nav-link"
+                                                href="/create.html"
                                                 >Add product</a
                                             >
                                         </li>
@@ -85,28 +96,30 @@
 
         <!-- Table -->
         <div class="container-of-main container-fluid margin-xl">
-            <main class="d-flex flex-column">
-                <table class="table table-hover table-striped">
-                    <tbody>
-                        <!-- Records for register will be added with js from mongo -->
-                    </tbody>
-                </table>
-            </main>
+            <div class="row">
+                <main class="d-flex flex-column col-6">
+                    <table class="table table-hover table-striped">
+                        <tbody id="left-tbody">
+                            <h1>Here some instruments are</h1>
+                            <!-- Instruments will be added with js from mongo -->
+                        </tbody>
+                    </table>
+                </main>
+                <main class="d-flex flex-column col-6">
+                    <table class="table table-hover table-striped">
+                        <tbody id="right-tbody">
+                            <h1>Here some instruments are</h1>
+                            <!-- Instruments will be added with js from mongo -->
+                        </tbody>
+                    </table>
+                </main>
+            </div>
         </div>
-
-        <!-- Button -->
-        <button
-            type="button"
-            id="removeRecordsButton"
-            class="btn btn-danger m-3"
-        >
-            Remove all records
-        </button>
 
         <!-- Modal -->
         <div id="myModal" class="modal">
             <div class="modal-content mb-5">
-                <!-- Instrument details added in register.js using pug -->
+                <!-- Instrument details added in index.js using pug -->
             </div>
         </div>
 
@@ -133,10 +146,9 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
-        <script src="/js/registerRecords.js"></script>
-        <script src="/js/modalAddRecord.js"></script>
-        <script src="/js/modalDeleteRecord.js"></script>
-        <script src="/js/modalUpdateRecord.js"></script>
-        <script src="/js/register.js"></script>
+        <script src="/js/indexInstruments.js"></script>
+        <script src="/js/modalDetailsInstrument.js"></script>
+        <script src="/js/modalUpdateInstrument.js"></script>
+        <script src="/js/comparator.js"></script>
     </body>
 </html>
