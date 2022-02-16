@@ -1,5 +1,12 @@
 function pug_escape(e){var a=""+e,t=pug_match_html.exec(a);if(!t)return e;var r,c,n,s="";for(r=t.index,c=0;r<a.length;r++){switch(a.charCodeAt(r)){case 34:n="&quot;";break;case 38:n="&amp;";break;case 60:n="&lt;";break;case 62:n="&gt;";break;default:continue}c!==r&&(s+=a.substring(c,r)),c=r+1,s+=n}return c!==r?s+a.substring(c,r):s}
-var pug_match_html=/["&<>]/;function insertRecords(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {pug_html = pug_html + "\u003Ctr id=\"titles\"\u003E\u003Ctd\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = "Type") ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003Ctd\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = "Summary") ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003Ctd\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = "Date") ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003C\u002Ftr\u003E";
+var pug_match_html=/["&<>]/;function insertRecords(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (data) {pug_html = pug_html + "\u003Ctr id=\"titles\"\u003E\u003Ctd\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = "Type") ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003Ctd\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E\u003Ch2\u003E" + (pug_escape(null == (pug_interp = "Summary") ? "" : pug_interp)) + "\u003C\u002Fh2\u003E\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003Ctd\u003E\u003Cdiv class=\"d-flex justify-content-center\"\u003E";
+if ((data.filterDate == "date-old-to-new" || data.filterDate == false)) {
+pug_html = pug_html + "\u003Ch2 class=\"date-switch\"\u003E" + (pug_escape(null == (pug_interp = "Date⏶") ? "" : pug_interp)) + "\u003C\u002Fh2\u003E";
+}
+else {
+pug_html = pug_html + "\u003Ch2 class=\"date-switch\"\u003E" + (pug_escape(null == (pug_interp = "Date⏷") ? "" : pug_interp)) + "\u003C\u002Fh2\u003E";
+}
+pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Ftd\u003E\u003C\u002Ftr\u003E";
 // iterate data.records
 ;(function(){
   var $$obj = data.records;

@@ -7,7 +7,10 @@ tr(id="titles")
             h2="Summary"
     td
         div(class="d-flex justify-content-center")
-            h2="Date"
+            if (data.filterDate == "date-old-to-new" || data.filterDate == false)
+                h2(class="date-switch")="Date⏶"
+            else
+                h2(class="date-switch")="Date⏷"
 each record in data.records
     tr(class="this-is-a-table-row")
         td(id="container-fill-height")

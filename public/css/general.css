@@ -255,6 +255,7 @@ h3 {
 .mainmenu a,
 .navbar-default .navbar-nav > li > a,
 .mainmenu ul li a,
+.mainmenu ul li label,
 .navbar-expand-lg .navbar-nav .nav-link {
     color: rgb(103, 103, 103);
     /* background-color: #f8f9fa; */

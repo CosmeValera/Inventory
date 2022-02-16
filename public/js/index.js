@@ -16,7 +16,7 @@ async function loadInstrumentsFromDBToTable() {
             bigInstruments: settings.bigInstruments,
             priceWithDecimals: settings.priceWithDecimals,
             filterType: settings.filterType,
-            filterPrice: settings.filterPrice
+            filterPrice: settings.filterPrice,
         };
         document.querySelector("tbody").innerHTML = insertInstruments({
             data: dataPug,
