@@ -87,6 +87,12 @@
                                         >Comparator</a
                                     >
                                 </li>
+                                <li>
+                                    <!-- TODO: this should open a modal explaining rules -->
+                                    <a class="nav-link nav-rules" href="#"
+                                        >Rules</a
+                                    >
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -97,14 +103,16 @@
         <!-- Table -->
         <div class="container-of-main container-fluid margin-xl">
             <div class="row">
-                <main class="d-flex flex-column col-6">
+                <main class="d-flex flex-column col-md-6 mb-2">
+                    <h2 class="text-center bg-danger-opacity-90 rounded-top">First instrument:</h2>
                     <table class="table table-hover table-striped">
                         <tbody id="left-tbody">
                             <!-- Load all instruments with comparator.js-->
                         </tbody>
                     </table>
                 </main>
-                <main class="d-flex flex-column col-6">
+                <main class="d-flex flex-column col-md-6 mb-2">
+                    <h2 class="text-center bg-danger-opacity-90 rounded-top">Second instrument:</h2>
                     <table class="table table-hover table-striped">
                         <tbody id="right-tbody">
                             <!-- Load all instruments with comparator.js -->
