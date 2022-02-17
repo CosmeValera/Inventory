@@ -38,7 +38,7 @@ div(class = "modal-body")
             input(type="range" class="custom-range pt-3 custom-range-danger" min="0" max="100" step="10" id="inputSonority" name="sonority" value=instrument.sonority)
         div(class="form-group col-md-6 col-12")
             ="Price*:"
-            input(class="form-control" type="number" id="inputPrice" name="price" min="0" max="99999" placeholder="$1500" value=instrument.price)
+            input(class="form-control" type="number" id="inputPrice" name="price" min="0" max="99999" placeholder="$1500" step="0.01" value=instrument.price)
         div(class="form-group col-md-6 col-12")
             ="Summary:"
             input(class="form-control" type="text" id="inputSummary" name="summary" maxLength="256" placeholder="Instrument's description" value=instrument.summary)

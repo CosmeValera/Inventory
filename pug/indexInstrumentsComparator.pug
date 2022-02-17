@@ -1,0 +1,29 @@
+tr(id="titles")
+    td
+        div(class="d-flex justify-content-center")
+            h2="Image"
+    td
+        div(class="d-flex justify-content-center")
+            h2="Type"
+    td
+        div(class="d-flex justify-content-center")
+            if (data.filterSonority == "sonority-high-to-low" || data.filterSonority == false)
+                h2(class="sonority-switch")="Sonority⏷"
+            else
+                h2(class="sonority-switch")="Sonority⏶"
+each inst in data.instruments
+    tr(class="this-is-a-table-row")
+        td(id="container-fill-height")
+            a(class="d-flex justify-content-center" href="#")
+                img(class="img-fluid thumbnail zoom" src=`img/${inst.name}.png` width="100px" height="100px" alt="img")
+        td(id="container-fill-height")
+            div(class="centerElement")
+                h2=inst.type
+            if inst.subtype
+                hr(class="m-4")
+                div(class="centerElement")
+                    h2=inst.subtype
+        td(id="container-fill-height")
+            p(class="secret-invisible-id")=inst._id
+            div
+                h2=`${inst.sonority}` 

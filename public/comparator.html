@@ -100,26 +100,33 @@
                 <main class="d-flex flex-column col-6">
                     <table class="table table-hover table-striped">
                         <tbody id="left-tbody">
-                            <h1>Here some instruments are</h1>
-                            <!-- Instruments will be added with js from mongo -->
+                            <!-- Load all instruments with comparator.js-->
                         </tbody>
                     </table>
                 </main>
                 <main class="d-flex flex-column col-6">
                     <table class="table table-hover table-striped">
                         <tbody id="right-tbody">
-                            <h1>Here some instruments are</h1>
-                            <!-- Instruments will be added with js from mongo -->
+                            <!-- Load all instruments with comparator.js -->
                         </tbody>
                     </table>
                 </main>
             </div>
         </div>
 
+        <!-- Button -->
+        <button
+            type="button"
+            id="compareInstrumentsButton"
+            class="btn btn-danger m-3"
+        >
+            COMPARE
+        </button>
+
         <!-- Modal -->
         <div id="myModal" class="modal">
             <div class="modal-content mb-5">
-                <!-- Instrument details added in index.js using pug -->
+                <!-- Instrument details added in register.js using pug -->
             </div>
         </div>
 
@@ -146,7 +153,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
-        <script src="/js/indexInstruments.js"></script>
+        <script src="/js/indexInstrumentsComparator.js"></script>
         <script src="/js/modalDetailsInstrument.js"></script>
         <script src="/js/modalUpdateInstrument.js"></script>
         <script src="/js/comparator.js"></script>
