@@ -39,6 +39,8 @@ body {
     position: relative;
     flex-grow: 1;
     overflow: auto;
+    /* Should be visible when screen height is small */
+    /* overflow: visible; */
 }
 footer {
     background-color: #c94c4c;
@@ -97,78 +99,6 @@ h1 {
     justify-content: center;
     flex-shrink: 1;
 }
-/* h2,
-.navbar-brand {
-    font-size: calc(1.1rem + 0.75vw);
-}
-h3 {
-    font-size: calc(1rem + 1vw);
-} */
-
-/* Change font sizes acording to screen size */
-@media only screen and (min-width: 768px) {
-    p,
-    a,
-    small,
-    label,
-    option {
-        font-size: 1.2rem;
-    }
-
-    .navbar-brand {
-        font-size: 1.2rem;
-        margin-right: 12px;
-    }
-
-    h2 {
-        font-size: 1.7rem;
-    }
-    h3 {
-        font-size: 1.5rem;
-    }
-}
-@media only screen and (max-width: 768px) {
-    p,
-    a,
-    small,
-    label,
-    option {
-        font-size: 1rem;
-    }
-
-    .navbar-brand {
-        font-size: 1rem;
-        margin-right: 12px;
-    }
-
-    h2 {
-        font-size: 1.4rem;
-    }
-    h3 {
-        font-size: 1.2rem;
-    }
-}
-@media only screen and (max-width: 500px) {
-    p,
-    a,
-    small,
-    label,
-    option {
-        font-size: 0.8rem;
-    }
-
-    .navbar-brand {
-        font-size: 0.8rem;
-        margin-right: 12px;
-    }
-    h2 {
-        font-size: 1.2rem;
-    }
-    h3 {
-        font-size: 1rem;
-    }
-}
-/* END: Change font sizes acording to screen size */
 
 /******** MODAL ********/
 /* The Modal (background) */
@@ -314,6 +244,7 @@ h3 {
     min-height: 20px;
     width: 100%;
 }
+
 @media only screen and (min-width: 576px) {
     .mainmenu .collapse ul li:hover > ul {
         display: block;
@@ -348,3 +279,75 @@ h3 {
     }
 }
 /******** Menu hover navbar ********/
+
+/******** Responsiveness for screen sizes **********/
+
+@media only screen and (min-width: 768px) {
+    p,
+    a,
+    small,
+    label,
+    option {
+        font-size: 1.2rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+        margin-right: 12px;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    p,
+    a,
+    small,
+    label,
+    option {
+        font-size: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+        margin-right: 12px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+@media only screen and (max-width: 500px) {
+    p,
+    a,
+    small,
+    label,
+    option {
+        font-size: 0.8rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.8rem;
+        margin-right: 12px;
+    }
+    h2 {
+        font-size: 1.2rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-height: 600px) {
+    /* Phones in landscape have footer at the end, and not "sticky"*/
+    .container-of-main {
+        overflow: visible;
+    }
+}
+/******** Responsiveness for screen sizes **********/
