@@ -1,9 +1,11 @@
 var modal;
+var leftTbody;
+var rightTbody;
 var instrumentsJson = new Object();
 var settings = new Object();
 settings.filterSonority = false;
 
-async function loadInstrumentsFromDBToVariable() {
+async function loadInstrumentsFromDBToArray() {
     const response = await fetch("/inventory");
     if (response.ok) {
         instrumentsJson = await response.json();
@@ -17,29 +19,60 @@ async function loadInstrumentsFromDBToVariable() {
     }
 }
 
-async function showInstrumentsInLeftTbody() {
-    dataPug = {
-        instruments : instrumentsJson,
-        filterSonority : settings.filterSonority
+function leftTbodyClicked(evt) {
+    const leftInstruments = leftTbody.querySelectorAll(".this-is-a-table-row");
+    let leftTableRow = evt.target.closest(".this-is-a-table-row");
+
+    for (let instrumentLeftRow of leftInstruments) {
+        if (instrumentLeftRow != leftTableRow)
+            instrumentLeftRow.classList.remove("instrument-row-picked");
     }
-    document.querySelector("#left-tbody").innerHTML = insertInstrumentsComparator({
-        data: dataPug,
-    });
+    leftTableRow.classList.toggle("instrument-row-picked");
+}
+function rightTbodyClicked(evt) {
+    const rightInstruments = rightTbody.querySelectorAll(
+        ".this-is-a-table-row"
+    );
+    let rightTableRow = evt.target.closest(".this-is-a-table-row");
+
+    for (let instrumentRightRow of rightInstruments) {
+        if (instrumentRightRow != rightTableRow)
+            instrumentRightRow.classList.remove("instrument-row-picked");
+    }
+    rightTableRow.classList.toggle("instrument-row-picked");
 }
 
-async function showInstrumentsInRightTbody() {
+async function loadInstrumentsInLeftTbody() {
     dataPug = {
-        instruments : instrumentsJson,
-        filterSonority : settings.filterSonority
-    }
-    document.querySelector("#right-tbody").innerHTML = insertInstrumentsComparator({
+        instruments: instrumentsJson,
+        filterSonority: settings.filterSonority,
+    };
+    leftTbody.innerHTML = insertInstrumentsComparator({
         data: dataPug,
     });
+    leftTbody.addEventListener("click", leftTbodyClicked);
 }
 
-async function main() {
-    await loadInstrumentsFromDBToVariable();
-    await showInstrumentsInLeftTbody();
-    await showInstrumentsInRightTbody();
+async function loadInstrumentsInRightTbody() {
+    dataPug = {
+        instruments: instrumentsJson,
+        filterSonority: settings.filterSonority,
+    };
+    rightTbody.innerHTML = insertInstrumentsComparator({
+        data: dataPug,
+    });
+    rightTbody.addEventListener("click", rightTbodyClicked);
 }
-main();
+
+async function loadInitialData() {
+    await loadInstrumentsFromDBToArray();
+    await loadInstrumentsInLeftTbody();
+    await loadInstrumentsInRightTbody();
+}
+
+//Inits
+var leftTbody = document.querySelector("#left-tbody");
+var rightTbody = document.querySelector("#right-tbody");
+
+//Load
+loadInitialData();
