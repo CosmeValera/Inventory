@@ -1,6 +1,8 @@
 var modal;
 var leftTbody;
 var rightTbody;
+var idLeftInstrument;
+var idRightInstrument;
 var instrumentsJson = new Object();
 var settings = new Object();
 settings.filterSonority = false;
@@ -15,26 +17,38 @@ async function loadInstrumentsFromDBToArray() {
 }
 
 function leftTbodyClicked(evt) {
-    const leftInstruments = leftTbody.querySelectorAll(".this-is-a-table-row");
+    //Toggle click color
     let leftTableRow = evt.target.closest(".this-is-a-table-row");
-
+    const leftInstruments = leftTbody.querySelectorAll(".this-is-a-table-row");
     for (let instrumentLeftRow of leftInstruments) {
         if (instrumentLeftRow != leftTableRow)
             instrumentLeftRow.classList.remove("instrument-row-picked");
     }
     leftTableRow.classList.toggle("instrument-row-picked");
+
+    //Save leftInstrument id
+    idLeftInstrument = findChildIdUsingDom(
+        leftTableRow,
+        ".secret-invisible-id"
+    );
 }
 function rightTbodyClicked(evt) {
+    //Toggle click color
+    let rightTableRow = evt.target.closest(".this-is-a-table-row");
     const rightInstruments = rightTbody.querySelectorAll(
         ".this-is-a-table-row"
     );
-    let rightTableRow = evt.target.closest(".this-is-a-table-row");
-
     for (let instrumentRightRow of rightInstruments) {
         if (instrumentRightRow != rightTableRow)
             instrumentRightRow.classList.remove("instrument-row-picked");
     }
     rightTableRow.classList.toggle("instrument-row-picked");
+
+    //Save rightInstrument id
+    idRightInstrument = findChildIdUsingDom(
+        rightTableRow,
+        ".secret-invisible-id"
+    );
 }
 
 async function loadInstrumentsInLeftTbody() {
@@ -72,6 +86,14 @@ async function loadInitialData() {
     await loadInstrumentsFromDBToArray();
     await loadInstrumentsInLeftTbody();
     await loadInstrumentsInRightTbody();
+}
+
+//Utility methods
+function findChildIdUsingDom(actualElement, childClass) {
+    //child: .modal-invisible-id
+    const divWithId = actualElement.querySelector(childClass);
+    const id = divWithId.innerHTML.trim(); //Id without spaces
+    return id;
 }
 
 //Inits
