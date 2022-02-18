@@ -6,9 +6,9 @@ pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center my-0\"\u003
 }
 pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Price:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instrument.price) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Sonority:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instrument.sonority) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
 if (instrument.summary) {
-pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mx-5\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Summary:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instrument.summary) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
+pug_html = pug_html + "\u003Cp class=\"text-center overflow-hidden mt-0 mx-5\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Summary:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instrument.summary) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
 }
 else {
-pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mb-3\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "No Summary") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E";
+pug_html = pug_html + "\u003Cp class=\"text-center overflow-hidden mt-0 mb-3\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "No Summary") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E";
 }
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";}.call(this,"instrument" in locals_for_with?locals_for_with.instrument:typeof instrument!=="undefined"?instrument:undefined));;return pug_html;}

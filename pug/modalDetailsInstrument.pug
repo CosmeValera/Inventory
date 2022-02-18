@@ -18,11 +18,11 @@ div(class = "modal-body")
         strong(class="me-2")="Sonority:"
         =instrument.sonority
     if instrument.summary
-        p(class="d-flex justify-content-center mt-0 mx-5")
+        p(class="text-center overflow-hidden mt-0 mx-5")
             strong(class="me-2")="Summary:"
             =instrument.summary
     else
-        p(class="d-flex justify-content-center mt-0 mb-3")
+        p(class="text-center overflow-hidden mt-0 mb-3")
             strong(class="me-2")="No Summary"
     a(class="d-flex justify-content-center mb-2")
         img(class="img-fluid" src=`img/${instrument.name}.png` alt="img")

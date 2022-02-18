@@ -9,10 +9,10 @@ pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center my-0\"\u003
 }
 pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Price:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instruments.oldInstrument.price) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Sonority:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instruments.oldInstrument.sonority) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
 if (instruments.oldInstrument.summary) {
-pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mx-5 mb-5\"\u003E" + (pug_escape(null == (pug_interp = instruments.oldInstrument.summary) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
+pug_html = pug_html + "\u003Cp class=\"text-center overflow-hidden mt-0 mx-5 mb-5\"\u003E" + (pug_escape(null == (pug_interp = instruments.oldInstrument.summary) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
 }
 else {
-pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mb-3 mb-5\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "No Summary") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E";
+pug_html = pug_html + "\u003Cp class=\"text-center overflow-hidden mt-0 mb-3 mb-5\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "No Summary") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E";
 }
 pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003Cdiv class=\"col-md-6\"\u003E\u003Cp class=\"d-none modal-invisible-id\"\u003E" + (pug_escape(null == (pug_interp = instruments.newInstrument._id) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "NEW INSTRUMENT:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Ca class=\"d-flex justify-content-center mb-2\"\u003E\u003Cimg" + (" class=\"img-fluid\""+pug_attr("src", `img/${instruments.newInstrument.name}.png`, true, false)+" alt=\"img\"") + "\u002F\u003E\u003C\u002Fa\u003E\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Type:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instruments.newInstrument.type) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
 if (instruments.newInstrument.subtype) {
@@ -23,9 +23,9 @@ pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center my-0\"\u003
 }
 pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Price:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instruments.newInstrument.price) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003Cp class=\"d-flex justify-content-center my-0\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "Sonority:") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E" + (pug_escape(null == (pug_interp = instruments.newInstrument.sonority) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
 if (instruments.newInstrument.summary) {
-pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mx-5\"\u003E" + (pug_escape(null == (pug_interp = instruments.newInstrument.summary) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
+pug_html = pug_html + "\u003Cp class=\"text-center overflow-hidden mt-0 mx-5\"\u003E" + (pug_escape(null == (pug_interp = instruments.newInstrument.summary) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
 }
 else {
-pug_html = pug_html + "\u003Cp class=\"d-flex justify-content-center mt-0 mb-3\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "No Summary") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E";
+pug_html = pug_html + "\u003Cp class=\"text-center overflow-hidden mt-0 mb-3\"\u003E\u003Cstrong class=\"me-2\"\u003E" + (pug_escape(null == (pug_interp = "No Summary") ? "" : pug_interp)) + "\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E";
 }
 pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";}.call(this,"instruments" in locals_for_with?locals_for_with.instruments:typeof instruments!=="undefined"?instruments:undefined));;return pug_html;}

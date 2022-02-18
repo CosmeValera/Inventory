@@ -20,9 +20,9 @@ div(class = "modal-body modal-body-delete")
         strong(class="me-2")="Sonority:"
         =instrument.sonority
     if instrument.summary
-        p(class="d-flex justify-content-center mt-0 mx-5")
+        p(class="text-center overflow-hidden mt-0 mx-5")
             strong(class="me-2")="Summary:"
             =instrument.summary
     else
-        p(class="d-flex justify-content-center mt-0 mb-3")
+        p(class="text-center overflow-hidden mt-0 mb-3")
             strong(class="me-2")="No Summary"

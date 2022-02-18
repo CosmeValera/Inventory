@@ -27,10 +27,10 @@ div(class = "modal-body modal-body-update")
                 strong(class="me-2")="Sonority:"
                 =instruments.oldInstrument.sonority
             if instruments.oldInstrument.summary
-                p(class="d-flex justify-content-center mt-0 mx-5 mb-5")
+                p(class="text-center overflow-hidden mt-0 mx-5 mb-5")
                     =instruments.oldInstrument.summary
             else
-                p(class="d-flex justify-content-center mt-0 mb-3 mb-5")
+                p(class="text-center overflow-hidden mt-0 mb-3 mb-5")
                     strong(class="me-2")="No Summary"
 
         div(class = "col-md-6")
@@ -57,10 +57,10 @@ div(class = "modal-body modal-body-update")
                 strong(class="me-2")="Sonority:"
                 =instruments.newInstrument.sonority
             if instruments.newInstrument.summary
-                p(class="d-flex justify-content-center mt-0 mx-5")
+                p(class="text-center overflow-hidden mt-0 mx-5")
                     =instruments.newInstrument.summary
             else
-                p(class="d-flex justify-content-center mt-0 mb-3")
+                p(class="text-center overflow-hidden mt-0 mb-3")
                     strong(class="me-2")="No Summary"
 
 

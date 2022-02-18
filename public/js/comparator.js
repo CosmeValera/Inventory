@@ -9,11 +9,6 @@ async function loadInstrumentsFromDBToArray() {
     const response = await fetch("/inventory");
     if (response.ok) {
         instrumentsJson = await response.json();
-
-        //TODO: another pug, that shows sonority instead of price
-        // document.querySelector("tbody").innerHTML = insertInstruments({
-        //     data: dataPug,
-        // });
     } else {
         alert("Server found an issue, " + response.statusText);
     }
@@ -64,6 +59,15 @@ async function loadInstrumentsInRightTbody() {
     rightTbody.addEventListener("click", rightTbodyClicked);
 }
 
+function openRulesModal() {
+    modalContent = modal.querySelector(".modal-content");
+    modalContent.innerHTML = insertModalRulesComparator();
+    document.querySelectorAll(".close").onclick = function () {
+        modal.style.display = "none";
+    };
+    modal.style.display = "block";
+}
+
 async function loadInitialData() {
     await loadInstrumentsFromDBToArray();
     await loadInstrumentsInLeftTbody();
@@ -73,6 +77,13 @@ async function loadInitialData() {
 //Inits
 var leftTbody = document.querySelector("#left-tbody");
 var rightTbody = document.querySelector("#right-tbody");
+modal = document.getElementById("myModal");
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+document.querySelector(".nav-rules").addEventListener("click", openRulesModal);
 
 //Load
 loadInitialData();
