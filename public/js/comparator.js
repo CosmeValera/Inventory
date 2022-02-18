@@ -16,6 +16,32 @@ async function loadInstrumentsFromDBToArray() {
     }
 }
 
+function compareInstrumentsClicked(evt) {
+    console.log("left id is " + idLeftInstrument);
+    console.log("right id is " + idRightInstrument);
+
+    let divResultMessage = document.getElementById("resultMessage");
+    if (
+        !idLeftInstrument ||
+        !idRightInstrument ||
+        idLeftInstrument == idRightInstrument
+    ) {
+        //alert saying, you must pick 2 instruemnts, and they must be different instruments
+        console.log(
+            "alert saying, you must pick 2 instruemnts, and they must be different instruments"
+        );
+        divResultMessage.innerHTML = `<p class="text-center my-0">You must pick 2 instruments.</p>
+            <p class="text-center mb-1">And they must be different.</p>`;
+        divResultMessage.style.borderColor = "rgb(183, 38, 38)";
+        divResultMessage.style.backgroundColor = "rgba(211, 45, 45, 0.78)";
+        divResultMessage.style.display = "flex";
+        divResultMessage.style.display = "justify-content: center";
+        divResultMessage.classList.add("row");
+        return;
+    }
+    divResultMessage.style.display = "none";
+}
+
 function leftTbodyClicked(evt) {
     //Toggle click color
     let leftTableRow = evt.target.closest(".this-is-a-table-row");
@@ -106,6 +132,9 @@ window.onclick = function (event) {
     }
 };
 document.querySelector(".nav-rules").addEventListener("click", openRulesModal);
+document
+    .querySelector("#compareInstrumentsButton")
+    .addEventListener("click", compareInstrumentsClicked);
 
 //Load
 loadInitialData();
