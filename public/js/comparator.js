@@ -143,6 +143,7 @@ async function compareInstrumentsClicked(evt) {
         modalContent.innerHTML = insertModalComparison({
             instruments: instruments,
         });
+        modalContent.classList.add("modal-content-comparison");
         document.querySelector(".close").onclick = function () {
             modal.style.display = "none";
         };
@@ -250,6 +251,32 @@ function rightTbodyClicked(evt) {
     );
 }
 
+function keepToggledLeftRow() {
+    //1. obtain all rows
+    let leftRowsHTML = leftTbody.querySelectorAll(".this-is-a-table-row");
+    for (let leftRowHTML of leftRowsHTML) {
+        //2. search for every row, the one that has same id and put class
+        let idLeftRow = findChildIdUsingDom(leftRowHTML,".secret-invisible-id")
+        if (idLeftInstrument == idLeftRow) {
+            leftRowHTML.classList.add("instrument-row-picked");
+            break;
+        }
+    }
+}
+
+function keepToggledRightRow() {
+    //1. obtain all rows
+    let rightRowsHTML = rightTbody.querySelectorAll(".this-is-a-table-row");
+    for (let rightRowHTML of rightRowsHTML) {
+        //2. search for every row, the one that has same id and put class
+        let idRightRow = findChildIdUsingDom(rightRowHTML,".secret-invisible-id")
+        if (idRightInstrument == idRightRow) {
+            rightRowHTML.classList.add("instrument-row-picked");
+            break;
+        }
+    }
+}
+
 async function loadInstrumentsInLeftTbodyAndAddListener() {
     instrumentsJson = applyFilterLeft(instrumentsJson);
     dataPug = {
@@ -261,6 +288,8 @@ async function loadInstrumentsInLeftTbodyAndAddListener() {
         data: dataPug,
     });
     leftTbody.addEventListener("click", leftTbodyClicked);
+
+    keepToggledLeftRow();
 }
 
 async function loadInstrumentsInRightTbodyAndAddListener() {
@@ -273,11 +302,14 @@ async function loadInstrumentsInRightTbodyAndAddListener() {
         data: dataPug,
     });
     rightTbody.addEventListener("click", rightTbodyClicked);
+    
+    keepToggledRightRow();
 }
 
 function openRulesModal() {
     modalContent = modal.querySelector(".modal-content");
     modalContent.innerHTML = insertModalRulesComparator();
+    modalContent.classList.remove("modal-content-comparison");
     document.querySelectorAll(".close").onclick = function () {
         modal.style.display = "none";
     };
