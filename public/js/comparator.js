@@ -5,7 +5,8 @@ var idLeftInstrument;
 var idRightInstrument;
 var instrumentsJson = new Object();
 var settings = new Object();
-settings.filterSonority = false;
+settings.filterSonorityLeft = false;
+settings.filterSonorityRight = false;
 
 async function loadInstrumentsFromDBToArray() {
     const response = await fetch("/inventory");
@@ -14,6 +15,40 @@ async function loadInstrumentsFromDBToArray() {
     } else {
         alert("Server found an issue, " + response.statusText);
     }
+}
+
+function applyFilterLeft(instrumentsJson) {
+    switch (settings.filterSonorityLeft) {
+        case "sonority-low-to-high":
+            instrumentsJson = instrumentsJson.sort((a, b) => {
+                return a.sonority - b.sonority;
+            });
+            break;
+        case "sonority-high-to-low":
+            instrumentsJson = instrumentsJson.sort((a, b) => {
+                return a.sonority - b.sonority;
+            });
+            instrumentsJson = instrumentsJson.reverse();
+            break;
+    }
+    return instrumentsJson;
+}
+
+function applyFilterRight(instrumentsJson) {
+    switch (settings.filterSonorityRight) {
+        case "sonority-low-to-high":
+            instrumentsJson = instrumentsJson.sort((a, b) => {
+                return a.sonority - b.sonority;
+            });
+            break;
+        case "sonority-high-to-low":
+            instrumentsJson = instrumentsJson.sort((a, b) => {
+                return a.sonority - b.sonority;
+            });
+            instrumentsJson = instrumentsJson.reverse();
+            break;
+    }
+    return instrumentsJson;
 }
 
 function decideWinnerInstrument(rightInstrumentJson, leftInstrumentJson) {
@@ -97,7 +132,7 @@ async function compareInstrumentsClicked(evt) {
             leftInstrumentJson._id == winnerInstrumentJson._id
                 ? rightInstrumentJson
                 : leftInstrumentJson;
-                
+
         let instruments = {
             winnerInstrument: winnerInstrumentJson,
             loserInstrument: loserInstrumentJson,
@@ -117,9 +152,42 @@ async function compareInstrumentsClicked(evt) {
     }
 }
 
+function clickInLeftSonoritySwitch(clickedRow) {
+    if (clickedRow.classList.contains("sonority-switch")) {
+        if (
+            settings.filterSonorityLeft == false ||
+            settings.filterSonorityLeft == "sonority-high-to-low"
+        ) {
+            settings.filterSonorityLeft = "sonority-low-to-high";
+        } else {
+            settings.filterSonorityLeft = "sonority-high-to-low";
+        }
+        loadInstrumentsInLeftTbodyAndAddListener();
+    }
+}
+
+function clickInRightSonoritySwitch(clickedRow) {
+    if (clickedRow.classList.contains("sonority-switch")) {
+        if (
+            settings.filterSonorityRight == false ||
+            settings.filterSonorityRight == "sonority-high-to-low"
+        ) {settings.filterSonorityRight = "sonority-low-to-high";
+        } else {settings.filterSonorityRight = "sonority-high-to-low";
+        }
+        loadInstrumentsInRightTbodyAndAddListener();
+    }
+}
+
 function leftTbodyClicked(evt) {
+    //Check titles and sonority
+    const clickedRow = evt.target;
+    if (clickedRow.closest("#titles")) {
+        clickInLeftSonoritySwitch(clickedRow);
+        return;
+    }
+
     //Toggle click color
-    let clickedleftTableRow = evt.target.closest(".this-is-a-table-row");
+    let clickedleftTableRow = clickedRow.closest(".this-is-a-table-row");
     const leftInstruments = leftTbody.querySelectorAll(".this-is-a-table-row");
     let variableDeselectLeftId;
     for (let instrumentLeftRow of leftInstruments) {
@@ -146,6 +214,13 @@ function leftTbodyClicked(evt) {
     );
 }
 function rightTbodyClicked(evt) {
+    //Check titles and sonority
+    const clickedRow = evt.target;
+    if (clickedRow.closest("#titles")) {
+        clickInRightSonoritySwitch(clickedRow);
+        return;
+    }
+
     //Toggle click color
     let clickedRightTableRow = evt.target.closest(".this-is-a-table-row");
     const rightInstruments = rightTbody.querySelectorAll(
@@ -176,10 +251,12 @@ function rightTbodyClicked(evt) {
 }
 
 async function loadInstrumentsInLeftTbodyAndAddListener() {
+    instrumentsJson = applyFilterLeft(instrumentsJson);
     dataPug = {
         instruments: instrumentsJson,
-        filterSonority: settings.filterSonority,
+        filterSonority: settings.filterSonorityLeft,
     };
+
     leftTbody.innerHTML = insertInstrumentsComparator({
         data: dataPug,
     });
@@ -187,9 +264,10 @@ async function loadInstrumentsInLeftTbodyAndAddListener() {
 }
 
 async function loadInstrumentsInRightTbodyAndAddListener() {
+    instrumentsJson = applyFilterRight(instrumentsJson);
     dataPug = {
         instruments: instrumentsJson,
-        filterSonority: settings.filterSonority,
+        filterSonority: settings.filterSonorityRight,
     };
     rightTbody.innerHTML = insertInstrumentsComparator({
         data: dataPug,
@@ -231,14 +309,16 @@ function findChildIdUsingDom(actualElement, childClass) {
 }
 
 //Inits
-var leftTbody = document.querySelector("#left-tbody");
-var rightTbody = document.querySelector("#right-tbody");
 modal = document.getElementById("myModal");
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 };
+var leftTbody = document.querySelector("#left-tbody");
+var rightTbody = document.querySelector("#right-tbody");
+leftTbody.addEventListener("click", leftTbodyClicked);
+rightTbody.addEventListener("click", rightTbodyClicked);
 document.querySelector(".nav-rules").addEventListener("click", openRulesModal);
 document
     .querySelector("#compareInstrumentsButton")

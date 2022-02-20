@@ -9,7 +9,7 @@ async function loadInstrumentsFromDBToTable() {
     const response = await fetch("/inventory");
     if (response.ok) {
         var instrumentsJson = await response.json();
-        instrumentsJson = applyFilter(instrumentsJson);
+        instrumentsJson = applyFilterLeft(instrumentsJson);
 
         var dataPug = {
             instruments: instrumentsJson,
@@ -26,7 +26,7 @@ async function loadInstrumentsFromDBToTable() {
     }
 }
 
-function applyFilter(instrumentsJson) {
+function applyFilterLeft(instrumentsJson) {
     switch (settings.filterType) {
         case "type-string":
             instrumentsJson = instrumentsJson.filter((instrument) => {
