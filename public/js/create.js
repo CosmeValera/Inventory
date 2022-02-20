@@ -6,6 +6,7 @@ var inputSonority;
 var inputPrice;
 var inputSummary;
 var img;
+var alertDiv;
 
 async function createNewInstrument(evt) {
     if (evt.preventDefault) evt.preventDefault();
@@ -18,16 +19,22 @@ async function createNewInstrument(evt) {
     if (
         !instrumentAccomplishRequirements(name, type, sonority, price, summary)
     ) {
-        let divResultMessage = document.getElementById("resultMessage");
-        divResultMessage.innerHTML =
-            price != "" && price < 9999
-                ? "<p>Missing mandatory data.</p>"
+        let lines = [
+            price != "" && price < 9999 && price > 0
+                ? "No instrument added, missing mandatory data."
                 : price == ""
-                ? "<p>Price is mandatory</p>"
-                : "<p>No instrument added, price must be lower than 99999</p>";
-        divResultMessage.style.backgroundColor = "rgba(201, 76, 76, 1)";
-        divResultMessage.style.borderColor = "rgb(220,45,65)";
-        divResultMessage.style.display = "flex";
+                ? "No instrument added, price is mandatory"
+                : "No instrument added, price must be 0-99999",
+        ];
+        let dataPug = {
+            line: "0",
+            lines: lines,
+            backgroundColor: "rgb(201, 76, 76)",
+            borderColor: "rgb(220,45,65)",
+        };
+        alertDiv.innerHTML = insertModalAlert({
+            data: dataPug,
+        });
         return false;
     }
 
@@ -48,11 +55,17 @@ async function createNewInstrument(evt) {
         },
     }).then((response) => {
         if (response.ok) {
-            let divResultMessage = document.getElementById("resultMessage");
-            divResultMessage.innerHTML = `<p>Instrument created with name: ${name}, and price: $${price}</p>`;
-            divResultMessage.style.backgroundColor = "#77D150";
-            divResultMessage.style.borderColor = "#44E42C";
-            divResultMessage.style.display = "flex";
+            let dataPug = {
+                line: "0",
+                lines: [
+                    `Instrument created with name: ${name}, and price: $${price}`,
+                ],
+                backgroundColor: "#77D150",
+                borderColor: "#44E42C",
+            };
+            alertDiv.innerHTML = insertModalAlert({
+                data: dataPug,
+            });
         } else {
             alert("Server found an issue, " + response.statusText);
         }
@@ -74,6 +87,7 @@ function instrumentAccomplishRequirements(
         sonority &&
         price &&
         price <= 99999 &&
+        price > 0 &&
         summary.length <= 256
     );
 }
@@ -256,22 +270,30 @@ async function onSonorityOver(evt) {
 }
 
 async function priceReleased(evt) {
-    let divResultMessage = document.getElementById("resultMessage");
-    if (evt.target.value > 99999) {
-        divResultMessage.innerHTML = "<p>Price must be lower than $99999</p>";
-        divResultMessage.style.backgroundColor = "rgba(201, 76, 76, 1)";
-        divResultMessage.style.borderColor = "rgb(220,45,65)";
-        divResultMessage.style.display = "flex";
-    } else if (evt.target.value == "") {
-        divResultMessage.innerHTML = "<p>Price is mandatory</p>";
-        divResultMessage.style.backgroundColor = "rgba(201, 76, 76, 1)";
-        divResultMessage.style.borderColor = "rgb(220,45,65)";
-        divResultMessage.style.display = "flex";
+    let price = evt.target.value;
+    if (!price || price > 99999 || price < 0) {
+        let lines = [
+            price != "" && price < 9999 && price > 0
+                ? "Missing mandatory data."
+                : price == ""
+                ? "Price is mandatory"
+                : "Price must be 0-99999",
+        ];
+        let dataPug = {
+            line: "0",
+            lines: lines,
+            backgroundColor: "rgb(201, 76, 76)",
+            borderColor: "rgb(220,45,65)",
+        };
+        alertDiv.innerHTML = insertModalAlert({
+            data: dataPug,
+        });
     } else {
-        divResultMessage.style.display = "none";
+        alertDiv.innerHTML = "";
     }
 }
-
+//Inits
+alertDiv = document.getElementById("alertDiv");
 button = document.querySelector("button");
 selectName = document.querySelector("#selectName");
 selectType = document.querySelector("#selectType");

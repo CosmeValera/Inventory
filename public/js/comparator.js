@@ -91,23 +91,27 @@ function decideWinnerInstrument(rightInstrumentJson, leftInstrumentJson) {
 async function compareInstrumentsClicked(evt) {
     // console.log("left id is " + idLeftInstrument);
     // console.log("right id is " + idRightInstrument);
-    let divResultMessage = document.getElementById("resultMessage");
+    let alertDiv = document.getElementById("alertDiv");
     if (
         !idLeftInstrument ||
         !idRightInstrument ||
         idLeftInstrument == idRightInstrument
     ) {
-        //TODO 2: transform all alert modal to pugs
-        divResultMessage.innerHTML = `<p class="text-center my-0">You must pick 2 instruments.</p>
-            <p class="text-center mb-1">And they must be different.</p>`;
-        divResultMessage.style.borderColor = "rgb(183, 38, 38)";
-        divResultMessage.style.backgroundColor = "rgba(211, 45, 45, 0.78)";
-        divResultMessage.style.display = "flex";
-        divResultMessage.style.display = "justify-content: center";
-        divResultMessage.classList.add("row");
+        let dataPug = {
+            line: "0",
+            lines: [
+                "You must pick 2 instruments.",
+                "And they must be different.",
+            ],
+            backgroundColor: "rgba(211, 45, 45, 0.78)",
+            borderColor: "rgb(183, 38, 38)",
+        };
+        alertDiv.innerHTML = insertModalAlert({
+            data: dataPug,
+        });
         return;
     }
-    divResultMessage.style.display = "none";
+    alertDiv.innerHTML = "";
 
     //fetch both instruments
     const responseLeftInstrument = await fetch(
@@ -138,7 +142,6 @@ async function compareInstrumentsClicked(evt) {
             loserInstrument: loserInstrumentJson,
         };
 
-        //TODO 1
         modalContent = modal.querySelector(".modal-content");
         modalContent.innerHTML = insertModalComparison({
             instruments: instruments,

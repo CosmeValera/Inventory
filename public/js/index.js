@@ -178,19 +178,25 @@ async function obtainValuesAndUpdate(evt) {
     };
 
     let instrumentIsCorrect = await checkInstrumentIsCorrect(instrument);
-    let divResultMessage = document.getElementById("resultMessage");
     if (!instrumentIsCorrect) {
         //Modal tells that update is not correct
-        divResultMessage.innerHTML = `<p class="text-center my-0">Name, type and subtype must be in accordance.</p>
-            <p class="text-center mb-1">And price must be between 0 and 99999.</p>`;
-        divResultMessage.style.borderColor = "rgb(183, 38, 38)";
-        divResultMessage.style.backgroundColor = "rgba(211, 45, 45, 0.78)";
-        divResultMessage.style.display = "flex";
-        divResultMessage.style.display = "justify-content: center";
-        divResultMessage.classList.add("row");
+        let alertDiv = document.getElementById("alertDiv");
+        let lines = [
+            "Name, type and subtype must be in accordance.",
+            "And price must be between 0 and 99999",
+        ];
+        let dataPug = {
+            line: "0",
+            lines: lines,
+            backgroundColor: "rgba(211, 45, 45, 0.78)",
+            borderColor: "rgb(183, 38, 38)",
+        };
+        alertDiv.innerHTML = insertModalAlert({
+            data: dataPug,
+        });
         return;
     }
-    divResultMessage.style.display = "none";
+    alertDiv.innerHTML = "";
     updateInstrument(evt, instrument).then(() => {
         modal.style.display = "none";
     });
