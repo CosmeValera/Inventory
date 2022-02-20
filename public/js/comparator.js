@@ -16,7 +16,7 @@ async function loadInstrumentsFromDBToArray() {
     }
 }
 
-function compareInstrumentsClicked(evt) {
+async function compareInstrumentsClicked(evt) {
     console.log("left id is " + idLeftInstrument);
     console.log("right id is " + idRightInstrument);
 
@@ -26,10 +26,7 @@ function compareInstrumentsClicked(evt) {
         !idRightInstrument ||
         idLeftInstrument == idRightInstrument
     ) {
-        //alert saying, you must pick 2 instruemnts, and they must be different instruments
-        console.log(
-            "alert saying, you must pick 2 instruemnts, and they must be different instruments"
-        );
+        //TODO 2: transform all alelrlt modal to pugs
         divResultMessage.innerHTML = `<p class="text-center my-0">You must pick 2 instruments.</p>
             <p class="text-center mb-1">And they must be different.</p>`;
         divResultMessage.style.borderColor = "rgb(183, 38, 38)";
@@ -40,6 +37,34 @@ function compareInstrumentsClicked(evt) {
         return;
     }
     divResultMessage.style.display = "none";
+
+    //fetch both instruments
+    const responseLeftInstrument = await fetch(`/inventory/${idLeftInstrument}`);
+    let leftInstrumentJson = await responseLeftInstrument.json();
+    const responseRightInstrument = await fetch(`/inventory/${idRightInstrument}`);
+    let rightInstrumentJson = await responseRightInstrument.json();
+    if (responseLeftInstrument.ok && leftInstrumentJson &&
+    responseRightInstrument.ok && rightInstrumentJson)  {
+        
+        let instruments = {
+            firstInstrument : leftInstrumentJson,
+            secondInstrument : rightInstrumentJson,
+            winnerInstrument : leftInstrumentJson,
+        }
+
+        //TODO 1
+        modalContent = modal.querySelector(".modal-content");
+        modalContent.innerHTML = insertModalComparison( {
+            instruments : instruments
+        });
+        document.querySelector(".close").onclick = function () {
+            modal.style.display = "none";
+        };
+        modal.style.display = "block";
+    } else {
+        errMessage(response);
+    }
+
 }
 
 function leftTbodyClicked(evt) {
@@ -138,6 +163,16 @@ async function loadInitialDataAndAddListeners() {
 }
 
 //Utility methods
+function errMessage(response) {
+    //If 1 person deletes an instrument, and another one tries to see details after, fetch will return empty
+    alert(
+        "Server found an issue. " +
+            (response.statusText != "OK"
+                ? response.statusText
+                : "Data has been altered, try again after refreshing the page")
+    );
+}
+
 function findChildIdUsingDom(actualElement, childClass) {
     //child: .modal-invisible-id
     const divWithId = actualElement.querySelector(childClass);

@@ -1,0 +1,94 @@
+div(class="modal-header modal-header-update" id= "container-fill-height")
+    h2(class="my-0")=`${instruments.firstInstrument.name} vs ${instruments.secondInstrument.name}`
+    span(class="close item-upper-right px-4 py-3")="×"
+div(class = "modal-body modal-body-update")
+    div(class = "row")
+        div(class = "col-md-6")
+            p(class="d-none modal-invisible-id")
+                =instruments.firstInstrument._id
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="First instrument:"
+            a(class="d-flex justify-content-center mb-2")
+                img(class="img-fluid" src=`img/${instruments.firstInstrument.name}.png` alt="img")
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Type:"
+                =instruments.firstInstrument.type
+            if instruments.firstInstrument.subtype
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="Subtype:"
+                    =instruments.firstInstrument.subtype
+            else 
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="No Subtype"
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Price:"
+                =instruments.firstInstrument.price 
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Sonority:"
+                =instruments.firstInstrument.sonority
+            if instruments.firstInstrument.summary
+                p(class="text-center overflow-hidden mt-0 mx-5 mb-5")
+                    =instruments.firstInstrument.summary
+            else
+                p(class="text-center overflow-hidden mt-0 mb-3 mb-5")
+                    strong(class="me-2")="No Summary"
+
+        div(class = "col-md-6")
+            p(class="d-none modal-invisible-id")
+                =instruments.secondInstrument._id
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Second instrument:"
+            a(class="d-flex justify-content-center mb-2")
+                img(class="img-fluid" src=`img/${instruments.secondInstrument.name}.png` alt="img")
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Type:"
+                =instruments.secondInstrument.type
+            if instruments.secondInstrument.subtype
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="Subtype:"
+                    =instruments.secondInstrument.subtype
+            else 
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="No Subtype"
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Price:"
+                =instruments.secondInstrument.price 
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Sonority:"
+                =instruments.secondInstrument.sonority
+            if instruments.secondInstrument.summary
+                p(class="text-center overflow-hidden mt-0 mx-5")
+                    =instruments.secondInstrument.summary
+            else
+                p(class="text-center overflow-hidden mt-0 mb-3")
+                    strong(class="me-2")="No Summary"
+
+        div(class = "col-md-6")
+            p(class="d-none modal-invisible-id")
+                =instruments.winnerInstrument._id
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Victor instrument:"
+            a(class="d-flex justify-content-center mb-2")
+                img(class="img-fluid" src=`img/${instruments.winnerInstrument.name}.png` alt="img")
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Type:"
+                =instruments.winnerInstrument.type
+            if instruments.winnerInstrument.subtype
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="Subtype:"
+                    =instruments.winnerInstrument.subtype
+            else 
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="No Subtype"
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Price:"
+                =instruments.winnerInstrument.price 
+            p(class="d-flex justify-content-center my-0")
+                strong(class="me-2")="Sonority:"
+                =instruments.winnerInstrument.sonority
+            if instruments.winnerInstrument.summary
+                p(class="text-center overflow-hidden mt-0 mx-5")
+                    =instruments.winnerInstrument.summary
+            else
+                p(class="text-center overflow-hidden mt-0 mb-3")
+                    strong(class="me-2")="No Summary"
