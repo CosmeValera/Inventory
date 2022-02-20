@@ -3,7 +3,39 @@ div(class="modal-header modal-header-update" id= "container-fill-height")
     span(class="close item-upper-right px-4 py-3")="×"
 div(class = "modal-body modal-body-update")
     div(class = "row")
-        div(class = "col-md-6")
+
+        div(class="col-lg-4")
+            div(class = "")
+                p(class="d-none modal-invisible-id")
+                    =instruments.winnerInstrument._id
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="Victor instrument:"
+                a(class="d-flex justify-content-center mb-2")
+                    img(class="img-fluid" src=`img/${instruments.winnerInstrument.name}.png` alt="img")
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="Type:"
+                    =instruments.winnerInstrument.type
+                if instruments.winnerInstrument.subtype
+                    p(class="d-flex justify-content-center my-0")
+                        strong(class="me-2")="Subtype:"
+                        =instruments.winnerInstrument.subtype
+                else 
+                    p(class="d-flex justify-content-center my-0")
+                        strong(class="me-2")="No Subtype"
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="Price:"
+                    =instruments.winnerInstrument.price 
+                p(class="d-flex justify-content-center my-0")
+                    strong(class="me-2")="Sonority:"
+                    =instruments.winnerInstrument.sonority
+                if instruments.winnerInstrument.summary
+                    p(class="text-center overflow-hidden mt-0 mx-5")
+                        =instruments.winnerInstrument.summary
+                else
+                    p(class="text-center overflow-hidden mt-0 mb-3")
+                        strong(class="me-2")="No Summary"
+                        
+        div(class = "col-lg-4 col-md-6 col-12")
             p(class="d-none modal-invisible-id")
                 =instruments.firstInstrument._id
             p(class="d-flex justify-content-center my-0")
@@ -33,7 +65,7 @@ div(class = "modal-body modal-body-update")
                 p(class="text-center overflow-hidden mt-0 mb-3 mb-5")
                     strong(class="me-2")="No Summary"
 
-        div(class = "col-md-6")
+        div(class = "col-lg-4 col-md-6 col-12")
             p(class="d-none modal-invisible-id")
                 =instruments.secondInstrument._id
             p(class="d-flex justify-content-center my-0")
@@ -59,36 +91,6 @@ div(class = "modal-body modal-body-update")
             if instruments.secondInstrument.summary
                 p(class="text-center overflow-hidden mt-0 mx-5")
                     =instruments.secondInstrument.summary
-            else
-                p(class="text-center overflow-hidden mt-0 mb-3")
-                    strong(class="me-2")="No Summary"
-
-        div(class = "col-md-6")
-            p(class="d-none modal-invisible-id")
-                =instruments.winnerInstrument._id
-            p(class="d-flex justify-content-center my-0")
-                strong(class="me-2")="Victor instrument:"
-            a(class="d-flex justify-content-center mb-2")
-                img(class="img-fluid" src=`img/${instruments.winnerInstrument.name}.png` alt="img")
-            p(class="d-flex justify-content-center my-0")
-                strong(class="me-2")="Type:"
-                =instruments.winnerInstrument.type
-            if instruments.winnerInstrument.subtype
-                p(class="d-flex justify-content-center my-0")
-                    strong(class="me-2")="Subtype:"
-                    =instruments.winnerInstrument.subtype
-            else 
-                p(class="d-flex justify-content-center my-0")
-                    strong(class="me-2")="No Subtype"
-            p(class="d-flex justify-content-center my-0")
-                strong(class="me-2")="Price:"
-                =instruments.winnerInstrument.price 
-            p(class="d-flex justify-content-center my-0")
-                strong(class="me-2")="Sonority:"
-                =instruments.winnerInstrument.sonority
-            if instruments.winnerInstrument.summary
-                p(class="text-center overflow-hidden mt-0 mx-5")
-                    =instruments.winnerInstrument.summary
             else
                 p(class="text-center overflow-hidden mt-0 mb-3")
                     strong(class="me-2")="No Summary"
