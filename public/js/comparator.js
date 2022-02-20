@@ -44,40 +44,63 @@ function compareInstrumentsClicked(evt) {
 
 function leftTbodyClicked(evt) {
     //Toggle click color
-    let leftTableRow = evt.target.closest(".this-is-a-table-row");
+    let clickedleftTableRow = evt.target.closest(".this-is-a-table-row");
     const leftInstruments = leftTbody.querySelectorAll(".this-is-a-table-row");
+    let variableDeselectLeftId;
     for (let instrumentLeftRow of leftInstruments) {
-        if (instrumentLeftRow != leftTableRow)
+        if (instrumentLeftRow != clickedleftTableRow) {
             instrumentLeftRow.classList.remove("instrument-row-picked");
+        }
+        if (
+            instrumentLeftRow == clickedleftTableRow &&
+            instrumentLeftRow.classList.contains("instrument-row-picked")
+        ) {
+            variableDeselectLeftId = true;
+        }
     }
-    leftTableRow.classList.toggle("instrument-row-picked");
+    clickedleftTableRow.classList.toggle("instrument-row-picked");
 
+    if (variableDeselectLeftId) {
+        idLeftInstrument = undefined;
+        return;
+    }
     //Save leftInstrument id
     idLeftInstrument = findChildIdUsingDom(
-        leftTableRow,
+        clickedleftTableRow,
         ".secret-invisible-id"
     );
 }
 function rightTbodyClicked(evt) {
     //Toggle click color
-    let rightTableRow = evt.target.closest(".this-is-a-table-row");
+    let clickedRightTableRow = evt.target.closest(".this-is-a-table-row");
     const rightInstruments = rightTbody.querySelectorAll(
         ".this-is-a-table-row"
     );
+    let variableDeselectRightId;
     for (let instrumentRightRow of rightInstruments) {
-        if (instrumentRightRow != rightTableRow)
+        if (instrumentRightRow != clickedRightTableRow)
             instrumentRightRow.classList.remove("instrument-row-picked");
+            if (
+                instrumentRightRow == clickedRightTableRow &&
+                instrumentRightRow.classList.contains("instrument-row-picked")
+            ) {
+                variableDeselectRightId = true;
+            }
     }
-    rightTableRow.classList.toggle("instrument-row-picked");
+    clickedRightTableRow.classList.toggle("instrument-row-picked");
 
+    if (variableDeselectRightId) {
+        idRightInstrument = undefined;
+        return;
+    }
     //Save rightInstrument id
     idRightInstrument = findChildIdUsingDom(
-        rightTableRow,
+        clickedRightTableRow,
         ".secret-invisible-id"
     );
 }
 
-async function loadInstrumentsInLeftTbody() {
+async function loadInstrumentsInLeftTbodyAndAddListener() {
     dataPug = {
         instruments: instrumentsJson,
         filterSonority: settings.filterSonority,
@@ -88,7 +111,7 @@ async function loadInstrumentsInLeftTbody() {
     leftTbody.addEventListener("click", leftTbodyClicked);
 }
 
-async function loadInstrumentsInRightTbody() {
+async function loadInstrumentsInRightTbodyAndAddListener() {
     dataPug = {
         instruments: instrumentsJson,
         filterSonority: settings.filterSonority,
@@ -108,10 +131,10 @@ function openRulesModal() {
     modal.style.display = "block";
 }
 
-async function loadInitialData() {
+async function loadInitialDataAndAddListeners() {
     await loadInstrumentsFromDBToArray();
-    await loadInstrumentsInLeftTbody();
-    await loadInstrumentsInRightTbody();
+    await loadInstrumentsInLeftTbodyAndAddListener();
+    await loadInstrumentsInRightTbodyAndAddListener();
 }
 
 //Utility methods
@@ -137,4 +160,4 @@ document
     .addEventListener("click", compareInstrumentsClicked);
 
 //Load
-loadInitialData();
+loadInitialDataAndAddListeners();
