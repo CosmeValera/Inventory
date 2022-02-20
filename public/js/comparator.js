@@ -16,6 +16,33 @@ async function loadInstrumentsFromDBToArray() {
     }
 }
 
+function decideWinnerInstrument(rightInstrumentJson, leftInstrumentJson) {
+    // String always defeats Percussion.
+    // Percussion always defeats Wind.
+    // Wind always defeats String.
+    // If both instruments have the same type, the one with more sonority wins.
+    
+    //Win leftInstrument
+    if (leftInstrumentJson.type=="String" && rightInstrumentJson.type=="Percussion"
+    || leftInstrumentJson.type=="Percussion" && rightInstrumentJson.type=="Wind"
+    || leftInstrumentJson.type=="Wind" && rightInstrumentJson.type=="String") {
+        return leftInstrumentJson;
+    }
+    //Wind rightInstrument
+    if (rightInstrumentJson.type=="String" && leftInstrumentJson.type=="Percussion"
+    || rightInstrumentJson.type=="Percussion" && leftInstrumentJson.type=="Wind"
+    || rightInstrumentJson.type=="Wind" && leftInstrumentJson.type=="String") {
+        return rightInstrumentJson;
+    }
+    
+    if (leftInstrumentJson.sonority >= rightInstrumentJson.sonority) {
+        return leftInstrumentJson;
+    }
+    if (rightInstrumentJson.sonority >= leftInstrumentJson.sonority) {
+        return rightInstrumentJson;
+    }
+}
+
 async function compareInstrumentsClicked(evt) {
     console.log("left id is " + idLeftInstrument);
     console.log("right id is " + idRightInstrument);
@@ -26,7 +53,7 @@ async function compareInstrumentsClicked(evt) {
         !idRightInstrument ||
         idLeftInstrument == idRightInstrument
     ) {
-        //TODO 2: transform all alelrlt modal to pugs
+        //TODO 2: transform all alert modal to pugs
         divResultMessage.innerHTML = `<p class="text-center my-0">You must pick 2 instruments.</p>
             <p class="text-center mb-1">And they must be different.</p>`;
         divResultMessage.style.borderColor = "rgb(183, 38, 38)";
@@ -45,11 +72,12 @@ async function compareInstrumentsClicked(evt) {
     let rightInstrumentJson = await responseRightInstrument.json();
     if (responseLeftInstrument.ok && leftInstrumentJson &&
     responseRightInstrument.ok && rightInstrumentJson)  {
-        
+        let winnerInstrumentJson = decideWinnerInstrument(leftInstrumentJson, rightInstrumentJson);
+
         let instruments = {
             firstInstrument : leftInstrumentJson,
             secondInstrument : rightInstrumentJson,
-            winnerInstrument : leftInstrumentJson,
+            winnerInstrument : winnerInstrumentJson,
         }
 
         //TODO 1
