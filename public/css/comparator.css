@@ -5,3 +5,11 @@
 tr.instrument-row-picked {
     background-color: #c94c4c !important;
 }
+
+.modal-header-comparison {
+    background-color: rgb(7, 129, 123);
+}
+.modal-body-comparison,
+.modal-content-comparison {
+    background-color: rgb(11, 168, 160);
+}

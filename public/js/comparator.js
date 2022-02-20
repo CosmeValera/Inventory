@@ -21,32 +21,41 @@ function decideWinnerInstrument(rightInstrumentJson, leftInstrumentJson) {
     // Percussion always defeats Wind.
     // Wind always defeats String.
     // If both instruments have the same type, the one with more sonority wins.
-    
+
     //Win leftInstrument
-    if (leftInstrumentJson.type=="String" && rightInstrumentJson.type=="Percussion"
-    || leftInstrumentJson.type=="Percussion" && rightInstrumentJson.type=="Wind"
-    || leftInstrumentJson.type=="Wind" && rightInstrumentJson.type=="String") {
+    if (
+        (leftInstrumentJson.type == "String" &&
+            rightInstrumentJson.type == "Percussion") ||
+        (leftInstrumentJson.type == "Percussion" &&
+            rightInstrumentJson.type == "Wind") ||
+        (leftInstrumentJson.type == "Wind" &&
+            rightInstrumentJson.type == "String")
+    ) {
         return leftInstrumentJson;
     }
     //Wind rightInstrument
-    if (rightInstrumentJson.type=="String" && leftInstrumentJson.type=="Percussion"
-    || rightInstrumentJson.type=="Percussion" && leftInstrumentJson.type=="Wind"
-    || rightInstrumentJson.type=="Wind" && leftInstrumentJson.type=="String") {
+    if (
+        (rightInstrumentJson.type == "String" &&
+            leftInstrumentJson.type == "Percussion") ||
+        (rightInstrumentJson.type == "Percussion" &&
+            leftInstrumentJson.type == "Wind") ||
+        (rightInstrumentJson.type == "Wind" &&
+            leftInstrumentJson.type == "String")
+    ) {
         return rightInstrumentJson;
     }
-    
-    if (leftInstrumentJson.sonority >= rightInstrumentJson.sonority) {
-        return leftInstrumentJson;
-    }
+
     if (rightInstrumentJson.sonority >= leftInstrumentJson.sonority) {
         return rightInstrumentJson;
+    }
+    if (leftInstrumentJson.sonority >= rightInstrumentJson.sonority) {
+        return leftInstrumentJson;
     }
 }
 
 async function compareInstrumentsClicked(evt) {
-    console.log("left id is " + idLeftInstrument);
-    console.log("right id is " + idRightInstrument);
-
+    // console.log("left id is " + idLeftInstrument);
+    // console.log("right id is " + idRightInstrument);
     let divResultMessage = document.getElementById("resultMessage");
     if (
         !idLeftInstrument ||
@@ -66,24 +75,38 @@ async function compareInstrumentsClicked(evt) {
     divResultMessage.style.display = "none";
 
     //fetch both instruments
-    const responseLeftInstrument = await fetch(`/inventory/${idLeftInstrument}`);
+    const responseLeftInstrument = await fetch(
+        `/inventory/${idLeftInstrument}`
+    );
     let leftInstrumentJson = await responseLeftInstrument.json();
-    const responseRightInstrument = await fetch(`/inventory/${idRightInstrument}`);
+    const responseRightInstrument = await fetch(
+        `/inventory/${idRightInstrument}`
+    );
     let rightInstrumentJson = await responseRightInstrument.json();
-    if (responseLeftInstrument.ok && leftInstrumentJson &&
-    responseRightInstrument.ok && rightInstrumentJson)  {
-        let winnerInstrumentJson = decideWinnerInstrument(leftInstrumentJson, rightInstrumentJson);
-
+    if (
+        responseLeftInstrument.ok &&
+        leftInstrumentJson &&
+        responseRightInstrument.ok &&
+        rightInstrumentJson
+    ) {
+        let winnerInstrumentJson = decideWinnerInstrument(
+            leftInstrumentJson,
+            rightInstrumentJson
+        );
+        let loserInstrumentJson =
+            leftInstrumentJson._id == winnerInstrumentJson._id
+                ? rightInstrumentJson
+                : leftInstrumentJson;
+                
         let instruments = {
-            firstInstrument : leftInstrumentJson,
-            secondInstrument : rightInstrumentJson,
-            winnerInstrument : winnerInstrumentJson,
-        }
+            winnerInstrument: winnerInstrumentJson,
+            loserInstrument: loserInstrumentJson,
+        };
 
         //TODO 1
         modalContent = modal.querySelector(".modal-content");
-        modalContent.innerHTML = insertModalComparison( {
-            instruments : instruments
+        modalContent.innerHTML = insertModalComparison({
+            instruments: instruments,
         });
         document.querySelector(".close").onclick = function () {
             modal.style.display = "none";
@@ -92,7 +115,6 @@ async function compareInstrumentsClicked(evt) {
     } else {
         errMessage(response);
     }
-
 }
 
 function leftTbodyClicked(evt) {
@@ -133,12 +155,12 @@ function rightTbodyClicked(evt) {
     for (let instrumentRightRow of rightInstruments) {
         if (instrumentRightRow != clickedRightTableRow)
             instrumentRightRow.classList.remove("instrument-row-picked");
-            if (
-                instrumentRightRow == clickedRightTableRow &&
-                instrumentRightRow.classList.contains("instrument-row-picked")
-            ) {
-                variableDeselectRightId = true;
-            }
+        if (
+            instrumentRightRow == clickedRightTableRow &&
+            instrumentRightRow.classList.contains("instrument-row-picked")
+        ) {
+            variableDeselectRightId = true;
+        }
     }
     clickedRightTableRow.classList.toggle("instrument-row-picked");
 
