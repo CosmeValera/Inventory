@@ -8,6 +8,11 @@ p {
     padding: none;
     margin: none;
 }
+
+.border {
+    border: 2px solid #dc3545!important;
+}
+
 /* RANGE INPUT COLOR */
 .custom-range::-webkit-slider-thumb {
     background-color: #e24a4a;
