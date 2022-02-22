@@ -1,25 +1,3 @@
-.bg-danger-with-radial-gradient {
-    /* background-color: rgba(223, 71, 89, 0.9); */
-    /* background: linear-gradient(
-        0deg,
-        rgba(201, 76, 76, 1) 0%,
-        rgba(238, 162, 154, 1) 100%
-    ); */
-    /* background: rgb(238, 162, 154);
-    background: radial-gradient(
-        circle,
-        rgba(238, 162, 154, 1) 0%,
-        rgba(201, 76, 76, 1) 48%
-    ); */
-    background: rgb(238, 162, 154);
-    background: radial-gradient(
-        circle,
-        rgba(238, 162, 154, 1) 0%,
-        rgba(201, 76, 76, 1) 48%,
-        rgba(201, 76, 76, 1) 55%,
-        rgba(201, 76, 76, 0) 80%
-    );
-}
 label {
     color: white;
     text-shadow: 1px 1px #0000006e;
@@ -65,3 +43,56 @@ p {
   @extend .col-sm-6;
   @extend .col-12;
 } */
+
+/* Color gradient img */
+@media only screen and (min-width: 1080px) {
+    /* computer */
+    .bg-danger-with-radial-gradient {
+        background: rgb(238, 162, 154);
+        background: radial-gradient(
+            circle,
+            rgba(238, 162, 154, 1) 0%,
+            rgba(201, 76, 76, 1) 17%,
+            rgba(201, 76, 76, 1) 60%,
+            rgba(201, 76, 76, 0) 90%
+        );
+    }
+}
+@media only screen and (max-width: 1080px) {
+    /* mid-size */
+    .bg-danger-with-radial-gradient {
+        background: rgb(238, 162, 154);
+        background: radial-gradient(
+            circle,
+            rgba(238, 162, 154, 1) 0%,
+            rgba(201, 76, 76, 1) 25%,
+            rgba(201, 76, 76, 1) 60%,
+            rgba(201, 76, 76, 0) 90%
+        );
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* mid-size */
+    .bg-danger-with-radial-gradient {
+        background: rgb(238, 162, 154);
+        background: radial-gradient(
+            circle,
+            rgba(238, 162, 154, 1) 0%,
+            rgba(201, 76, 76, 1) 35%,
+            rgba(201, 76, 76, 1) 60%,
+            rgba(201, 76, 76, 0) 100%
+        );
+    }
+}
+@media only screen and (max-width: 500px) {
+    /* phone */
+    .bg-danger-with-radial-gradient {
+        background: rgb(238, 162, 154);
+        background: radial-gradient(
+            circle,
+            rgba(238, 162, 154, 1) 0%,
+            rgba(201, 76, 76, 1) 60%
+        );
+    }
+}
+/* END: Color gradient img */
