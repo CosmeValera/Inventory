@@ -1,3 +1,25 @@
+.bg-danger-with-radial-gradient {
+    /* background-color: rgba(223, 71, 89, 0.9); */
+    /* background: linear-gradient(
+        0deg,
+        rgba(201, 76, 76, 1) 0%,
+        rgba(238, 162, 154, 1) 100%
+    ); */
+    /* background: rgb(238, 162, 154);
+    background: radial-gradient(
+        circle,
+        rgba(238, 162, 154, 1) 0%,
+        rgba(201, 76, 76, 1) 48%
+    ); */
+    background: rgb(238, 162, 154);
+    background: radial-gradient(
+        circle,
+        rgba(238, 162, 154, 1) 0%,
+        rgba(201, 76, 76, 1) 48%,
+        rgba(201, 76, 76, 1) 55%,
+        rgba(201, 76, 76, 0) 80%
+    );
+}
 label {
     color: white;
     text-shadow: 1px 1px #0000006e;
@@ -9,9 +31,9 @@ p {
     margin: none;
 }
 
-.border {
-    border: 2px solid #dc3545!important;
-}
+/* .border {
+    border: 2px solid #dc3545 !important;
+} */
 
 /* RANGE INPUT COLOR */
 .custom-range::-webkit-slider-thumb {

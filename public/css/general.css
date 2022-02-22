@@ -17,8 +17,6 @@
     right: 0;
 }
 header {
-    background-color: #eea29a;
-    background: rgb(238, 162, 154);
     background: linear-gradient(
         0deg,
         rgba(238, 162, 154, 1) 0%,
