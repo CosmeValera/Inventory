@@ -243,6 +243,10 @@ async function subtypePicked(evt) {
         <option>String</option>
         <option>Percussion</option>`;
             selectType.value = "Wind";
+        selectSubtype.innerHTML = `<option></option>
+        <option>Wood</option>
+        <option>Brass</option>`;
+        selectSubtype.value = "";
             break;
         case "Wood":
             selectName.innerHTML = `<option></option>
