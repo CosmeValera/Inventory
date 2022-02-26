@@ -62,7 +62,7 @@ app.delete("/inventory/:id", async (req, res) => {
 
         await createDeleteRecord(instrument);
 
-        res.sendStatus(200);
+        res.sendStatus(204);
     } catch (err) {
         res.sendStatus(400);
     }
@@ -114,10 +114,10 @@ app.get("/register/:id", async (req, res) => {
 app.delete("/register", async (req, res) => {
     try {
         await db.deleteRecords();
-        res.sendStatus(200);
+        res.sendStatus(204);
     } catch (err) {
         res.statusMessage = "Error: " + err;
-        res.sendStatus(500);
+        res.sendStatus(400);
     }
 });
 /* END: Register methods */
