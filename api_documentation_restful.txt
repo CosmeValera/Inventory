@@ -1,0 +1,15 @@
+Resources: instruments, records.
+URI of instruments: /inventory.
+URI of records: /register.
+
+/inventory has these operations available:
+    get("/inventory"): Success: 200. Failure 500. In case of success, it returns all instruments.
+	get("/inventory/:id"): Success: 200. Failure 400. In case of success, it returns the instrument with the id that is passed as a parameter.
+	post("/inventory"): Success: 200. Failure 400. In case of success, it saves a new instrument that is passed in the body. Creates and saves a record of type "Add".
+	delete("/inventory/:id"): Success: 204. Failure 400. In case of success, it deletes the instrument with the id that is passed as a parameter. Creates and saves a record of type "Delete".
+	put("/inventory/:id"): Success: 200. Failure 500. In case of success, it updates the instrument with the id that is passed as a parameter, inserting the instrument thta is passed in the body. Creates and saves a record of type "Update".
+
+/register has these operations available:
+    get("/register"): Success: 200. Failure 500. In case of success, it returns all records.
+	get("/register/:id"): Success: 200. Failure 400. In case of success, it returns the record with the id that is passed as a parameter.
+	delete("/register"): Success: 204. Failure 400. In case of success, It deletes all records.
