@@ -1,0 +1,11 @@
+Resources: Instruments, records.
+Instruments resource has these operations available:
+    get("/inventory"): Success: 200. Failure 500.
+	get("/inventory/:id"): Success: 200. Failure 400.
+	post("/inventory"): Success: 200. Failure 400.
+	delete("/inventory/:id"): Success: 204. Failure 400.
+	put("/inventory/:id"): Success: 200. Failure 500.
+Records resource has these operations available:
+    get("/register"): Success: 200. Failure 500.
+	get("/register/:id"): Success: 200. Failure 400.
+	delete("/register"): Success: 204. Failure 400.
