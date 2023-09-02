@@ -26,16 +26,18 @@ Follow these steps to set up and run this Node project:
 git clone git@github.com:CosmeValera/Inventory.git
 ```
 
-2. Install the dependencies
+2. Open your terminal and navigate to the root directory of the project.
+
+3. Install the dependencies
 ```
 npm install
 ```
 
-3. Set Up MongoDB:
+4. Set Up MongoDB:
 
 If you don't have MongoDB installed, follow the [MongoDB installation](https://www.mongodb.com/docs/manual/installation/) guide to set it up on your machine.
 
-4. Start the project
+5. Start the project
 ```
 node app.js
 ```
