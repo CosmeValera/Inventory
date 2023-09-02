@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "runApp": "node app.js",
+    "test": "npx jest",
     "comparator-instruments-pug": "pug -c -D -n insertInstrumentsComparator -o public/js pug/comparatorInstruments.pug",
     "comparator-rules-modal-pug": "pug -c -D -n insertModalRulesComparator -o public/js pug/comparatorRulesModal.pug",
     "comparator-comparison-modal-pug": "pug -c -D -n insertModalComparison -o public/js pug/comparatorComparisonModal.pug",
@@ -26,5 +27,8 @@
     "express": "^4.17.2",
     "mongoose": "^6.1.9",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "jest": "^29.6.4"
   }
 }
