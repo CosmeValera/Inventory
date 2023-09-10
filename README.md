@@ -19,7 +19,7 @@
 - MongoDB (5.0.4 or higher)
 
 ### 🚀 Getting Started
-Follow these steps to set up and run this Node project.
+Follow these steps to set up and run this Node project:
 
 1. Clone the code:
 ```
